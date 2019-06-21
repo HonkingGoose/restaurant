@@ -1,4 +1,4 @@
-Reservation{
+class Reservation {
   constructor(id, date, tableOrRoom, duration, hidePriceOfMenu, numberOfGuests){
     this.id = id;
     this.date = date;
