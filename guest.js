@@ -1,5 +1,5 @@
 class Guest {
-  constructor(id, name, address, email, telephone, dateOfBirth){
+  constructor(id, name, address, email, telephone, dateOfBirth) {
     this.id = id;
     this.name = name;
     this.address = adress;
