@@ -26,5 +26,5 @@ const reservation = new Reservation(id, guestId, date, duration, hidePriceOfMenu
 reservationBook.push(reservation);
 console.log(reservationBook);
 
-console.log(`The guestid is: ${reservation.guestId}.`);
-console.log(`The table id is: ${reservation.id}.`);
+console.log(`The guestId is: ${reservation.guestId}.`);
+console.log(`The tableId is: ${reservation.id}.`);
