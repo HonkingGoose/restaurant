@@ -15,7 +15,7 @@ const capacity = process.argv[4];
 const availability = Boolean ( Number(process.argv[5]) );
 
 const tableA = new Table (number, numberOfGuests, capacity, availability);
-const tableCollection = [];
+let tableCollection = [];
 tableCollection.push(tableA);
 
 console.log(tableCollection);
