@@ -11,17 +11,17 @@ class Guest {
   }
 }
 
-let id = process.argv[2];
-let name = process.argv[3];
-let address = process.argv[4];
-let mail = process.argv[5];
+const id = process.argv[2];
+const name = process.argv[3];
+const address = process.argv[4];
+const mail = process.argv[5];
+const telephone = process.argv[6];
+const dateOfBirth = process.argv[7];
 
-let guest = new Guest(id, name, address, mail, undefined, "09-08-1968");
+const guest = new Guest(id, name, address, mail, telephone, dateOfBirth);
 
-let guests = [];
+const guests = [];
 
 guests.push(guest);
 
-for( guest of guests ) {
-  console.log(guest);
-}
+console.log(guests);
