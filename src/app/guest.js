@@ -15,14 +15,14 @@ class Guest {
 
 
 function createguest() {
-  const naam = document.getElementById('guestName').value;
-  const geboortedatum = document.getElementById('dateOfBirth').value;
-  const adress = document.getElementById('address').value;
+  const name = document.getElementById('guestName').value;
+  const dateOfBirth = document.getElementById('dateOfBirth').value;
+  const address = document.getElementById('address').value;
   const mail = document.getElementById('email').value;
-  const telefoonnummer = document.getElementById('phoneNumber').value;
+  const phoneNumber = document.getElementById('phoneNumber').value;
 
 
-  const guest = new Guest(naam, geboortedatum, adress, mail, telefoonnummer);
+  const guest = new Guest(name, dateOfBirth, address, mail, phoneNumber);
   gasten.push(guest);
 
   alert("saved succesfully");
