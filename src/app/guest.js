@@ -1,6 +1,8 @@
 "use strict";
 
-const gasten = [];
+const guests = [];
+
+console.log(guests)
 
 class Guest {
   constructor(id, name, address, mail, telephone, dateOfBirth){
@@ -19,11 +21,11 @@ function createguest() {
   const dateOfBirth = document.getElementById('dateOfBirth').value;
   const address = document.getElementById('address').value;
   const mail = document.getElementById('email').value;
-  const phoneNumber = document.getElementById('phoneNumber').value;
+  const telephone = document.getElementById('phoneNumber').value;
 
 
-  const guest = new Guest(name, dateOfBirth, address, mail, phoneNumber);
-  gasten.push(guest);
+  const guest = new Guest(undefined, name, address, mail, telephone, dateOfBirth);
+  guests.push(guest);
 
-  alert("Saved successfully.");
+  alert("saved succesfully");
 }
