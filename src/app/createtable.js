@@ -19,5 +19,5 @@ function createtable(){
 const table = new Table(nummer, aantalgasten, capaciteit, beschikbaarheid);
 tables.push(table);
 
-alert("Succesvol opgeslagen.");
+alert("saved succesfully");
 }
