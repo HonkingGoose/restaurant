@@ -27,5 +27,5 @@ function createguest() {
   const guest = new Guest(undefined, name, address, mail, telephone, dateOfBirth);
   guests.push(guest);
 
-  alert("saved succesfully");
+  alert("Saved successfully.");
 }
