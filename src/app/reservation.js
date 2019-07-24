@@ -26,5 +26,5 @@ sendButton.addEventListener("click", () => {
 
   console.log(reservationDatabase);
 
-  alert("Saved!");
+  alert("Saved successfully.");
 });
