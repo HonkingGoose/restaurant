@@ -1,4 +1,6 @@
-use molveno_dev_personal
+CREATE DATABASE IF NOT EXISTS molveno_dev_personal;
+
+use molveno_dev_personal;
 
 create table all_menus (id int primary key auto_increment,
   menu_name varchar(1000) not null
