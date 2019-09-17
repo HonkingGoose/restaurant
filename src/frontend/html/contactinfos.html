@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" conent="ie=edge">
+  <script src="../js/contactinfos.js"></script>
+  <title>Document</title>
+</head>
+<body>
+  <div id="getresults">
+    <h1>Al mijn gasten</h1>
+    <table>
+      <head>
+        <tr>
+          <th>ID</th>
+          <th>Name</th>
+          <th>prefix_lastname</th>
+          <th>lastname</th>
+          <th>Address</th>
+          <th>Email</th>
+          <th>Telephone</th>
+          <th>Dateofbirth</th>
+          <th>Greeting</th>
+        </tr>
+      </head>
+    <tbody id='guesttable'>
+    </tbody>
+    <button onclick="getGuests()" name="button">Klik</button>
+    <br>
+    <br>
+</div>
+<div id="newguest">
+  <h1>Maak een nieuwe gast aan:</h1>
+  <label for="firstname">Firstname
+    <input type="text" id="firstname"/>
+  </label>
+  <label for="prefix_lastname">prefix_lastname
+    <input type="text" id="prefix_lastname"/>
+  </label>
+  <label for="lastname">Lastname
+    <input type="text" id="lastname"/>
+  </label>
+  <label for="address">Address
+    <input type="text" id="address"/>
+  </label>
+  <label for="email">Email
+    <input type="text" id="email"/>
+  </label>
+  <label for="telephone">Telephone
+    <input type="text" id="telephone"/>
+  </label>
+  <label for="dateofbirth">Dateofbirth
+    <input type="text" id="dateofbirth"/>
+  </label>
+  <label for="greeting">Greeting
+    <input type="text" id="greeting"/>
+  </label>
+  <button onclick="verstuurGast()" name="button">Maak een nieuwe gast aan</button>
+</div>
+</body>
+</html>
