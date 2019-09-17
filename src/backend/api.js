@@ -174,3 +174,4 @@ app.delete("/api/reservations/:id", (req, res) => {
   console.log("Deleted ", result.affectedRows, " rows");
   res.status(204).end();
   });
+});
