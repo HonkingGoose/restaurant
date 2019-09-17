@@ -89,3 +89,49 @@ app.post("/api/all_menus", (req, res) => {
     res.send(result)
     });
 });
+
+app.post("/api/restaurant_orders", (req, res) => {
+  const content = req.body;
+  connection.query("INSERT INTO restaurant_orders SET ?", content, (err, result) => {
+    if (err) throw err;
+    res.send(result)
+    });
+});
+
+app.get("/api/restaurant_orders", (req, res) => {
+    res.setHeader("Content-Type", "application/json");
+    connection.query("SELECT * FROM restaurant_orders", (err, restaurant_orders) => {
+        if (err) throw err;
+        res.send(restaurant_orders);
+        console.log(restaurant_orders);
+  });
+});
+
+app.get("/api/restaurant_orders/:id", (req, res) => {
+    const id = +req.params.id;
+    connection.query("SELECT * FROM restaurant_orders WHERE id = ?", [id], (err, result) => {
+        if(err) throw err;
+        res.send(result);
+    });
+  });
+
+app.put("/api/restaurant_orders/:id", (req, res) => {
+  let id = +req.params.id;
+  let inputUser = req.body;
+    connection.query("UPDATE restaurant_orders SET ? WHERE id = ?", [inputUser, id], (err, response) => {
+      if(err) throw err;
+      connection.query("SELECT * FROM restaurant_orders WHERE id = ?", id, (updateErr, updateRestaurant_orders) => {
+        if (updateErr) throw err;
+        res.send(updateRestaurant_orders);
+      });
+    });
+  });
+
+app.delete("/api/restaurant_orders/:id", (req, res) => {
+  let id = +req.params.id;
+  connection.query("DELETE FROM restaurant_orders WHERE id = ?", [id], (err, result) => {
+  if(err) throw err;
+  console.log("Deleted ", result.affectedRows, " rows");
+  res.status(204).end();
+  });
+});
