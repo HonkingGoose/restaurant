@@ -32,7 +32,7 @@ app.get('/api/contactinfos', (req, res) => {
     });
 });
 
-let bodyParser = require('body-parser');
+const bodyParser = require('body-parser');
 
 app.use(bodyParser.json());
 
