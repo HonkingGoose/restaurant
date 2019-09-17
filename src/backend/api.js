@@ -73,3 +73,19 @@ app.put('/api/contactinfos/:id', function(req, res) {
     });
   });
 });
+
+app.get("/api/all_menus", (req, res) => {
+    res.setHeader("Content-Type", "application/json");
+    connection.query("SELECT * FROM all_menus", (err, all_menus) => {
+        if (err) throw err;
+        res.send(all_menus);
+  });
+});
+
+app.post("/api/all_menus", (req, res) => {
+  const content = req.body;
+  connection.query("INSERT INTO all_menus SET ?", content, (err, result) => {
+    if (err) throw err;
+    res.send(result)
+    });
+});
