@@ -10,21 +10,3 @@ class Reservation {
     this.numberOfGuests = numberOfGuests;
   }
 }
-
-const reservationBook = [];
-
-const id = process.argv[2];
-const guestId = process.argv[3];
-const date = process.argv[4];
-const duration = process.argv[5];
-const hidePriceOfMenu = Boolean(
-  Number(process.argv[6]) ); // input must be a number
-const numberOfGuests = process.argv[7];
-
-const reservation = new Reservation(id, guestId, date, duration, hidePriceOfMenu, numberOfGuests);
-
-reservationBook.push(reservation);
-console.log(reservationBook);
-
-console.log(`The guestId is: ${reservation.guestId}.`);
-console.log(`The tableId is: ${reservation.id}.`);
