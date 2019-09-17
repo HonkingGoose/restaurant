@@ -135,3 +135,40 @@ app.delete("/api/restaurant_orders/:id", (req, res) => {
   res.status(204).end();
   });
 });
+
+app.post("/api/reservations", (req, res) => {
+  const content = req.body;
+  connection.query("INSERT INTO reservations SET ?", content, (err, result) => {
+    if (err) throw err;
+    res.send(result)
+    });
+});
+
+app.get("/api/reservations", (req, res) => {
+    res.setHeader("Content-Type", "application/json");
+    connection.query("SELECT * FROM reservations", (err, reservations) => {
+        if (err) throw err;
+        res.send(reservations);
+        console.log(reservations);
+  });
+});
+
+app.put("/api/reservations/:id", (req, res) => {
+  let id = +req.params.id;
+  let inputUser = req.body;
+    connection.query("UPDATE reservations SET ? WHERE id = ?", [inputUser, id], (err, response) => {
+      if(err) throw err;
+      connection.query("SELECT * FROM reservations WHERE id = ?", id, (updateErr, updateReservations) => {
+        if (updateErr) throw err;
+        res.send(updateReservations);
+      });
+    });
+  });
+
+app.delete("/api/reservations/:id", (req, res) => {
+  let id = +req.params.id;
+  connection.query("DELETE FROM reservations WHERE id = ?", id,(err, result) => {
+  if(err) throw err;
+  console.log("Deleted ", result.affectedRows, " rows");
+  res.status(204).end();
+  });
