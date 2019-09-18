@@ -5,11 +5,11 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" conent="ie=edge">
   <script src="../js/contactinfos.js"></script>
-  <title>Document</title>
+  <title>Add guest</title>
 </head>
 <body>
   <div id="getresults">
-    <h1>Al mijn gasten</h1>
+    <h1>Table of guests</h1>
     <table>
       <head>
         <tr>
@@ -26,12 +26,12 @@
       </head>
     <tbody id='guesttable'>
     </tbody>
-    <button onclick="getGuests()" name="button">Klik</button>
+    <button onclick="getGuests()" name="button">Click</button>
     <br>
     <br>
 </div>
 <div id="newguest">
-  <h1>Maak een nieuwe gast aan:</h1>
+  <h1>Add new guest:</h1>
   <label for="firstname">Firstname
     <input type="text" id="firstname"/>
   </label>
@@ -56,7 +56,7 @@
   <label for="greeting">Greeting
     <input type="text" id="greeting"/>
   </label>
-  <button onclick="verstuurGast()" name="button">Maak een nieuwe gast aan</button>
+  <button onclick="sendGuest()" name="button">Add new guest</button>
 </div>
 </body>
 </html>
