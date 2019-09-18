@@ -39,7 +39,7 @@ const bodyParser = require('body-parser');
 app.use(bodyParser.json());
 
 app.post('/api/contactinfos', function (req, res) {
-  let content = req.body;
+  const content = req.body;
   connection.query('INSERT INTO contactinfos SET ?', content, (err, result) => {
   if (err) throw err;
   res.send(result)
@@ -54,7 +54,7 @@ app.listen(port, () => {
 
 app.delete('/api/contactinfos/:id', function(req, res) {
 
-  let id = +req.params.id;
+  const id = +req.params.id;
 
   connection.query('DELETE FROM contactinfos WHERE id = ?', id, (err, result) => {
       if(err) throw err;
@@ -64,8 +64,8 @@ app.delete('/api/contactinfos/:id', function(req, res) {
 });
 
 app.put('/api/contactinfos/:id', function(req, res) {
-  let id = +req.params.id;
-  let inputUser = req.body;
+  const id = +req.params.id;
+  const inputUser = req.body;
 
   connection.query('UPDATE contactinfos SET ? WHERE id = ?', [inputUser, id], (err, response) => {
     if(err) throw err;
@@ -118,8 +118,8 @@ app.get("/api/restaurant_orders/:id", (req, res) => {
   });
 
 app.put("/api/restaurant_orders/:id", (req, res) => {
-  let id = +req.params.id;
-  let inputUser = req.body;
+  const id = +req.params.id;
+  const inputUser = req.body;
     connection.query("UPDATE restaurant_orders SET ? WHERE id = ?", [inputUser, id], (err, response) => {
       if(err) throw err;
       connection.query("SELECT * FROM restaurant_orders WHERE id = ?", id, (updateErr, updateRestaurant_orders) => {
@@ -130,7 +130,7 @@ app.put("/api/restaurant_orders/:id", (req, res) => {
   });
 
 app.delete("/api/restaurant_orders/:id", (req, res) => {
-  let id = +req.params.id;
+  const id = +req.params.id;
   connection.query("DELETE FROM restaurant_orders WHERE id = ?", [id], (err, result) => {
   if(err) throw err;
   console.log("Deleted ", result.affectedRows, " rows");
@@ -156,8 +156,8 @@ app.get("/api/reservations", (req, res) => {
 });
 
 app.put("/api/reservations/:id", (req, res) => {
-  let id = +req.params.id;
-  let inputUser = req.body;
+  const id = +req.params.id;
+  const inputUser = req.body;
     connection.query("UPDATE reservations SET ? WHERE id = ?", [inputUser, id], (err, response) => {
       if(err) throw err;
       connection.query("SELECT * FROM reservations WHERE id = ?", id, (updateErr, updateReservations) => {
@@ -168,7 +168,7 @@ app.put("/api/reservations/:id", (req, res) => {
   });
 
 app.delete("/api/reservations/:id", (req, res) => {
-  let id = +req.params.id;
+  const id = +req.params.id;
   connection.query("DELETE FROM reservations WHERE id = ?", id,(err, result) => {
   if(err) throw err;
   console.log("Deleted ", result.affectedRows, " rows");
