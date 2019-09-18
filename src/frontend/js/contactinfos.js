@@ -49,11 +49,12 @@
         });
       }
     }
+  }
     function getGuestById(id) {
           const xhttp = new XMLHttpRequest();
           const url = 'http://localhost:3000/api/contactinfos/'+id;
 
-          
+
           xhttp.open('GET', url);
           xhttp.send();
           xhttp.onreadystatechange = () => {
@@ -70,5 +71,47 @@
                   });
               }
           }
+  }
+//DELETE FUNCTION
+  function deleteContactinfosById() {
+    const id = +document.getElementById("contactinfosId").value;
+    const xhttp = new XMLHttpRequest();
+    const url = "http://localhost:3000/api/contactinfos/"+id;
+    console.log(url);
 
+    xhttp.open("DELETE", url);
+    console.log(url);
+    xhttp.send();
+    //reset contactinfos
+  }
+
+  function putContactinfosById()  {
+    const id = +document.getElementById('contactinfosId1').value;
+    const firstname = document.getElementById('firstname1').value;
+    const prefix_lastname = document.getElementById('prefix_lastname1').value;
+    const lastname = document.getElementById('lastname1').value;
+    const address = document.getElementById('address1').value;
+    const email = document.getElementById('email1').value;
+    const telephone = document.getElementById('telephone1').value;
+    const dateofbirth = document.getElementById('dateofbirth1').value;
+    const greeting = document.getElementById('greeting1').value;
+
+    const newContactinfosById = {
+      id : id,
+      firstname:firstname,
+      prefix_lastname:prefix_lastname,
+      lastname:lastname,
+      address:address,
+      email:email,
+      telephone:telephone,
+      dateofbirth:dateofbirth,
+      greeting:greeting
+    }
+    
+    const xhttp = new XMLHttpRequest();
+    const url = "http://localhost:3000/api/contactinfos/"+id;
+
+    xhttp.open("put", url);
+    xhttp.setRequestHeader("Content-Type", "application/json");
+    xhttp.send(JSON.stringify(newContactinfosById));
   }

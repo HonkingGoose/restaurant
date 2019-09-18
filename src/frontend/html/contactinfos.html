@@ -30,6 +30,37 @@
     <br>
     <br>
 </div>
+<div id="getresultById">
+      Gast ID: <input type="text" id="guestId" name="guestId">
+      <h1>Gast</h1>
+
+     Last name: <input type="text" name="lastName" id="lastName"><br>
+     First name: <input type="text" name="firstName" id="firstName"><br>
+
+     <table>
+     <thead>
+         <tr>
+           <th>ID</th>
+           <th>Name</th>
+           <th>prefix_lastname</th>
+           <th>lastname</th>
+           <th>Address</th>
+           <th>Email</th>
+           <th>Telephone</th>
+           <th>Dateofbirth</th>
+           <th>Greeting</th>
+         </tr>
+     </thead>
+     <tbody id='guestByIdTable'>
+     </tbody>
+ </table>
+ <button onClick="getGuestById();">Laat gast zien</button>
+ <button onClick="updateGuestById();">Update gast</button>
+ <br>
+ <br>
+</div>
+
+
 <div id="newguest">
   <h1>Maak een nieuwe gast aan:</h1>
   <label for="firstname">Firstname
@@ -60,3 +91,40 @@
 </div>
 </body>
 </html>
+
+<div id="">
+  <H1>Verwijder ID</H1>
+  <input type="text" name="contactinfosId" id="contactinfosId">
+  <button onclick="deleteContactinfosById()"> Verwijder </button>
+</div>
+
+<section id="putContactinfos">
+  <h1>Put contactinfos </h1>
+  <input type="text" name="contactinfosId" id="contactinfosId1">
+
+  <label for="firstname">Firstname
+    <input type="text" id="firstname1"/>
+  </label>
+  <label for="prefix_lastname">prefix_lastname
+    <input type="text" id="prefix_lastname1"/>
+  </label>
+  <label for="lastname">Lastname
+    <input type="text" id="lastname1"/>
+  </label>
+  <label for="address">Address
+    <input type="text" id="address1"/>
+  </label>
+  <label for="email">Email
+    <input type="text" id="email1"/>
+  </label>
+  <label for="telephone">Telephone
+    <input type="text" id="telephone1"/>
+  </label>
+  <label for="dateofbirth">Dateofbirth
+    <input type="text" id="dateofbirth1"/>
+  </label>
+  <label for="greeting">Greeting
+    <input type="text" id="greeting1"/>
+  </label>
+<button onclick="putContactinfosById()" class="putButton">PUT</button>
+</section>
