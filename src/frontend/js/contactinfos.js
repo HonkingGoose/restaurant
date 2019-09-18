@@ -1,53 +1,52 @@
-  function verstuurGast() {
+function sendGuest() {
 
-    const firstname = document.getElementById('firstname').value;
-    const prefix_lastname = document.getElementById('prefix_lastname').value;
-    const lastname = document.getElementById('lastname').value;
-    const address = document.getElementById('address').value;
-    const email = document.getElementById('email').value;
-    const telephone = document.getElementById('telephone').value;
-    const dateofbirth = document.getElementById('dateofbirth').value;
-    const greeting = document.getElementById('greeting').value;
+  const firstname = document.getElementById('firstname').value;
+  const prefix_lastname = document.getElementById('prefix_lastname').value;
+  const lastname = document.getElementById('lastname').value;
+  const address = document.getElementById('address').value;
+  const email = document.getElementById('email').value;
+  const telephone = document.getElementById('telephone').value;
+  const dateofbirth = document.getElementById('dateofbirth').value;
+  const greeting = document.getElementById('greeting').value;
 
-    const newGuest = { firstname:firstname, prefix_lastname:prefix_lastname, lastname:lastname, address:address, email:email, telephone:telephone, dateofbirth:dateofbirth, greeting:greeting };
+  const newGuest = { firstname: firstname, prefix_lastname: prefix_lastname, lastname: lastname, address: address, email: email, telephone: telephone, dateofbirth: dateofbirth, greeting: greeting };
 
-    const xhttp = new XMLHttpRequest();
-    const url = 'http://localhost:3000/api/contactinfos';
+  const xhttp = new XMLHttpRequest();
+  const url = 'http://localhost:3000/api/contactinfos';
 
-    xhttp.open("POST", url);
-    xhttp.setRequestHeader("Content-type", "application/json");
-    xhttp.send(JSON.stringify(newGuest));
+  xhttp.open("POST", url);
+  xhttp.setRequestHeader("Content-type", "application/json");
+  xhttp.send(JSON.stringify(newGuest));
 
-    xhttp.onreadystatechange = () => {
-      if (xhttp.readyState === 4 && xhttp.status ==200) {
-        getGuests();
-      }
+  xhttp.onreadystatechange = () => {
+    if (xhttp.readyState === 4 && xhttp.status == 200) {
+      getGuests();
     }
   }
+}
 
-  function getGuests() {
-    document.getElementById('guesttable').innerHTML = "";
+function getGuests() {
+  document.getElementById('guesttable').innerHTML = "";
 
-    const xhttp = new XMLHttpRequest();
-    const url = 'http://localhost:3000/api/contactinfos';
+  const xhttp = new XMLHttpRequest();
+  const url = 'http://localhost:3000/api/contactinfos';
 
-    xhttp.open('GET', url);
-    xhttp.send();
+  xhttp.open('GET', url);
+  xhttp.send();
 
-    xhttp.onreadystatechange = (result) => {
-      if (xhttp.readyState === 4 && xhttp.status === 200 ) {
-        const jsonResult = JSON.parse(xhttp.responseText);
-        jsonResult.forEach(element => {
+  xhttp.onreadystatechange = (result) => {
+    if (xhttp.readyState === 4 && xhttp.status === 200) {
+      const jsonResult = JSON.parse(xhttp.responseText);
+      jsonResult.forEach(element => {
 
-          let table = document.getElementById('guesttable');
-          let insertRow = table.insertRow();
+        let table = document.getElementById('guesttable');
+        let insertRow = table.insertRow();
 
-          for (let key in element) {
-            let cell = insertRow.insertCell();
-            cell.innerHTML = element[key];
-          }
-        });
-      }
+        for (let key in element) {
+          let cell = insertRow.insertCell();
+          cell.innerHTML = element[key];
+        }
+      });
     }
   }
     function getGuestById(id) {
@@ -107,7 +106,7 @@
       dateofbirth:dateofbirth,
       greeting:greeting
     }
-    
+
     const xhttp = new XMLHttpRequest();
     const url = "http://localhost:3000/api/contactinfos/"+id;
 
@@ -115,3 +114,4 @@
     xhttp.setRequestHeader("Content-Type", "application/json");
     xhttp.send(JSON.stringify(newContactinfosById));
   }
+}
