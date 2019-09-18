@@ -94,10 +94,19 @@ app.post("/api/all_menus", (req, res) => {
 
 app.post("/api/restaurant_orders", (req, res) => {
   const content = req.body;
+  const d = new Date();
+  const year = d.getFullYear();
+  const month = (d.getMonth() + 1);
+  const day = (d.getDate() + 1);
+  const hours = (d.getHours() + 2);
+  const minutes = d.getMinutes();
+  const seconds = d.getSeconds();
+  content["completed"] = false;
+  content["order_timestamp"] = year+"-"+month+"-"+day+"-"+hours+"-"+minutes+"-"+seconds;
   connection.query("INSERT INTO restaurant_orders SET ?", content, (err, result) => {
     if (err) throw err;
     res.send(result)
-  });
+    });
 });
 
 app.get("/api/restaurant_orders", (req, res) => {
