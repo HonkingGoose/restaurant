@@ -1,3 +1,5 @@
+"use strict"
+
 function sendGuest() {
 
   const firstname = document.getElementById('firstname').value;
