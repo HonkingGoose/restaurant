@@ -1,4 +1,4 @@
-  function verstuurGast() {
+  function sendGuest() {
 
     const firstname = document.getElementById('firstname').value;
     const prefix_lastname = document.getElementById('prefix_lastname').value;
