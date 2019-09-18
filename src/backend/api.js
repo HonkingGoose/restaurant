@@ -164,6 +164,14 @@ app.get("/api/reservations", (req, res) => {
   });
 });
 
+app.get("/api/reservations/:id", (req, res) => {
+    const id = +req.params.id;
+    connection.query("SELECT * FROM reservations WHERE id = ?", [id], (err, result) => {
+        if(err) throw err;
+        res.send(result);
+    });
+  });
+  
 app.put("/api/reservations/:id", (req, res) => {
   const id = +req.params.id;
   const inputUser = req.body;
