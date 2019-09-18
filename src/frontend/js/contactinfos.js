@@ -49,33 +49,33 @@ function getGuests() {
       });
     }
   }
-    function getGuestById(id) {
-          const xhttp = new XMLHttpRequest();
-          const url = 'http://localhost:3000/api/contactinfos/'+id;
+  function getGuestById(id) {
+    const xhttp = new XMLHttpRequest();
+    const url = 'http://localhost:3000/api/contactinfos/' + id;
 
 
-          xhttp.open('GET', url);
-          xhttp.send();
-          xhttp.onreadystatechange = () => {
-              if (xhttp.readyState === 4 && xhttp.status === 200 ) {
-                  const jsonResult = JSON.parse(xhttp.responseText);
-                  jsonResult.forEach(element => {
-                      let table = document.getElementById('guesttable');
-                      let insertRow = table.insertRow();
+    xhttp.open('GET', url);
+    xhttp.send();
+    xhttp.onreadystatechange = () => {
+      if (xhttp.readyState === 4 && xhttp.status === 200) {
+        const jsonResult = JSON.parse(xhttp.responseText);
+        jsonResult.forEach(element => {
+          let table = document.getElementById('guesttable');
+          let insertRow = table.insertRow();
 
-                      for (let key in element) {
-                          let cell = insertRow.insertCell();
-                          cell.innerHTML = element[key];
-                      }
-                  });
-              }
+          for (let key in element) {
+            let cell = insertRow.insertCell();
+            cell.innerHTML = element[key];
           }
+        });
+      }
+    }
   }
-//DELETE FUNCTION
+  //DELETE FUNCTION
   function deleteContactinfosById() {
     const id = +document.getElementById("contactinfosId").value;
     const xhttp = new XMLHttpRequest();
-    const url = "http://localhost:3000/api/contactinfos/"+id;
+    const url = "http://localhost:3000/api/contactinfos/" + id;
     console.log(url);
 
     xhttp.open("DELETE", url);
@@ -84,7 +84,7 @@ function getGuests() {
     //reset contactinfos
   }
 
-  function putContactinfosById()  {
+  function putContactinfosById() {
     const id = +document.getElementById('contactinfosId1').value;
     const firstname = document.getElementById('firstname1').value;
     const prefix_lastname = document.getElementById('prefix_lastname1').value;
@@ -96,19 +96,19 @@ function getGuests() {
     const greeting = document.getElementById('greeting1').value;
 
     const newContactinfosById = {
-      id : id,
-      firstname:firstname,
-      prefix_lastname:prefix_lastname,
-      lastname:lastname,
-      address:address,
-      email:email,
-      telephone:telephone,
-      dateofbirth:dateofbirth,
-      greeting:greeting
+      id: id,
+      firstname: firstname,
+      prefix_lastname: prefix_lastname,
+      lastname: lastname,
+      address: address,
+      email: email,
+      telephone: telephone,
+      dateofbirth: dateofbirth,
+      greeting: greeting
     }
 
     const xhttp = new XMLHttpRequest();
-    const url = "http://localhost:3000/api/contactinfos/"+id;
+    const url = "http://localhost:3000/api/contactinfos/" + id;
 
     xhttp.open("put", url);
     xhttp.setRequestHeader("Content-Type", "application/json");
