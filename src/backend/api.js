@@ -25,6 +25,14 @@ app.use(function (req, res, next) {
   next();
 });
 
+const bodyParser = require('body-parser');
+
+app.use(bodyParser.json());
+
+app.listen(port, () => {
+  console.log('Server running on port: ', port)
+});
+
 app.get('/api/contactinfos', (req, res) => {
   res.setHeader('Content-Type', 'application/json');
 
