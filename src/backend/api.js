@@ -62,9 +62,7 @@ app.post('/api/contactinfos', function (req, res) {
   // res.send(content);
 });
 
-app.listen(port, () => {
-  console.log('Server running on port: ', port)
-});
+
 
 app.delete('/api/contactinfos/:id', function (req, res) {
 
