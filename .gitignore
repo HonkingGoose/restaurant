@@ -65,3 +65,6 @@ typings/
 
 #. Libreoffice calc lock file
 *.ods#
+
+#. Libreoffice Impress lock file
+.~lock.*
