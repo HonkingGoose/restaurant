@@ -42,9 +42,15 @@ app.get('/api/contactinfos', (req, res) => {
   });
 });
 
-const bodyParser = require('body-parser');
+app.get("/api/contactinfos/:id", (req, res) => {
+  const id = +req.params.id;
+  connection.query("SELECT * FROM contactinfos WHERE id = ?", [id], (err, result) => {
+    if (err) throw err;
+    res.send(result);
+  });
+});
 
-app.use(bodyParser.json());
+
 
 app.post('/api/contactinfos', function (req, res) {
   const content = req.body;
