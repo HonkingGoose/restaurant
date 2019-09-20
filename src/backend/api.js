@@ -222,10 +222,19 @@ app.post("/api/all_menus", (req, res) => {
 
 app.post("/api/restaurant_orders", (req, res) => {
   const content = req.body;
+  const d = new Date();
+  const year = d.getFullYear();
+  const month = (d.getMonth() + 1);
+  const day = (d.getDate() + 1);
+  const hours = (d.getHours() + 2);
+  const minutes = d.getMinutes();
+  const seconds = d.getSeconds();
+  content["completed"] = false;
+  content["order_timestamp"] = year+"-"+month+"-"+day+"-"+hours+"-"+minutes+"-"+seconds;
   connection.query("INSERT INTO restaurant_orders SET ?", content, (err, result) => {
     if (err) throw err;
     res.send(result)
-  });
+    });
 });
 
 app.get("/api/restaurant_orders", (req, res) => {
@@ -283,6 +292,14 @@ app.get("/api/reservations", (req, res) => {
   });
 });
 
+app.get("/api/reservations/:id", (req, res) => {
+    const id = +req.params.id;
+    connection.query("SELECT * FROM reservations WHERE id = ?", [id], (err, result) => {
+        if(err) throw err;
+        res.send(result);
+    });
+  });
+
 app.put("/api/reservations/:id", (req, res) => {
   const id = +req.params.id;
   const inputUser = req.body;
@@ -301,5 +318,112 @@ app.delete("/api/reservations/:id", (req, res) => {
     if (err) throw err;
     console.log("Deleted ", result.affectedRows, " rows");
     res.status(204).end();
+  });
+});
+
+app.get('/api/ingredients', (req, res) => {
+
+    res.setHeader('Content-Type', 'application/json');
+
+    connection.query('SELECT * FROM ingredients', (err, ingredients) => {
+        if(err) throw err;
+        res.send(ingredients);
+    });
+
+});
+
+
+app.get('/api/ingredients/:id', (request, response) => {
+    const id = +request.params.id;
+    connection.query('select * from ingredients where id=?;', [id], (err, result) => {
+        if(err) throw err;
+        response.send(result);
+    });
+  });
+
+
+app.post('/api/ingredients', function (req, res) {
+
+    let content = req.body;
+
+    connection.query('INSERT INTO ingredients SET ?', content, (err, result) => {
+        if (err) throw err;
+        res.send(result)
+    });
+
+});
+
+app.delete('/api/ingredients/:id', function(req, res) {
+
+    let id = +req.params.id;
+
+    connection.query('DELETE FROM ingredients WHERE id = ?', id, (err, result) => {
+        if(err) throw err;
+        console.log('Deleted ', result.affectedRows,' rows');
+        res.status(204).end();
+    });
+});
+
+app.put('/api/ingredients/:id', function(req, res) {
+
+    let id = +req.params.id;
+    let inputUser = req.body;
+
+    connection.query('UPDATE ingredients SET ? WHERE id = ?', [inputUser, id], (err, response) => {
+        if(err) throw err;
+        connection.query('SELECT * FROM ingredients WHERE id = ?', id, (updatedErr, updatedingredients) => {
+            if(updatedErr) throw updatedErr;
+            res.send(updatedingredients);
+        });
+    });
+});
+
+app.get('/api/menu_items', (req, res) => {
+  res.setHeader('Content-Type', 'application/json');
+  connection.query('SELECT * FROM menu_items', (err, menu_items) => {
+    if(err) throw err;
+    res.send(menu_items);
+  });
+});
+
+app.post('/api/menu_items', function (req, res) {
+
+    let content = req.body;
+
+    connection.query('INSERT INTO menu_items SET ?', content, (err, result) => {
+        if (err) throw err;
+        res.send(result)
+    });
+
+});
+
+app.delete('/api/menu_items/:id', function(req, res) {
+  let id = +req.params.id;
+
+  connection.query('DELETE FROM menu_items WHERE id = ?', id, (err, result) => {
+    if(err) throw err;
+    console.log('Deleted', result.affectedRows, 'rows');
+    res.status(204).end();
+  });
+
+});
+app.get('/api/menu_items/:id', (request, response) => {
+    const id = +request.params.id;
+    connection.query('select * from menu_items where id=?;', [id], (err, result) => {
+        if(err) throw err;
+        response.send(result);
+    });
+  });
+
+app.put('/api/menu_items/:id', function(req, res) {
+  let id = +req.params.id;
+  let inputUser = req.body;
+
+  connection.query('UPDATE menu_items SET ? WHERE id = ?', [inputUser, id], (err, response) => {
+    if(err) throw err;
+    connection.query('SELECT * FROM menu_items WHERE id = ?', id, (updatedErr, updatedMenu_items) => {
+      if(updatedErr) throw updatedErr;
+      res.send(updatedMenu_items);
+    });
   });
 });
