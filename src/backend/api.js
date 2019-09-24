@@ -25,6 +25,14 @@ app.use(function (req, res, next) {
   next();
 });
 
+const bodyParser = require('body-parser');
+
+app.use(bodyParser.json());
+
+app.listen(port, () => {
+  console.log('Server running on port: ', port)
+});
+
 app.get('/api/contactinfos', (req, res) => {
   res.setHeader('Content-Type', 'application/json');
 
@@ -34,9 +42,15 @@ app.get('/api/contactinfos', (req, res) => {
   });
 });
 
-const bodyParser = require('body-parser');
+app.get("/api/contactinfos/:id", (req, res) => {
+  const id = +req.params.id;
+  connection.query("SELECT * FROM contactinfos WHERE id = ?", [id], (err, result) => {
+    if (err) throw err;
+    res.send(result);
+  });
+});
 
-app.use(bodyParser.json());
+
 
 app.post('/api/contactinfos', function (req, res) {
   const content = req.body;
@@ -48,9 +62,7 @@ app.post('/api/contactinfos', function (req, res) {
   // res.send(content);
 });
 
-app.listen(port, () => {
-  console.log('Server running on port: ', port)
-});
+
 
 app.delete('/api/contactinfos/:id', function (req, res) {
 
@@ -75,6 +87,122 @@ app.put('/api/contactinfos/:id', function (req, res) {
     });
   });
 });
+
+//    restaurant tables
+
+app.get('/api/restaurant_tables', (req, res) => {
+  res.setHeader('Content-Type', 'application/json');
+
+  connection.query('SELECT * FROM restaurant_tables', (err, restaurant_tables) => {
+    if (err) throw err;
+    res.send(restaurant_tables);
+  });
+});
+
+app.get("/api/restaurant_tables/:id", (req, res) => {
+  const id = +req.params.id;
+  connection.query("SELECT * FROM restaurant_tables WHERE id = ?", [id], (err, result) => {
+    if (err) throw err;
+    res.send(result);
+  });
+});
+
+
+
+app.post('/api/restaurant_tables', function (req, res) {
+  const content = req.body;
+  connection.query('INSERT INTO restaurant_tables SET ?', content, (err, result) => {
+    if (err) throw err;
+    res.send(result)
+  });
+  // console.log(content);
+  // res.send(content);
+});
+
+app.delete('/api/restaurant_tables/:id', function (req, res) {
+
+  const id = +req.params.id;
+
+  connection.query('DELETE FROM restaurant_tables WHERE id = ?', id, (err, result) => {
+    if (err) throw err;
+    console.log('Deleted', result.affectedRows, ' rows');
+    res.status(204).end();
+  });
+});
+
+app.put('/api/restaurant_tables/:id', function (req, res) {
+  const id = +req.params.id;
+  const inputUser = req.body;
+
+  connection.query('UPDATE restaurant_tables SET ? WHERE id = ?', [inputUser, id], (err, response) => {
+    if (err) throw err;
+    connection.query('SELECT * FROM restaurant_tables WHERE id = ?', id, (updatedErr, updatedRestaurant_tables) => {
+      if (updatedErr) throw updatedErr
+      res.send(updatedRestaurant_tables);
+    });
+  });
+});
+
+//  einde restaurant tables
+
+// start restaurant invoices
+
+app.get('/api/restaurant_invoices', (req, res) => {
+  res.setHeader('Content-Type', 'application/json');
+
+  connection.query('SELECT * FROM  restaurant_invoices', (err,  restaurant_invoices) => {
+    if (err) throw err;
+    res.send( restaurant_invoices);
+  });
+});
+
+app.get("/api/restaurant_invoices/:id", (req, res) => {
+  const id = +req.params.id;
+  connection.query("SELECT * FROM restaurant_invoices WHERE id = ?", [id], (err, result) => {
+    if (err) throw err;
+    res.send(result);
+  });
+});
+
+
+app.post('/api/restaurant_invoices', function (req, res) {
+  const content = req.body;
+  connection.query('INSERT INTO  restaurant_invoices SET ?', content, (err, result) => {
+    if (err) throw err;
+    res.send(result)
+  });
+  // console.log(content);
+  // res.send(content);
+});
+
+
+app.delete('/api/restaurant_invoices/:id', function (req, res) {
+
+  const id = +req.params.id;
+
+  connection.query('DELETE FROM  restaurant_invoices WHERE id = ?', id, (err, result) => {
+    if (err) throw err;
+    console.log('Deleted', result.affectedRows, ' rows');
+    res.status(204).end();
+  });
+});
+
+app.put('/api/restaurant_invoices/:id', function (req, res) {
+  const id = +req.params.id;
+  const inputUser = req.body;
+
+  connection.query('UPDATE  restaurant_invoices SET ? WHERE id = ?', [inputUser, id], (err, response) => {
+    if (err) throw err;
+    connection.query('SELECT * FROM  restaurant_invoices WHERE id = ?', id, (updatedErr, updatedRestaurant_invoices) => {
+      if (updatedErr) throw updatedErr
+      res.send(updatedRestaurant_invoices);
+    });
+  });
+});
+
+// einde restaurant invoices
+
+
 
 app.get("/api/all_menus", (req, res) => {
   res.setHeader("Content-Type", "application/json");
