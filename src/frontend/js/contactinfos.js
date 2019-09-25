@@ -5,12 +5,10 @@ function sendGuest() {
   const firstname = document.getElementById('firstname').value;
   const prefix_lastname = document.getElementById('prefix_lastname').value;
   const lastname = document.getElementById('lastname').value;
-  const address = document.getElementById('address').value;
   const email = document.getElementById('email').value;
   const telephone = document.getElementById('telephone').value;
-  const dateofbirth = document.getElementById('dateofbirth').value;
 
-  const newGuest = { firstname: firstname, prefix_lastname: prefix_lastname, lastname: lastname, address: address, email: email, telephone: telephone, dateofbirth: dateofbirth };
+  const newGuest = { firstname: firstname, prefix_lastname: prefix_lastname, lastname: lastname, email: email, telephone: telephone };
 
   const xhttp = new XMLHttpRequest();
   const url = 'http://localhost:3000/api/contactinfos';
@@ -90,20 +88,16 @@ function getGuests() {
     const firstname = document.getElementById('firstname1').value;
     const prefix_lastname = document.getElementById('prefix_lastname1').value;
     const lastname = document.getElementById('lastname1').value;
-    const address = document.getElementById('address1').value;
     const email = document.getElementById('email1').value;
     const telephone = document.getElementById('telephone1').value;
-    const dateofbirth = document.getElementById('dateofbirth1').value;
 
     const newContactinfosById = {
       id: id,
       firstname: firstname,
       prefix_lastname: prefix_lastname,
       lastname: lastname,
-      address: address,
       email: email,
       telephone: telephone,
-      dateofbirth: dateofbirth,
     }
 
     const xhttp = new XMLHttpRequest();

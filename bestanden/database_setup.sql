@@ -11,10 +11,8 @@ create table contactinfos (id int primary key auto_increment,
   firstname varchar(1000) not null,
   prefix_lastname varchar(1000),
   lastname varchar(1000) not null,
-  address varchar(1000),
   email varchar(1000) not null,
-  telephone varchar(1000) not null,
-  dateofbirth date
+  telephone varchar(1000) not null
 );
 
 create table ingredients (id int primary key auto_increment,
