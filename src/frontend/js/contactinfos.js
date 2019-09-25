@@ -9,9 +9,8 @@ function sendGuest() {
   const email = document.getElementById('email').value;
   const telephone = document.getElementById('telephone').value;
   const dateofbirth = document.getElementById('dateofbirth').value;
-  const greeting = document.getElementById('greeting').value;
 
-  const newGuest = { firstname: firstname, prefix_lastname: prefix_lastname, lastname: lastname, address: address, email: email, telephone: telephone, dateofbirth: dateofbirth, greeting: greeting };
+  const newGuest = { firstname: firstname, prefix_lastname: prefix_lastname, lastname: lastname, address: address, email: email, telephone: telephone, dateofbirth: dateofbirth };
 
   const xhttp = new XMLHttpRequest();
   const url = 'http://localhost:3000/api/contactinfos';
@@ -95,7 +94,6 @@ function getGuests() {
     const email = document.getElementById('email1').value;
     const telephone = document.getElementById('telephone1').value;
     const dateofbirth = document.getElementById('dateofbirth1').value;
-    const greeting = document.getElementById('greeting1').value;
 
     const newContactinfosById = {
       id: id,
@@ -106,7 +104,6 @@ function getGuests() {
       email: email,
       telephone: telephone,
       dateofbirth: dateofbirth,
-      greeting: greeting
     }
 
     const xhttp = new XMLHttpRequest();
