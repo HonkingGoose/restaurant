@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" conent="ie=edge">
+  <script src="../js/restaurant_invoices.js"></script>
+  <title>Restaurant Invoive</title>
+</head>
+<body>
+  <div id="getRestaurantInvoices">
+    <h1>Table of invoices</h1>
+    <table>
+      <head>
+        <tr>
+          <th>ID</th>
+          <th>total_price</th>
+          <th>contactinfos_id</th>
+        </tr>
+      </head>
+    <tbody id='restauranttable'>
+    </tbody>
+    <button onclick="getRestaurantInvoices()" name="button">Click</button>
+    <br>
+    <br>
+</div>
+<div id="getRestautantInvoicesById">
+      Restaurant invoice ID: <input type="text" id="restauranttableId" name="guestId">
+      <h1>Restaurant invoice</h1>
+
+     Last name: <input type="text" name="lastName" id="lastName"><br>
+     First name: <input type="text" name="firstName" id="firstName"><br>
+
+     <table>
+     <thead>
+         <tr>
+           <th>ID</th>
+           <th>total_price</th>
+           <th>contactinfos_id</th>
+         </tr>
+     </thead>
+     <tbody id='restaurantInvoiceByIdTable'>
+     </tbody>
+ </table>
+ <button onClick="getRestaurantInvoiceById();">Show restaurant invoice by id</button>
+ <button onClick="updateRestaurantInvoiceById();">Update restaurant invoice</button>
+ <br>
+ <br>
+</div>
+
+
+<div id="newRestaurantInvoice">
+  <h1>Add new restaurant invoice:</h1>
+  <label for="totalprice">total price
+    <input type="text" id="total_price"/>
+  </label>
+  <label for="contactinfosid">contactinfos id
+    <input type="text" id="contactinfos_id"/>
+  </label>
+  <button onclick="sendRestaurantInvoice()" name="button">Add new restaurant invoice</button>
+</div>
+</body>
+</html>
+
+<div id="deleteRestaurantInvoice">
+  <H1>Delete ID</H1>
+  <input type="text" name="restaurantInvoiceId" id="restaurantInvoiceId">
+  <button onclick="deleteRestaurantInvoiceById()"> Delete </button>
+</div>
+
+<section id="putRestaurantInvoice">
+  <h1>Put restaurant invoice </h1>
+  <input type="text" name="restaurantInvoiceId" id="restaurantInvoiceId">
+
+  <label for="totalprice">total price
+    <input type="text" id="total_price"/>
+  </label>
+  <label for="contactinfosid">contactinfosid
+    <input type="text" id="contactinfos_id"/>
+  </label>
+<button onclick="putRestaurantInvoiceById()" class="putButton">PUT</button>
+</section>
