@@ -78,6 +78,7 @@ app.delete('/api/contactinfos/:id', function (req, res) {
 app.put('/api/contactinfos/:id', function (req, res) {
   const id = +req.params.id;
   const inputUser = req.body;
+  console.log(inputUser);
 
   connection.query('UPDATE contactinfos SET ? WHERE id = ?', [inputUser, id], (err, response) => {
     if (err) throw err;
