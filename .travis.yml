@@ -3,3 +3,5 @@ node_js:
   - "lts/*"
 
 dist: xenial
+
+cache: npm
