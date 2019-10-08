@@ -25,3 +25,5 @@ const guests = [];
 guests.push(guest);
 
 console.log(guests);
+
+module.exports = Guest;
