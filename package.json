@@ -22,6 +22,9 @@
     "mysql": "^2.17.1"
   },
   "devDependencies": {
-    "cucumber": "^5.1.0"
+    "cucumber": "^5.1.0",
+    "request": "^2.88.0",
+    "chai": "*",
+		"mocha": "*"
   }
 }
