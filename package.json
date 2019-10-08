@@ -25,6 +25,6 @@
     "cucumber": "^5.1.0",
     "request": "^2.88.0",
     "chai": "*",
-		"mocha": "*"
+	"mocha": "*"
   }
 }
