@@ -8,7 +8,7 @@ Given('I have a guest', function () {
 });
 
 When('I set the name to {string}', function (string) {
- this.guest.name=string;
+  this.guest.name = string;
 });
 
 Then('the guest name is {string}', function (string) {
