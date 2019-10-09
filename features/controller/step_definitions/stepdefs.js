@@ -10,9 +10,9 @@ let port;
 let baseUrl;
 let options;
 
-Given('I have a server at {string} on port {int}', function (string, int) {
-  hostname = string;
-  port=int;
+Given('I have a server at {string} on port {int}', function (host, p) {
+  hostname = host;
+  port=p;
 });
 
 Given('I have a URL at {string}', function (string) {
