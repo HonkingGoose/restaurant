@@ -45,7 +45,9 @@ function getRestaurantTables() {
       });
     }
   }
-    function getTableById(id) {
+}
+    function getRestaurantTableById() {
+          const id = document.getElementById("restaurant_table_id").value;
           const xhttp = new XMLHttpRequest();
           const url = 'http://localhost:3000/api/restaurant_tables/'+id;
 
@@ -56,7 +58,7 @@ function getRestaurantTables() {
               if (xhttp.readyState === 4 && xhttp.status === 200 ) {
                   const jsonResult = JSON.parse(xhttp.responseText);
                   jsonResult.forEach(element => {
-                      let table = document.getElementById('restauranttable');
+                      let table = document.getElementById('tableById');
                       let insertRow = table.insertRow();
 
                       for (let key in element) {
@@ -68,8 +70,8 @@ function getRestaurantTables() {
           }
   }
 //DELETE FUNCTION
-  function deleteContactinfosById() {
-    const id = +document.getElementById("contactinfosId").value;
+  function deleteRestaurantTableTableById() {
+    const id = document.getElementById("restaurantTableId").value;
     const xhttp = new XMLHttpRequest();
     const url = "http://localhost:3000/api/restaurant_tables/"+id;
     console.log(url);
@@ -80,12 +82,14 @@ function getRestaurantTables() {
     //reset contactinfos
   }
 
-  function putContactinfosById()  {
-    const capacity = document.getElementById('capacity').value;
-    const available = document.getElementById('available').value;
-    const table_callsign = document.getElementById('table_callsign').value;
+  function putRestaurantTableById()  {
+    const id = +document.getElementById('restauranttableId1').value;
+    const capacity = document.getElementById('Capacity1').value;
+    const available = document.getElementById('Available1').value;
+    const table_callsign = document.getElementById('Table_Callsign1').value;
 
-    const newContactinfosById = {
+    const newRestaurantTableById = {
+      id: id,
       capacity: capacity,
       available: available,
       table_callsign: table_callsign
@@ -96,6 +100,5 @@ function getRestaurantTables() {
 
     xhttp.open("put", url);
     xhttp.setRequestHeader("Content-Type", "application/json");
-    xhttp.send(JSON.stringify(newRestaurantTablesById));
+    xhttp.send(JSON.stringify(newRestaurantTableById));
   }
-}

@@ -26,7 +26,7 @@
     <br>
 </div>
 <div id="getresultByRestaurantTableId">
-      Restaurant table ID: <input type="text" id="guestId" name="guestId">
+      Restaurant table ID: <input type="text" id="restaurant_table_id" name="restaurant_table_id">
       <h1>Gast</h1>
 
      Last name: <input type="text" name="lastName" id="lastName"><br>
@@ -62,7 +62,7 @@
   <label for="table_callsign">TableCallsign
     <input type="text" id="table_callsign"/>
   </label>
-  <button onclick="sendRestaurantTableTable()" name="button">Add new guest</button>
+  <button onclick="sendRestaurantTableTable()" name="button">Add new restaurant table</button>
 </div>
 </body>
 </html>
@@ -75,16 +75,16 @@
 
 <section id="putRestaurantTable">
   <h1>Put restaurant table </h1>
-  <input type="text" name="restauranttableId" id="restauranttableId">
+  <input type="text" name="restauranttableId" id="restauranttableId1">
 
   <label for="capacity">Capacity
-    <input type="text" id="Capacity"/>
+    <input type="text" id="Capacity1"/>
   </label>
   <label for="available">Available
-    <input type="text" id="Available"/>
+    <input type="text" id="Available1"/>
   </label>
   <label for="table_callsign">TableCallsign
-    <input type="text" id="Table_Callsign"/>
+    <input type="text" id="Table_Callsign1"/>
   </label>
-<button onclick="putContactinfosById()" class="putButton">PUT</button>
+<button onclick="putRestaurantTableById()" class="putButton">PUT</button>
 </section>
