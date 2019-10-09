@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang=”eng”>
+  <head>
+    <meta charset=”UTF-8”>
+    <link rel="stylesheet" href="xml.css">
+  </head>
+  <body>
+  <main>
+<!--GET-->
+    <div id="getMenus">
+      <h1>All MENUS</h1>
+      <table>
+        <thead>
+          <tr>
+            <th>ID:</th>
+            <th>NAME:</th>
+          </tr>
+        </thead>
+        <tbody id="menuTable">
+        </tbody>
+      </table>
+      <button onclick="getMenus()">GET MENUS</button>
+      <br>
+      <br>
+    </div>
+<!--GET BY ID-->
+    <div id="getMenusById">
+      <h1>GET MENU BY ID</h1>
+      <table>
+        <thead>
+          <tr>
+            <th>ID:</th>
+            <th>NAME:</th>
+          </tr>
+        </thead>
+        <tbody id="menuTableById">
+        </tbody>
+      </table>
+      TABLE ID:<input type="text" name"allMenuId" id="menuId"><button onclick="getMenusById()">GET MENU</button>
+      <br>
+      <br>
+    </div>
+<!--DELETE BY ID-->
+    <div id="deleteMenusById">
+      <h1>DELETE ORDER BY ID</h1>
+      ORDER ID:<input type="text" name="menuId1" id="menuId1">
+      <button onclick="deleteMenusById()">DELETE MENU BY ID</button>
+      <br>
+      <br>
+    </div>
+<!--PUT BY ID-->
+<div id="updateMenu">
+    <h1>UPDATE MENU BY ID</h1>
+    <label for="menu_id">ID:
+      <input type="text" id="menu_id"/>
+    </label>
+    <label for="menu_name">Name:
+      <input type="text" id="menu_name"/>
+    </label>
+    <button onclick="updateMenusById()">UPDATE MENU BY ID</button>
+    <br>
+    <br>
+  <div>
+<!--POST-->
+    <div id="postMenus">
+      <h1>POST MENU</h1>
+      <label for="menu_name">Name:
+        <input type="text" id="menu_name1"/>
+      </label>
+      <button onclick="postMenus()">ADD MENU</button>
+    <div>
+  </main>
+    <script type="text/javascript" src="all_menus.js"></script>
+  </body>
+</html>
