@@ -54,6 +54,7 @@ app.get("/api/contactinfos/:id", (req, res) => {
 
 app.post('/api/contactinfos', function (req, res) {
   const content = req.body;
+  console.log(content);
   connection.query('INSERT INTO contactinfos SET ?', content, (err, result) => {
     if (err) throw err;
     res.send(result)
@@ -168,6 +169,7 @@ app.get("/api/restaurant_invoices/:id", (req, res) => {
 
 app.post('/api/restaurant_invoices', function (req, res) {
   const content = req.body;
+  console.log(content);
   connection.query('INSERT INTO  restaurant_invoices SET ?', content, (err, result) => {
     if (err) throw err;
     res.send(result)
