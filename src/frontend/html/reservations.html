@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang=”eng”>
+  <head>
+    <meta charset=”UTF-8”>
+    <link rel="stylesheet" href="xml.css">
+  </head>
+  <body>
+  <main>
+<!--GET-->
+    <div id="getResults">
+      <h1>ALL RESERVATIONS</h1>
+      <table>
+        <thead>
+          <tr>
+            <th>ID:</th>
+            <th>Reservation Date:</th>
+            <th>Start Time:</th>
+            <th>Hide menu prices:</th>
+            <th>Number of guests:</th>
+            <th>Allergys:</th>
+            <th>Special Needs:</th>
+            <th>Guest id:</th>
+          </tr>
+        </thead>
+        <tbody id="reservationTable">
+        </tbody>
+      </table>
+      <button onclick="getReservations()">GET RESERVATIONS</button>
+      <br>
+      <br>
+    </div>
+<!--GET BY ID-->
+    <div id="getReservationsById">
+      <h1>GET RESERVATION BY ID</h1>
+      <table>
+        <thead>
+          <tr>
+            <th>ID:</th>
+            <th>Reservation Date:</th>
+            <th>Start Time:</th>
+            <th>Hide menu prices:</th>
+            <th>Number of guests:</th>
+            <th>Allergys:</th>
+            <th>Special Needs:</th>
+            <th>Guest id:</th>
+          </tr>
+        </thead>
+        <tbody id="reservationTableById">
+        </tbody>
+      </table>
+      RESERVATION ID:<input type="text" name="reservationId" id="reservationId"><button onclick="getReservationsById()">GET RESERVATION BY ID</button>
+      <br>
+      <br>
+    </div>
+<!--DELETE BY ID-->
+    <div id="deleteReservationsById">
+      <h1>DELETE RESERVATIONS BY ID</h1>
+      RESERVATIONS ID:<input type="text" name="reservationsId1" id="reservationsId1">
+      <button onclick="deleteReservationsById()">DELETE RESERVATION BY ID</button>
+      <br>
+      <br>
+    </div>
+<!--PUT BY ID-->
+    <div id="updateReservationsById">
+      <h1>UPDATE RESERVATIONS BY ID</h1>
+      <label for="reservation_id2">ID:
+        <input type="text" id="reservation_id"/>
+      </label>
+      <label for="reservation_date">Reservation Date:
+        <input type="text" id="reservation_date"/>
+      </label>
+      <label for="start_time">Start Time:
+        <input type="text" id="start_time"/>
+      </label>
+      <label for="hide_menu_price">Hide price:
+        <input type="text" id="hide_menu_price"/>
+      </label>
+      <label for="number_of_guests">Number of guest:
+        <input type="text" id="number_of_guests"/>
+      </label>
+      <label for="allergy">Allergys:
+        <input type="text" id="allergy"/>
+      </label>
+      <label for="special_needs">Special needs:
+        <input type="text" id="special_needs"/>
+      </label>
+      <label for="contactinfos_id">contactinfos ID:
+        <input type="text" id="contactinfos_id"/>
+      </label>
+      <button onclick="updateReservationsById()">UPDATE RESERVATION BY ID</button>
+      <br>
+      <br>
+    </div>
+<!--POST-->
+    <div id="postReservations">
+      <h1>POST RESERVATION</h1>
+      <label for="reservation_date">Reservation Date:
+        <input type="text" id="reservation_date"/>
+      </label>
+      <label for="start_time">Start Time:
+        <input type="text" id="start_time"/>
+      </label>
+      <label for="hide_menu_price">Hide price:
+        <input type="text" id="hide_menu_price"/>
+      </label>
+      <label for="number_of_guests">Number of guest:
+        <input type="text" id="number_of_guests"/>
+      </label>
+      <label for="allergy">Allergys:
+        <input type="text" id="allergy"/>
+      </label>
+      <label for="special_needs">Special needs:
+        <input type="text" id="special_needs"/>
+      </label>
+      <label for="contactinfos_id">contactinfos ID:
+        <input type="text" id="contactinfos_id"/>
+      </label>
+      <button onclick="postReservations()">POST RESERVATION</button>
+      <br>
+      <br>
+  </main>
+    <script type="text/javascript" src="reservations.js"></script>
+  </body>
+</html>
