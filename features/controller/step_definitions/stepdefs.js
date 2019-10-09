@@ -1,17 +1,29 @@
-const assert = require('assert');
+'use strict';
+
+const expect = require('chai').expect;
 const { Given, When, Then } = require('cucumber');
 
+const request = require('request');
+
+let baseUrl;
+let options;
+
 Given('I have a URL at {string}', function (string) {
-  // Write code here that turns the phrase above into concrete actions
-  return 'pending';
+  baseUrl = string;
 });
 
 When('I send a GET request to that URL', function () {
-  // Write code here that turns the phrase above into concrete actions
-  return 'pending';
-});
+  options = {
+    uri: baseUrl,
+    json: true
+  }
+})
 
 Then('I get returned response status code {string}', function (string) {
-  // Write code here that turns the phrase above into concrete actions
-  return 'pending';
+  request.get(options, function (error, response, responseBody) {
+    if (error) {
+      console.log(error);
+    }
+    expect(response.statusCode).to.be.equal(200);
+  });
 });
