@@ -4,24 +4,28 @@ function sendRestaurantInvoice() {
 
   const totalprice = document.getElementById('total_price').value;
   const contactinfosid = document.getElementById('contactinfos_id').value;
-  const newrestaurantinvoice = { totalprice: totalprice, contactinfosid: contactinfosid };
+  const newrestaurantinvoice = { total_price: totalprice, contactinfos_id: contactinfosid };
 
-  const xhttp = new XMLHttpRequest();
+    const xhttp = new XMLHttpRequest();
   const url = 'http://localhost:3000/api/restaurant_invoices';
 
   xhttp.open("POST", url);
   xhttp.setRequestHeader("Content-type", "application/json");
-  xhttp.send(JSON.stringify(newRestaurantInvoice));
+  console.log(newrestaurantinvoice);
+  xhttp.send(JSON.stringify(newrestaurantinvoice));
 
   xhttp.onreadystatechange = () => {
     if (xhttp.readyState === 4 && xhttp.status == 200) {
       getRestaurantInvoices();
+      let response = JSON.parse(xhttp.responseText);
+
+      console.log(response.insertId+" is het laatste id");
     }
   }
 }
 
 function getRestaurantInvoices() {
-  document.getElementById('guesttable').innerHTML = "";
+  document.getElementById('restaurantInvoices').innerHTML = "";
 
   const xhttp = new XMLHttpRequest();
   const url = 'http://localhost:3000/api/restaurant_invoices';
@@ -34,7 +38,7 @@ function getRestaurantInvoices() {
       const jsonResult = JSON.parse(xhttp.responseText);
       jsonResult.forEach(element => {
 
-        let table = document.getElementById('guesttable');
+        let table = document.getElementById('restaurantInvoices');
         let insertRow = table.insertRow();
 
         for (let key in element) {
@@ -44,8 +48,11 @@ function getRestaurantInvoices() {
       });
     }
   }
+}
 
-  function getRestaurantInvoiceById(id) {
+  function getRestaurantInvoiceById() {
+    const id = document.getElementById("restauranttableId").value;
+
     const xhttp = new XMLHttpRequest();
     const url = 'http://localhost:3000/api/restaurant_invoices/' + id;
 
@@ -56,7 +63,7 @@ function getRestaurantInvoices() {
       if (xhttp.readyState === 4 && xhttp.status === 200) {
         const jsonResult = JSON.parse(xhttp.responseText);
         jsonResult.forEach(element => {
-          let table = document.getElementById('guesttable');
+          let table = document.getElementById('restaurantInvoiceByIdTable');
           let insertRow = table.insertRow();
 
           for (let key in element) {
@@ -69,7 +76,7 @@ function getRestaurantInvoices() {
   }
   //DELETE FUNCTION
   function deleteRestaurantInvoiceById() {
-    const id = +document.getElementById("restauranttableId").value;
+    const id = +document.getElementById("restaurantInvoiceId").value;
     const xhttp = new XMLHttpRequest();
     const url = "http://localhost:3000/api/restaurant_invoices/" + id;
     console.log(url);
@@ -81,21 +88,20 @@ function getRestaurantInvoices() {
   }
 
   function putRestaurantInvoiceById() {
-    const id = +document.getElementById('restaurantInvoiceId').value;
-    const totalprice = document.getElementById('total_price').value;
-    const contactinfosid = document.getElementById('contactinfos_id').value;
-
+    const id = +document.getElementById('restaurantInvoiceId1').value;
+    const totalprice = document.getElementById('total_price1').value;
+    const contactinfosid = document.getElementById('contactinfos_id1').value;
     const newRestaurantinvoicesById = {
       id: id,
-      totalprice: totalprice,
-      contactinfosid: contactinfosid
+      total_price: totalprice,
+      contactinfos_id: contactinfosid,
     }
 
     const xhttp = new XMLHttpRequest();
     const url = "http://localhost:3000/api/restaurant_invoices/" + id;
 
-    xhttp.open("put", url);
+    xhttp.open('put', url);
     xhttp.setRequestHeader("Content-Type", "application/json");
-    xhttp.send(JSON.stringify(newContactinfosById));
+    xhttp.send(JSON.stringify(newRestaurantinvoicesById));
+    console.log(newRestaurantinvoicesById)
   }
-}

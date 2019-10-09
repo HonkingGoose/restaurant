@@ -4,79 +4,101 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" conent="ie=edge">
+  <link rel="stylesheet" href="../css/restaurant_invoices.css">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+  <link href="https://fonts.googleapis.com/css?family=Noto+Sans+TC&display=swap" rel="stylesheet">
   <script src="../js/restaurant_invoices.js"></script>
   <title>Restaurant Invoive</title>
 </head>
 <body>
-  <div id="getRestaurantInvoices">
-    <h1>Table of invoices</h1>
-    <table>
-      <head>
-        <tr>
-          <th>ID</th>
-          <th>total_price</th>
-          <th>contactinfos_id</th>
-        </tr>
-      </head>
-    <tbody id='restauranttable'>
-    </tbody>
-    <button onclick="getRestaurantInvoices()" name="button">Click</button>
-    <br>
-    <br>
-</div>
-<div id="getRestautantInvoicesById">
-      Restaurant invoice ID: <input type="text" id="restauranttableId" name="guestId">
-      <h1>Restaurant invoice</h1>
+    <div class="container" id="containerupper">
+      <div class="row target">
+        <div class="col-md-12">
 
-     Last name: <input type="text" name="lastName" id="lastName"><br>
-     First name: <input type="text" name="firstName" id="firstName"><br>
+        <div class="container">
+          <div class="row">
+            <div class="col-sm-12 title">
+                <h1>Restaurant Invoices</h1>
+                <hr>
+            </div>
+          </div>
+        </div>
+        <div id="getRestaurantInvoices">
+          <h1>Table of invoices</h1>
+          <table>
+            <head>
+              <tr>
+                <th>ID</th>
+                <th>total_price</th>
+                <th>contactinfos_id</th>
+              </tr>
+            </head>
+          <tbody id='restaurantInvoices' >
+          </tbody>
+            </table>
+          <button onclick="getRestaurantInvoices()" name="button">Click</button>
+          <br>
+          <br>
+      </div>
+      <div id="getRestautantInvoicesById">
+            <h1>Restaurant invoice</h1>
+            Restaurant invoice ID: <input type="text" id="restauranttableId" name="restauranttableId">
 
-     <table>
-     <thead>
-         <tr>
-           <th>ID</th>
-           <th>total_price</th>
-           <th>contactinfos_id</th>
-         </tr>
-     </thead>
-     <tbody id='restaurantInvoiceByIdTable'>
-     </tbody>
- </table>
- <button onClick="getRestaurantInvoiceById();">Show restaurant invoice by id</button>
- <button onClick="updateRestaurantInvoiceById();">Update restaurant invoice</button>
- <br>
- <br>
-</div>
+           <table>
+           <thead>
+               <tr>
+                 <th>ID</th>
+                 <th>total_price</th>
+                 <th>contactinfos_id</th>
+               </tr>
+           </thead>
+           <tbody id='restaurantInvoiceByIdTable'>
+           </tbody>
+       </table>
+       <button onClick="getRestaurantInvoiceById();">Show restaurant invoice by id</button>
+       <button onClick="updateRestaurantInvoiceById();">Update restaurant invoice</button>
+       <br>
+       <br>
+      </div>
 
 
-<div id="newRestaurantInvoice">
-  <h1>Add new restaurant invoice:</h1>
-  <label for="totalprice">total price
-    <input type="text" id="total_price"/>
-  </label>
-  <label for="contactinfosid">contactinfos id
-    <input type="text" id="contactinfos_id"/>
-  </label>
-  <button onclick="sendRestaurantInvoice()" name="button">Add new restaurant invoice</button>
-</div>
+      <div id="newRestaurantInvoice">
+        <h1>Add new restaurant invoice:</h1>
+        <label for="totalprice">total price
+          <input type="text" id="total_price"/>
+        </label>
+        <label for="contactinfosid">contactinfos id
+          <input type="text" id="contactinfos_id"/>
+        </label>
+        <button onclick="sendRestaurantInvoice()" name="button">Add new restaurant invoice</button>
+      </div>
+
+
+
+        <div id="deleteRestaurantInvoice">
+          <H1>Delete ID</H1>
+          <input type="text" name="restaurantInvoiceId" id="restaurantInvoiceId">
+          <button onclick="deleteRestaurantInvoiceById()"> Delete </button>
+        </div>
+
+        <section id="putRestaurantInvoice">
+          <h1>Put restaurant invoice </h1>
+          <input type="text" name="restaurantInvoiceId" id="restaurantInvoiceId1">
+
+          <label for="totalprice">total price
+            <input type="text" id="total_price1"/>
+          </label>
+          <label for="contactinfosid">contactinfosid
+            <input type="text" id="contactinfos_id1"/>
+          </label>
+        <button onclick="putRestaurantInvoiceById()" class="putButton">PUT</button>
+        </section>
+      </div>
+    </div>
+  <div>
+
+<script src="https://code.jquery.com/jquery-3.2.1.min.js" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
 </body>
 </html>
-
-<div id="deleteRestaurantInvoice">
-  <H1>Delete ID</H1>
-  <input type="text" name="restaurantInvoiceId" id="restaurantInvoiceId">
-  <button onclick="deleteRestaurantInvoiceById()"> Delete </button>
-</div>
-
-<section id="putRestaurantInvoice">
-  <h1>Put restaurant invoice </h1>
-  <input type="text" name="restaurantInvoiceId" id="restaurantInvoiceId">
-
-  <label for="totalprice">total price
-    <input type="text" id="total_price"/>
-  </label>
-  <label for="contactinfosid">contactinfosid
-    <input type="text" id="contactinfos_id"/>
-  </label>
-<button onclick="putRestaurantInvoiceById()" class="putButton">PUT</button>
-</section>

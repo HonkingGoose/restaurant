@@ -1,0 +1,36 @@
+body {
+  background-color: lightgray !important;
+}
+
+.row {
+  margin: 0;
+  padding: 0;
+}
+
+
+#containerupper {
+  width: 80vw;
+  height: 80vh;
+  margin-left: auto;
+  padding: 0;
+  font-family: 'Noto Sans TC', sans-serif;
+}
+
+.target {
+  background-color: white;
+  margin-top: 50px;
+}
+
+.title {
+  text-align: center;
+  padding: 50px;
+}
+
+.TableListJS {
+  text-align: left;
+}
+
+#putRestaurantInvoice {
+  display: flex;
+  flex-direction: column;
+}
