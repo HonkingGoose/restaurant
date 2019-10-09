@@ -5,8 +5,15 @@ const { Given, When, Then } = require('cucumber');
 
 const request = require('request');
 
+let hostname;
+let port;
 let baseUrl;
 let options;
+
+Given('I have a server at {string} on port {int}', function (string, int) {
+  hostname = string;
+  port=int;
+});
 
 Given('I have a URL at {string}', function (string) {
   baseUrl = string;
@@ -14,7 +21,7 @@ Given('I have a URL at {string}', function (string) {
 
 When('I send a GET request to that URL', function () {
   options = {
-    uri: baseUrl,
+    uri: `http://${hostname}:${port}/${baseUrl}`,
     json: true
   }
 })
