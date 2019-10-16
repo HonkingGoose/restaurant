@@ -33,6 +33,8 @@ app.listen(port, () => {
   console.log('Server running on port: ', port)
 })
 
+// CONTACTINFOS BEGIN
+
 app.get('/api/contactinfos', (req, res) => {
   res.setHeader('Content-Type', 'application/json')
 
@@ -57,8 +59,6 @@ app.post('/api/contactinfos', function (req, res) {
     if (err) throw err
     res.send(result)
   })
-  // console.log(content);
-  // res.send(content);
 })
 
 app.delete('/api/contactinfos/:id', function (req, res) {
@@ -85,14 +85,15 @@ app.put('/api/contactinfos/:id', function (req, res) {
   })
 })
 
-//    restaurant tables
+// CONTACTINFOS END
+// RESTAURANT_TABLES BEGIN
 
 app.get('/api/restaurant_tables', (req, res) => {
   res.setHeader('Content-Type', 'application/json')
 
-  connection.query('SELECT * FROM restaurant_tables', (err, restaurant_tables) => {
+  connection.query('SELECT * FROM restaurant_tables', (err, restauranTables) => {
     if (err) throw err
-    res.send(restaurant_tables)
+    res.send(restauranTables)
   })
 })
 
@@ -110,8 +111,6 @@ app.post('/api/restaurant_tables', function (req, res) {
     if (err) throw err
     res.send(result)
   })
-  // console.log(content);
-  // res.send(content);
 })
 
 app.delete('/api/restaurant_tables/:id', function (req, res) {
@@ -130,23 +129,22 @@ app.put('/api/restaurant_tables/:id', function (req, res) {
 
   connection.query('UPDATE restaurant_tables SET ? WHERE id = ?', [inputUser, id], (err, response) => {
     if (err) throw err
-    connection.query('SELECT * FROM restaurant_tables WHERE id = ?', id, (updatedErr, updatedRestaurant_tables) => {
+    connection.query('SELECT * FROM restaurant_tables WHERE id = ?', id, (updatedErr, updatedRestaurantTables) => {
       if (updatedErr) throw updatedErr
-      res.send(updatedRestaurant_tables)
+      res.send(updatedRestaurantTables)
     })
   })
 })
 
-//  einde restaurant tables
-
-// start restaurant invoices
+// RESTAURANT_TABLES END
+// RESTAURANT_INVOICES BEGIN
 
 app.get('/api/restaurant_invoices', (req, res) => {
   res.setHeader('Content-Type', 'application/json')
 
-  connection.query('SELECT * FROM  restaurant_invoices', (err, restaurant_invoices) => {
+  connection.query('SELECT * FROM  restaurant_invoices', (err, restaurantInvoices) => {
     if (err) throw err
-    res.send(restaurant_invoices)
+    res.send(restaurantInvoices)
   })
 })
 
@@ -165,8 +163,6 @@ app.post('/api/restaurant_invoices', function (req, res) {
     if (err) throw err
     res.send(result)
   })
-  // console.log(content);
-  // res.send(content);
 })
 
 app.delete('/api/restaurant_invoices/:id', function (req, res) {
@@ -185,20 +181,21 @@ app.put('/api/restaurant_invoices/:id', function (req, res) {
 
   connection.query('UPDATE  restaurant_invoices SET ? WHERE id = ?', [inputUser, id], (err, response) => {
     if (err) throw err
-    connection.query('SELECT * FROM  restaurant_invoices WHERE id = ?', id, (updatedErr, updatedRestaurant_invoices) => {
+    connection.query('SELECT * FROM  restaurant_invoices WHERE id = ?', id, (updatedErr, updatedRestauranInvoices) => {
       if (updatedErr) throw updatedErr
-      res.send(updatedRestaurant_invoices)
+      res.send(updatedRestauranInvoices)
     })
   })
 })
 
-// einde restaurant invoices
+// RESTAURANT_INVOICES END
+// ALL_MENUS BEGIN
 
 app.get('/api/all_menus', (req, res) => {
   res.setHeader('Content-Type', 'application/json')
-  connection.query('SELECT * FROM all_menus', (err, all_menus) => {
+  connection.query('SELECT * FROM all_menus', (err, allMenus) => {
     if (err) throw err
-    res.send(all_menus)
+    res.send(allMenus)
   })
 })
 
@@ -239,6 +236,9 @@ app.post('/api/all_menus', (req, res) => {
   })
 })
 
+// ALL_MENUS END
+// RESTAURANT_ORDERS BEGIN
+
 app.post('/api/restaurant_orders', (req, res) => {
   const content = req.body
   const d = new Date()
@@ -258,10 +258,9 @@ app.post('/api/restaurant_orders', (req, res) => {
 
 app.get('/api/restaurant_orders', (req, res) => {
   res.setHeader('Content-Type', 'application/json')
-  connection.query('SELECT * FROM restaurant_orders', (err, restaurant_orders) => {
+  connection.query('SELECT * FROM restaurant_orders', (err, restaurantOrders) => {
     if (err) throw err
-    res.send(restaurant_orders)
-    console.log(restaurant_orders)
+    res.send(restaurantOrders)
   })
 })
 
@@ -278,9 +277,9 @@ app.put('/api/restaurant_orders/:id', (req, res) => {
   const inputUser = req.body
   connection.query('UPDATE restaurant_orders SET ? WHERE id = ?', [inputUser, id], (err, response) => {
     if (err) throw err
-    connection.query('SELECT * FROM restaurant_orders WHERE id = ?', id, (updateErr, updateRestaurant_orders) => {
+    connection.query('SELECT * FROM restaurant_orders WHERE id = ?', id, (updateErr, updateRestaurantOrders) => {
       if (updateErr) throw err
-      res.send(updateRestaurant_orders)
+      res.send(updateRestaurantOrders)
     })
   })
 })
@@ -293,6 +292,9 @@ app.delete('/api/restaurant_orders/:id', (req, res) => {
     res.status(204).end()
   })
 })
+
+// RESTAURANT_ORDERS END
+// RESERVATIONS BEGIN
 
 app.post('/api/reservations', (req, res) => {
   const content = req.body
@@ -339,6 +341,9 @@ app.delete('/api/reservations/:id', (req, res) => {
     res.status(204).end()
   })
 })
+
+// RESERVATIONS END
+// INGREDIENTS BEGIN
 
 app.get('/api/ingredients', (req, res) => {
   res.setHeader('Content-Type', 'application/json')
@@ -389,11 +394,14 @@ app.put('/api/ingredients/:id', function (req, res) {
   })
 })
 
+// INGREDIENTS END
+// MENU_ITEMS BEGIN
+
 app.get('/api/menu_items', (req, res) => {
   res.setHeader('Content-Type', 'application/json')
-  connection.query('SELECT * FROM menu_items', (err, menu_items) => {
+  connection.query('SELECT * FROM menu_items', (err, menuItems) => {
     if (err) throw err
-    res.send(menu_items)
+    res.send(menuItems)
   })
 })
 
@@ -429,9 +437,11 @@ app.put('/api/menu_items/:id', function (req, res) {
 
   connection.query('UPDATE menu_items SET ? WHERE id = ?', [inputUser, id], (err, response) => {
     if (err) throw err
-    connection.query('SELECT * FROM menu_items WHERE id = ?', id, (updatedErr, updatedMenu_items) => {
+    connection.query('SELECT * FROM menu_items WHERE id = ?', id, (updatedErr, updatedMenuItems) => {
       if (updatedErr) throw updatedErr
-      res.send(updatedMenu_items)
+      res.send(updatedMenuItems)
     })
   })
 })
+
+// MENU_ITEMS END
