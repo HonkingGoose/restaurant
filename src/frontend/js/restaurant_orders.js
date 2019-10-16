@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 // GET
 function getOrders () {
   document.getElementById('orderTable').innerHTML = ''
@@ -62,16 +63,16 @@ function deleteOrdersById () {
 // PUT BY ID
 function updateOrdersById () {
   const id = +document.getElementById('order_id').value
-  const special_wishes = document.getElementById('special_wishes').value
+  const specialWishes = document.getElementById('special_wishes').value
   const completed = document.getElementById('completed').value
-  const table_id = document.getElementById('table_id').value
-  const menu_item_id = document.getElementById('menu_item_id').value
+  const tableId = document.getElementById('table_id').value
+  const menuItemId = document.getElementById('menu_item_id').value
   const newOrder = {
     id: id,
-    special_wishes: special_wishes,
+    special_wishes: specialWishes,
     completed: completed,
-    table_id: table_id,
-    menu_item_id: menu_item_id
+    table_id: tableId,
+    menu_item_id: menuItemId
   }
 
   const xhttp = new XMLHttpRequest()
@@ -95,14 +96,14 @@ function updateOrdersById () {
 }
 // POST
 function postOrders () {
-  const special_wishes = document.getElementById('special_wishes1').value
-  const table_id = document.getElementById('table_id1').value
-  const menu_item_id = document.getElementById('menu_item_id1').value
+  const specialWishes = document.getElementById('special_wishes1').value
+  const tableId = document.getElementById('table_id1').value
+  const menuItemId = document.getElementById('menu_item_id1').value
 
   const newOrder = {
-    special_wishes: special_wishes,
-    table_id: table_id,
-    menu_item_id: menu_item_id
+    special_wishes: specialWishes,
+    table_id: tableId,
+    menu_item_id: menuItemId
   }
 
   const xhttp = new XMLHttpRequest()

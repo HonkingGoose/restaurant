@@ -14,7 +14,7 @@ function sendRestaurantTableTable () {
   xhttp.send(JSON.stringify(newTable))
 
   xhttp.onreadystatechange = () => {
-    if (xhttp.readyState === 4 && xhttp.status == 200) {
+    if (xhttp.readyState === 4 && xhttp.status === 200) {
       getRestaurantTables()
     }
   }
@@ -89,7 +89,7 @@ function putRestaurantTableById () {
     id: id,
     capacity: capacity,
     available: available,
-    table_callsign: table_callsign
+    table_callsign: tableCallsign
   }
 
   const xhttp = new XMLHttpRequest()
