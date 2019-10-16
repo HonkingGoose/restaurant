@@ -1,12 +1,13 @@
+/* eslint-disable no-unused-vars */
 'use strict'
 
 function sendGuest () {
   const firstname = document.getElementById('firstname').value
-  const prefix_lastname = document.getElementById('prefix_lastname').value
+  const prefixLastname = document.getElementById('prefix_lastname').value
   const lastname = document.getElementById('lastname').value
   const email = document.getElementById('email').value
   const telephone = document.getElementById('telephone').value
-  const newGuest = { firstname: firstname, prefix_lastname: prefix_lastname, lastname: lastname, email: email, telephone: telephone }
+  const newGuest = { firstname: firstname, prefix_lastname: prefixLastname, lastname: lastname, email: email, telephone: telephone }
 
   const xhttp = new XMLHttpRequest()
   const url = 'http://localhost:3000/api/contactinfos'
@@ -86,7 +87,7 @@ function deleteContactinfosById () {
 function putContactinfosById () {
   const id = +document.getElementById('contactinfosId1').value
   const firstname = document.getElementById('firstname1').value
-  const prefix_lastname = document.getElementById('prefix_lastname1').value
+  const prefixLastname = document.getElementById('prefix_lastname1').value
   const lastname = document.getElementById('lastname1').value
   const email = document.getElementById('email1').value
   const telephone = document.getElementById('telephone1').value
@@ -94,7 +95,7 @@ function putContactinfosById () {
   const newContactinfosById = {
     id: id,
     firstname: firstname,
-    prefix_lastname: prefix_lastname,
+    prefix_lastname: prefixLastname,
     lastname: lastname,
     email: email,
     telephone: telephone
