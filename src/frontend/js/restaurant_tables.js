@@ -1,9 +1,10 @@
+/* eslint-disable no-unused-vars */
 function sendRestaurantTableTable () {
   const capacity = document.getElementById('capacity').value
   const available = document.getElementById('available').value
-  const table_callsign = document.getElementById('table_callsign').value
+  const tableCallsign = document.getElementById('table_callsign').value
 
-  const newTable = { capacity: capacity, available: available, table_callsign: table_callsign }
+  const newTable = { capacity: capacity, available: available, table_callsign: tableCallsign }
 
   const xhttp = new XMLHttpRequest()
   const url = 'http://localhost:3000/api/restaurant_tables'
@@ -13,7 +14,7 @@ function sendRestaurantTableTable () {
   xhttp.send(JSON.stringify(newTable))
 
   xhttp.onreadystatechange = () => {
-    if (xhttp.readyState === 4 && xhttp.status == 200) {
+    if (xhttp.readyState === 4 && xhttp.status === 200) {
       getRestaurantTables()
     }
   }
@@ -82,13 +83,13 @@ function putRestaurantTableById () {
   const id = +document.getElementById('restauranttableId1').value
   const capacity = document.getElementById('Capacity1').value
   const available = document.getElementById('Available1').value
-  const table_callsign = document.getElementById('Table_Callsign1').value
+  const tableCallsign = document.getElementById('Table_Callsign1').value
 
   const newRestaurantTableById = {
     id: id,
     capacity: capacity,
     available: available,
-    table_callsign: table_callsign
+    table_callsign: tableCallsign
   }
 
   const xhttp = new XMLHttpRequest()
