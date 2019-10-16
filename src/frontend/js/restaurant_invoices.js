@@ -1,5 +1,7 @@
+/* eslint-disable no-unused-vars */
 'use strict'
 
+// eslint-disable-next-line no-unused-vars
 function sendRestaurantInvoice () {
   const totalprice = document.getElementById('total_price').value
   const contactinfosid = document.getElementById('contactinfos_id').value
