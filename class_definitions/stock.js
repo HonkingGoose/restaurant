@@ -1,6 +1,6 @@
 class Stock {
-  constructor(id, amountInStock) {
-    this.id = id;
-    this.amountInStock = amountInStock;
+  constructor (id, amountInStock) {
+    this.id = id
+    this.amountInStock = amountInStock
   }
 }
