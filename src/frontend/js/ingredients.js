@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 // GET
 function getIngredients () {
   document.getElementById('ingredientTable').innerHTML = ''
@@ -59,14 +60,14 @@ function updateIngredientsById () {
   const id = +document.getElementById('ingredient_id').value
   const name = document.getElementById('name').value
   const allergen = document.getElementById('allergen').value
-  const unit_of_measurement = document.getElementById('unit_of_measurement').value
-  const amount_in_stock = document.getElementById('amount_in_stock').value
+  const unitOfMeasurement = document.getElementById('unit_of_measurement').value
+  const amountInStock = document.getElementById('amount_in_stock').value
   const newIngredient = {
     id: id,
     name: name,
     allergen: allergen,
-    unit_of_measurement: unit_of_measurement,
-    amount_in_stock: amount_in_stock
+    unit_of_measurement: unitOfMeasurement,
+    amount_in_stock: amountInStock
   }
 
   const xhttp = new XMLHttpRequest()
@@ -91,13 +92,13 @@ function updateIngredientsById () {
 function postIngredients () {
   const name = document.getElementById('name1').value
   const allergen = document.getElementById('allergen1').value
-  const unit_of_measurement = document.getElementById('unit_of_measurement1').value
-  const amount_in_stock = document.getElementById('amount_in_stock1').value
+  const unitOfMeasurement = document.getElementById('unit_of_measurement1').value
+  const amountInStock = document.getElementById('amount_in_stock1').value
   const newIngredient = {
     name: name,
     allergen: allergen,
-    unit_of_measurement: unit_of_measurement,
-    amount_in_stock: amount_in_stock
+    unit_of_measurement: unitOfMeasurement,
+    amount_in_stock: amountInStock
   }
 
   const xhttp = new XMLHttpRequest()

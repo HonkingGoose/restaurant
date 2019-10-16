@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 // GET
 function getReservations () {
   document.getElementById('reservationTable').innerHTML = ''
@@ -57,22 +58,22 @@ function deleteReservationsById () {
 // PUT BY ID
 function updateReservationsById () {
   const id = +document.getElementById('reservation_id').value
-  const reservation_date = document.getElementById('reservation_date').value
-  const start_time = document.getElementById('start_time').value
-  const hide_menu_price = document.getElementById('hide_menu_price').value
-  const number_of_guests = document.getElementById('number_of_guests').value
+  const reservationDate = document.getElementById('reservation_date').value
+  const startTime = document.getElementById('start_time').value
+  const hideMenuPrice = document.getElementById('hide_menu_price').value
+  const numberOfGuests = document.getElementById('number_of_guests').value
   const allergy = document.getElementById('allergy').value
-  const special_needs = document.getElementById('special_needs').value
-  const contactinfos_id = document.getElementById('contactinfos_id').value
+  const specialNeeds = document.getElementById('special_needs').value
+  const contactinfosId = document.getElementById('contactinfos_id').value
   const newReservation = {
     id: id,
-    reservation_date: reservation_date,
-    start_time: start_time,
-    hide_menu_price: hide_menu_price,
-    number_of_guests: number_of_guests,
+    reservation_date: reservationDate,
+    start_time: startTime,
+    hide_menu_price: hideMenuPrice,
+    number_of_guests: numberOfGuests,
     allergy: allergy,
-    special_needs: special_needs,
-    contactinfos_id: contactinfos_id
+    special_needs: specialNeeds,
+    contactinfos_id: contactinfosId
   }
 
   const xhttp = new XMLHttpRequest()
@@ -98,22 +99,22 @@ function updateReservationsById () {
 // POST
 
 function postReservations () {
-  const reservation_date = document.getElementById('reservation_date').value
-  const start_time = document.getElementById('start_time').value
-  const hide_menu_price = document.getElementById('hide_menu_price').value
-  const number_of_guests = document.getElementById('number_of_guests').value
+  const reservationDate = document.getElementById('reservation_date').value
+  const startTime = document.getElementById('start_time').value
+  const hideMenuPrice = document.getElementById('hide_menu_price').value
+  const numberOfGuests = document.getElementById('number_of_guests').value
   const allergy = document.getElementById('allergy').value
-  const special_needs = document.getElementById('special_needs').value
-  const contactinfos_id = document.getElementById('contactinfos_id').value
+  const specialNeeds = document.getElementById('special_needs').value
+  const contactinfosId = document.getElementById('contactinfos_id').value
 
   const newReservation = {
-    reservation_date: reservation_date,
-    start_time: start_time,
-    hide_menu_price: hide_menu_price,
-    number_of_guests: number_of_guests,
+    reservation_date: reservationDate,
+    start_time: startTime,
+    hide_menu_price: hideMenuPrice,
+    number_of_guests: numberOfGuests,
     allergy: allergy,
-    special_needs: special_needs,
-    contactinfos_id: contactinfos_id
+    special_needs: specialNeeds,
+    contactinfos_id: contactinfosId
   }
 
   const xhttp = new XMLHttpRequest()
