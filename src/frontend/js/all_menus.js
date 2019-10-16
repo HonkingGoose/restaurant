@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 // GET
 function getMenus () {
   document.getElementById('menuTable').innerHTML = ''
@@ -62,10 +63,10 @@ function deleteMenusById () {
 // PUT BY ID
 function updateMenusById () {
   const id = +document.getElementById('menu_id').value
-  const menu_name = document.getElementById('menu_name').value
+  const menuName = document.getElementById('menu_name').value
   const newMenu = {
     id: id,
-    menu_name: menu_name
+    menu_name: menuName
   }
 
   const xhttp = new XMLHttpRequest()
@@ -85,10 +86,10 @@ function updateMenusById () {
 }
 // POST
 function postMenus () {
-  const menu_name = document.getElementById('menu_name1').value
+  const menuName = document.getElementById('menu_name1').value
 
   const newMenu = {
-    menu_name: menu_name
+    menu_name: menuName
   }
 
   const xhttp = new XMLHttpRequest()
