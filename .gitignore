@@ -105,6 +105,3 @@ public
 
 #. Libreoffice Impress lock file
 .~lock.*
-
-# HMTL output from Asciidoctor in folder /doc/git/
-docs/git/*.html
