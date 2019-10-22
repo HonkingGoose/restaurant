@@ -105,3 +105,6 @@ public
 
 #. Libreoffice Impress lock file
 .~lock.*
+
+# Ignore .html files
+*.html
