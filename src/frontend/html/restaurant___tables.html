@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" conent="ie=edge">
+  <link rel="stylesheet" href="../css/restaurant_tables.css" />
+
+  <link rel="stylesheet" href="http://cdn.datatables.net/1.10.19/css/jquery.dataTables.min.css" />
+  <link href="https://fonts.googleapis.com/css?family=Heebo&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+    integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+  <script src="https://code.jquery.com/jquery-3.3.1.js"></script>
+  <script src="https://cdn.datatables.net/1.10.19/js/jquery.dataTables.min.js"></script>
+  <script src="https://cdn.datatables.net/1.10.19/js/dataTables.bootstrap4.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
+    integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
+    crossorigin="anonymous"></script>
+
+  <!-- <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script> -->
+  <!-- <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script> -->
+  <script src="../js/restaurantTables.js"></script>
+  <!-- <script src="../js/dashboard.js"></script> -->
+  <title></title>
+
+</head>
+
+<body>
+  <h1 class="title">Restaurant Tables</h1>
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-12">
+        <hr>
+
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-lg-9">
+        <table id="dataTable" class="display">
+
+        </table>
+      </div>
+      <div class="col-lg-3">
+        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal"
+          data-whatever="@mdo">Add</button>
+        <!-- <button id="fetch" class="btn btn-success">Add</button>
+              <button id="clear" class="btn btn-warning">Clear</button> -->
+      </div>
+    </div>
+  </div>
+
+  <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+    aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">Klant toevoegen</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body" id="newTable">
+          <form>
+            <label for="naam">Name of restaurant table
+              <input type="text" id="table_callsign" />
+            </label>
+            <label for="naam">Number of seats
+              <input type="text" id="capacity" />
+            </label>
+            <label for="naam">Available
+              <input type="text" id="available" />
+            </label>
+          </form>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Sluit</button>
+          <button onclick="sendRestaurantTable()" class="btn btn-primary" name="button" data-dismiss="modal">Voeg toe</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+
+
+  <div class="modal fade" id="modalDeleteAndUpdate" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+    aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">Resultaat</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body" id="DeleteAndUpdate">
+          <form>
+            <input type="hidden" name="klantId1" id="restauranttableId1">
+            <label for="naam">Name of restaurant table
+              <input type="text" id="table_callsign1" />
+            </label>
+            <label for="naam">Number of seats
+              <input type="text" id="capacity1" />
+            </label>
+            <label for="naam">Available
+              <input type="text" id="available1" />
+            </label>
+          </form>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Sluit</button>
+          <button onclick="putTableById()" class="btn btn-primary" name="button" data-dismiss="modal">Aanpassen</button>
+          <!-- <button onclick="deleteBootById()" class="btn btn-danger" name="button" data-dismiss="modal">Verwijderen</button> -->
+          <button type="button" class="btn btn-danger" data-toggle="modal" data-dismiss="modal"
+            data-target="#deleteModal" data-whatever="@mdo">Verwijderen</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+  <div class="modal fade" id="deleteModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+    aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel"></h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body" id="Delete">
+          <h1>Weet u dit zeker?</h1>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Nee, sluit</button>
+          <button onclick="deleteTableById()" class="btn btn-danger" name="button" data-dismiss="modal">Ja,
+            verwijder</button>
+        </div>
+      </div>
+    </div>
+  </div>
