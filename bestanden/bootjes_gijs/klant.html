@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -8,11 +9,14 @@
 
   <link rel="stylesheet" href="http://cdn.datatables.net/1.10.19/css/jquery.dataTables.min.css" />
   <link href="https://fonts.googleapis.com/css?family=Heebo&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+    integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
   <script src="https://code.jquery.com/jquery-3.3.1.js"></script>
   <script src="https://cdn.datatables.net/1.10.19/js/jquery.dataTables.min.js"></script>
   <script src="https://cdn.datatables.net/1.10.19/js/dataTables.bootstrap4.min.js"></script>
-  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
+    integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
+    crossorigin="anonymous"></script>
 
   <!-- <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
@@ -23,30 +27,33 @@
   <title></title>
 
 </head>
+
 <body>
   <h1 class="title">Klantbestand</h1>
   <div class="container">
-      <div class="row">
-          <div class="col-lg-12">
-<hr >
+    <div class="row">
+      <div class="col-lg-12">
+        <hr>
 
-          </div>
       </div>
-      <div class="row">
-          <div class="col-lg-9">
-              <table id="dataTable" class="display">
+    </div>
+    <div class="row">
+      <div class="col-lg-9">
+        <table id="dataTable" class="display">
 
-              </table>
-          </div>
-          <div class="col-lg-3">
-            <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal" data-whatever="@mdo">Add</button>
-              <!-- <button id="fetch" class="btn btn-success">Add</button>
+        </table>
+      </div>
+      <div class="col-lg-3">
+        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal"
+          data-whatever="@mdo">Add</button>
+        <!-- <button id="fetch" class="btn btn-success">Add</button>
               <button id="clear" class="btn btn-warning">Clear</button> -->
-          </div>
       </div>
+    </div>
   </div>
 
-  <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+    aria-hidden="true">
     <div class="modal-dialog" role="document">
       <div class="modal-content">
         <div class="modal-header">
@@ -58,7 +65,7 @@
         <div class="modal-body" id="newKlant">
           <form>
             <label for="naam">Naam van klant
-              <input type="text" id="naamklant"/>
+              <input type="text" id="naamklant" />
             </label>
           </form>
         </div>
@@ -73,7 +80,8 @@
 
 
 
-  <div class="modal fade" id="modalDeleteAndUpdate" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal fade" id="modalDeleteAndUpdate" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+    aria-hidden="true">
     <div class="modal-dialog" role="document">
       <div class="modal-content">
         <div class="modal-header">
@@ -86,7 +94,7 @@
           <form>
             <input type="hidden" name="klantId1" id="klantId1">
             <label for="naam">Naam van klant
-              <input type="text" id="naamklant1"/>
+              <input type="text" id="naamklant1" />
             </label>
           </form>
         </div>
@@ -94,14 +102,16 @@
           <button type="button" class="btn btn-secondary" data-dismiss="modal">Sluit</button>
           <button onclick="putKlantById()" class="btn btn-primary" name="button" data-dismiss="modal">Aanpassen</button>
           <!-- <button onclick="deleteBootById()" class="btn btn-danger" name="button" data-dismiss="modal">Verwijderen</button> -->
-          <button type="button" class="btn btn-danger" data-toggle="modal" data-dismiss="modal" data-target="#deleteModal" data-whatever="@mdo">Verwijderen</button>
+          <button type="button" class="btn btn-danger" data-toggle="modal" data-dismiss="modal"
+            data-target="#deleteModal" data-whatever="@mdo">Verwijderen</button>
         </div>
       </div>
     </div>
   </div>
 
 
-  <div class="modal fade" id="deleteModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal fade" id="deleteModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+    aria-hidden="true">
     <div class="modal-dialog" role="document">
       <div class="modal-content">
         <div class="modal-header">
@@ -111,11 +121,12 @@
           </button>
         </div>
         <div class="modal-body" id="Delete">
-            <h1>Weet u dit zeker?</h1>
+          <h1>Weet u dit zeker?</h1>
         </div>
         <div class="modal-footer">
           <button type="button" class="btn btn-secondary" data-dismiss="modal">Nee, sluit</button>
-          <button onclick="deleteKlantById()" class="btn btn-danger" name="button" data-dismiss="modal">Ja, verwijder</button>
+          <button onclick="deleteKlantById()" class="btn btn-danger" name="button" data-dismiss="modal">Ja,
+            verwijder</button>
         </div>
       </div>
     </div>
