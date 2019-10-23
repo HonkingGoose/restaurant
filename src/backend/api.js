@@ -317,7 +317,7 @@ app.get('/api/reservations/:id', (req, res) => {
   const id = +req.params.id
   connection.query('SELECT * FROM reservations WHERE id = ?', [id], (err, result) => {
     if (err) throw err
-    res.send(result)
+    res.send(result[0])
   })
 })
 
