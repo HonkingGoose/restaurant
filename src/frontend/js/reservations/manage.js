@@ -1,72 +1,61 @@
-/* eslint-disable no-undef */ // jQuery symbols
 const api = 'http://localhost:3000/api/reservations'
 
 $(document).ready(function () {
   initDataTable()
 
-  $('.btn').ready(function () {
+  getData(api)
+
+  $('#fetch').click(function () {
     getData(api)
   })
 
-  $('.btn-warning').click(function () {
+  $('#clear').click(function () {
     clear()
+  })
+  $('#addBtn').on('click', function () {
+    document.getElementById('modal-title').innerHTML = 'Create a table'
+    document.getElementById('modalForm').reset()
+    $('#btnsubmit').attr('onclick', 'submitNew("' + api + '");')
+    $('#postDetail').modal('toggle')
   })
 })
 
 function initDataTable () {
-  columns = [
-    { data: 'id' },
-    { data: 'reservation_date' },
-    { data: 'start_time' },
-    { data: 'hide_menu_price' },
-    { data: 'number_of_guests' },
-    { data: 'allergy' },
-    { data: 'special_needs' },
-    { data: 'contactinfos_id' }
-    // ,{
-    //     "render": function (data, type, row, meta) {
-    //         // data : data for the cell
-    //         // type seems to be the class of the table (e.g. display)
-    //         // row seems to be the per iteration object (in this case a user)
-    //         return `<a onclick="remove(${row.id});" title="Remove this table"> <i class="fa fa-pencil-alt">XXX ${row.id}</i> </a>`;
-    //         // return '<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal" data-whatever="@mdo">Add</button>';
-    //     }
-    // },
+  const columns = [
+    // { title: 'ID', data: 'id' },
+    { title: 'Contactinfos ID', data: 'contactinfos_id' },
+    { title: 'Date', data: 'reservation_date' },
+    { title: 'Time', data: 'start_time' },
+    { title: 'Menu price hidden', data: 'hide_menu_price' },
+    { title: 'Number of guests', data: 'number_of_guests' },
+    { title: 'Allergies', data: 'allergy' },
+    { title: 'Special needs', data: 'special_needs' }
+
+    /*,
+        {  "render": function(data, type, row, meta){
+            return '<a title="Delete this table" <i class="fa fa-pencil-alt"></i> </a>';
+        } }, */
   ]
 
-  const dataTable = $('#dataTable').DataTable({
+  $('#dataTable').DataTable({
     order: [[0, 'asc']],
     columns: columns
   })
 
-  $('#dataTable tbody').on('click', 'tr', function () { // means ... when I click on
-    console.log('entering')
-
-    var klantData = dataTable.row(this).data()
-
-    console.log(klantData)
-
-    const xhttp = new XMLHttpRequest()
-    const url = api + '/' + klantData.id
-
-    xhttp.open('GET', url)
-    xhttp.send()
-    xhttp.onreadystatechange = () => {
-      if (xhttp.readyState === 4 && xhttp.status === 200) {
-        const jsonResult = JSON.parse(xhttp.responseText)
-        $('#date').val(jsonResult.reservation_date)
-        $('#time').val(jsonResult.start_time)
-        $('#hideprice').val(jsonResult.hide_menu_price)
-        console.log(jsonResult.number_of_guests)
-        $('#nrguests').val(jsonResult.number_of_guests)
-        $('#allergies').val(jsonResult.allergy)
-        $('#specialneeds').val(jsonResult.special_needs)
-
-        $('#modalDeleteAndUpdate').modal('show')
-
-      //
-      }
+  $('#dataTable tbody').on('click', 'tr', function () {
+    if ($(this).hasClass('selected')) {
+      $(this).removeClass('selected')
     }
+    deselect()
+    $(this).addClass('selected')
+    var table = $('#dataTable').DataTable()
+    var data = table.row(this).data()
+
+    // this function fetches one record and fill the modal with the data and shows the modal for editing
+    fillUpdateDiv(data, api)
+    getSingleRecord(data.id, api)
+
+    $('#postDetail').modal('toggle')
   })
 }
 
@@ -76,36 +65,6 @@ function clear () {
 }
 
 function getData (api) {
-  clear()
-
-  $.get(
-    {
-      url: api,
-      dataType: 'json',
-      success: function (data) {
-        // if (data) {
-        //     $("#dataTable").DataTable().clear();
-        //     for(let i=0; i < data.length; i++) {
-        //       if (data[i].beschikbaar == 1) {
-        //       data[i].beschikbaar = 'beschikbaar';
-        //     }
-        //
-        //     else {
-        //       data[i].beschikbaar = 'in bedrijf'
-        //     }
-        //   }
-        // }
-        $('#dataTable').DataTable().rows.add(data)
-        $('#dataTable').DataTable().columns.adjust().draw()
-        // console.log(data[0].beschikbaar);
-      }
-    }
-
-  )
-}
-
-// eslint-disable-next-line no-unused-vars
-function getDataAlternate (api) {
   // asynchronous REST GET
   $.get(api, function (data) {
     if (data) {
@@ -116,110 +75,134 @@ function getDataAlternate (api) {
   })
 }
 
-$('#exampleModal').on('show.bs.modal', function (event) {
-  var button = $(event.relatedTarget) // Button that triggered the modal
-  var recipient = button.data('whatever') // Extract info from data-* attributes
-  // If necessary, you could initiate an AJAX request here (and then do the updating in a callback).
-  // Update the modal's content. We'll use jQuery here, but you could use a data binding library or other methods instead.
-  var modal = $(this)
-  modal.find('.modal-title').text('New message to ' + recipient)
-  modal.find('.modal-body input').val(recipient)
-})
-
-// $('modalDeleteAndUpdate').on('show.bs.modal', function (event) {
-//   var button = $(event.relatedTarget) // Button that triggered the modal
-//   var recipient = button.data('whatever') // Extract info from data-* attributes
-//   // If necessary, you could initiate an AJAX request here (and then do the updating in a callback).
-//   // Update the modal's content. We'll use jQuery here, but you could use a data binding library or other methods instead.
-//   var modal = $(this)
-//   modal.find('.modal-title').text('New message to ' + recipient)
-//   modal.find('.modal-body input').val(recipient)
-// })
-
-// eslint-disable-next-line no-unused-vars
-function sendKlant () {
-  const klantnaam = document.getElementById('naamklant').value
-  // const beschikbaar = document.getElementById('beschikbaar').value;
-
-  const newKlant = { klantnaam: klantnaam }
-
-  const xhttp = new XMLHttpRequest()
-  const url = 'http://localhost:3000/api/klant'
-
-  xhttp.open('POST', url)
-  xhttp.setRequestHeader('Content-type', 'application/json')
-  xhttp.send(JSON.stringify(newKlant))
-
-  xhttp.onreadystatechange = () => {
-    if (xhttp.readyState === 4 && xhttp.status === 200) {
-      getData(api)
+function getSingleRecord (id, api) {
+  const apiPath = String(api + '/' + id)
+  $.get(apiPath, function (data) {
+    if (data) {
+      fillUpdateDiv(data, api)
     }
-  }
-  $('#naamklant').val('')
-}
-
-// function getKlantById() {
-//   const id = klantData.id;
-//
-//   console.log(id);
-//   // const id = document.getElementById("bootId").value;
-//
-//   const xhttp = new XMLHttpRequest();
-//   const url = 'http://localhost:3000/api/klant/' + id;
-//
-//
-//   xhttp.open('GET', url);
-//   xhttp.send();
-//   xhttp.onreadystatechange = () => {
-//     if (xhttp.readyState === 4 && xhttp.status === 200) {
-//       const jsonResult = JSON.parse(xhttp.responseText);
-//       jsonResult.forEach(element => {
-//         let table = document.getElementById('klantByIdTable');
-//         let insertRow = table.insertRow();
-//
-//         for (let key in element) {
-//           let cell = insertRow.insertCell();
-//           cell.innerHTML = element[key];
-//         }
-//       });
-//     }
-//   }
-// }
-// DELETE FUNCTION
-// eslint-disable-next-line no-unused-vars
-function deleteKlantById () {
-  const id = +document.getElementById('klantId1').value
-  const xhttp = new XMLHttpRequest()
-  const url = 'http://localhost:3000/api/klant/' + id
-
-  xhttp.open('DELETE', url)
-  xhttp.send()
-  xhttp.onreadystatechange = function () {
-    if (xhttp.readyState === 4 && xhttp.status === 204) {
-      console.log('de data is opgehaald')
-      getData(api)
-      console.log('de data is opgehaald')
-    }
-  }
+  })
 }
 
 // eslint-disable-next-line no-unused-vars
-function putKlantById () {
-  const id = document.getElementById('klantId1').value
-  const klantnaam = document.getElementById('naamklant1').value
-
-  const newKlantById = { klantnaam: klantnaam }
-
-  const xhttp = new XMLHttpRequest()
-  const url = 'http://localhost:3000/api/klant/' + id
-
-  xhttp.open('put', url)
-  xhttp.setRequestHeader('Content-Type', 'application/json')
-  xhttp.send(JSON.stringify(newKlantById))
-
-  xhttp.onreadystatechange = function () {
-    if (xhttp.readyState === 4 && xhttp.status === 200) {
-      getData(api)
-    }
+function submitNew (api) {
+  var formData = $('#modalForm').serializeArray().reduce(function (result, object) { result[object.name] = object.value; return result }, {})
+  for (var key in formData) {
+    if (formData[key] === '' || formData == null) delete formData[key]
   }
+
+  $.post({
+    url: api,
+    data: JSON.stringify(formData),
+    dataType: 'json',
+    success: getData(api),
+    error: function (error) {
+      console.log(error)
+    }
+  })
+
+  deselect()
+  $('#postDetail').modal('toggle')
+}
+
+// this function perform cleaning up of the table
+// 1. remove eventually selected class
+// 2. clean the form using the reset method
+function deselect () {
+  $('#dataTable tr.selected').removeClass('selected')
+
+  document.getElementById('modalForm').reset()
+}
+
+function fillUpdateDiv (record, api) {
+  $('#btnsubmit').attr('onclick', 'submitEdit(' + record.id + ', "' + api + '");')
+
+  document.getElementById('modal-title').innerHTML = 'Edit a table'
+
+  // this function fills the modal
+  fillModal(record)
+}
+
+//  show the usage of the popover here!
+function fillModal (record) {
+  // fill the modal
+  // $('#form-id').val(record.id)
+  $('#form-contactinfos_id').val(record.contactinfos_id)
+  $('#form-reservation-date').val(record.reservation_date)
+  $('#form-start_time').val(record.start_time)
+  $('#form-hide_menu_price').val(record.hide_menu_price)
+  $('#form-number_of_guests').val(record.number_of_guests)
+  $('#form-allergy').val(record.allergy)
+  $('#form-special_needs').val(record.special_needs)
+
+  // set inline block to respect the margins if applicable
+  $('#deleteButton').css('display', 'inline-block')
+
+  // create the buttons for the confirmation
+  // first the cancel button which just does nothing
+  let confirmationButtons = '<button class="btn btn-secondary">Cancel</button>&nbsp;'
+
+  // than the confirmbutton which just invokes submitDelete(...)
+  confirmationButtons += `<button type="button" class="btn btn-danger" onclick="submitDelete('${record.id}', '${api}');">Confirm delete</button>`
+
+  // set the deleteButton to be a popover
+  // first dispose / distroy the popover on the deleteButton to be sure there is no active on!
+  $('#deleteButton').popover('dispose')
+  // the enable the popover
+  $('#deleteButton').popover({
+    animation: true,
+    content: confirmationButtons, // just use the above created confirmButtons for confirmation
+    html: true,
+    // eslint-disable-next-line no-undef
+    container: postDetail
+  })
+}
+
+// eslint-disable-next-line no-unused-vars
+function submitEdit (id, api) {
+  // shortcut for filling the formData as a JavaScript object with the fields in the form
+  // var formData = $('#modalForm').serializeArray().reduce(function (result, object) { result[object.name] = object.value; return result }, {})
+  const formData = {
+    reservation_date: $('#form-reservation_date').val(),
+    start_time: $('#form-start_time').val(),
+    hide_menu_price: $('#form-hide_menu_price').val(),
+    number_of_guests: $('#form-number_of_guests').val(),
+    allergy: $('#form-allergy').val(),
+    special_needs: $('#form-special_needs').val(),
+    contactinfos_id: $('#form-contactinfos_id').val()
+  }
+  /* console.log('Formdata =>')
+  console.log(JSON.stringify(formData))
+  for (var key in formData) {
+    if (formData[key] === '' || formData == null) delete formData[key]
+  } */
+
+  console.log('Updating row with id:' + id)
+  console.log(formData)
+  $.ajax({
+    url: api + '/' + id,
+    type: 'put',
+    data: JSON.stringify(formData),
+    dataType: 'json',
+    success: getData(api),
+    error: function (error) {
+      console.log(error)
+    }
+  })
+
+  deselect()
+  $('#postDetail').modal('toggle')
+}
+
+// eslint-disable-next-line no-unused-vars
+function submitDelete (id, api) {
+  console.log(`Deleting row with id: ${id}`)
+  $.ajax({
+    url: api + '/' + id,
+    type: 'delete',
+    dataType: 'json',
+    success: getData(api)
+  })
+
+  $('#postDetail').modal('toggle')
 }
