@@ -1,72 +1,57 @@
+/* eslint-disable no-unused-vars */
 const api = 'http://localhost:3000/api/restaurant_tables/'
 
 $(document).ready(function () {
   initDataTable()
 
-  // $(".btn").click(function () {
-  //     getData(api);
-  // });
+  getData(api)
 
-//   $('.btn').ready(function () {
-//     getData(api)
-//   })
-//
-//   $('.btn-warning').click(function () {
-//     clear()
-//   })
-});
+  $('#fetch').click(function () {
+    getData(api)
+  })
+
+  $('#clear').click(function () {
+    clear()
+  })
+  $('#addBtn').on('click', function () {
+    document.getElementById('modal-title').innerHTML = 'Create a table'
+    document.getElementById('modalForm').reset()
+    $('#btnsubmit').attr('onclick', 'submitNew("' + api + '");')
+    $('#postDetail').modal('toggle')
+  })
+})
 
 function initDataTable () {
-  columns = [
-    { data: 'id' },
-    { data: 'capacity' },
-    { data: 'available' },
-    { data: 'table_callsign' }
+  const columns = [
+    { title: 'ID', data: 'id' },
+    { title: 'Table_Callsign', data: 'table_callsign' },
+    { title: 'Capacity', data: 'capacity' },
+    { title: 'Available', data: 'available' }
 
-    // ,{
-    //     "render": function (data, type, row, meta) {
-    //         // data : data for the cell
-    //         // type seems to be the class of the table (e.g. display)
-    //         // row seems to be the per iteration object (in this case a user)
-    //         return `<a onclick="remove(${row.id});" title="Remove this table"> <i class="fa fa-pencil-alt">XXX ${row.id}</i> </a>`;
-    //         // return '<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal" data-whatever="@mdo">Add</button>';
-    //     }
-    // },
+    /*,
+        {  "render": function(data, type, row, meta){
+            return '<a title="Delete this table" <i class="fa fa-pencil-alt"></i> </a>';
+        } }, */
   ]
 
-  // he guys, this is a jQuery Plugin
-  const dataTable = $('#dataTable').DataTable({
+  $('#dataTable').DataTable({
     order: [[0, 'asc']],
     columns: columns
   })
 
-  $('#dataTable tbody').on('click', 'tr', function () { // means ... when I click on
-    console.log('entering')
-
-    var tableData = dataTable.row(this).data()
-
-    console.log(tableData)
-
-    const xhttp = new XMLHttpRequest()
-    const url = 'http://localhost:3000/api/restaurant_tables/' + tableData.id
-
-    xhttp.open('GET', url)
-    xhttp.send()
-    xhttp.onreadystatechange = () => {
-      if (xhttp.readyState === 4 && xhttp.status === 200) {
-        const jsonResult = JSON.parse(xhttp.responseText)
-        $('#restaurant_table_id').val(jsonResult.id)
-        $('#naamklant1').val(jsonResult.klantnaam)
-        $('#klantId1').val(jsonResult.id)
-        $('#naamklant1').val(jsonResult.klantnaam)
-
-        // document.getElementById('naamboot1').value=jsonResult.naamboot;
-
-        $('#modalDeleteAndUpdate').modal('show')
-
-      //
-      }
+  $('#dataTable tbody').on('click', 'tr', function () {
+    if ($(this).hasClass('selected')) {
+      $(this).removeClass('selected')
     }
+    deselect()
+    $(this).addClass('selected')
+    var table = $('#dataTable').DataTable()
+    var data = table.row(this).data()
+
+    // this function fetches one record and fill the modal with the data and shows the modal for editing
+    getSingleRecord(data.id, api)
+
+    $('#postDetail').modal('toggle')
   })
 }
 
@@ -76,35 +61,6 @@ function clear () {
 }
 
 function getData (api) {
-  clear()
-
-  $.get(
-    {
-      url: api,
-      dataType: 'json',
-      success: function (data) {
-        // if (data) {
-        //     $("#dataTable").DataTable().clear();
-        //     for(let i=0; i < data.length; i++) {
-        //       if (data[i].beschikbaar == 1) {
-        //       data[i].beschikbaar = 'beschikbaar';
-        //     }
-        //
-        //     else {
-        //       data[i].beschikbaar = 'in bedrijf'
-        //     }
-        //   }
-        // }
-        $('#dataTable').DataTable().rows.add(data)
-        $('#dataTable').DataTable().columns.adjust().draw()
-        // console.log(data[0].beschikbaar);
-      }
-    }
-
-  )
-}
-
-function getDataAlternate (api) {
   // asynchronous REST GET
   $.get(api, function (data) {
     if (data) {
@@ -115,114 +71,116 @@ function getDataAlternate (api) {
   })
 }
 
-$('#exampleModal').on('show.bs.modal', function (event) {
-  var button = $(event.relatedTarget) // Button that triggered the modal
-  var recipient = button.data('whatever') // Extract info from data-* attributes
-  // If necessary, you could initiate an AJAX request here (and then do the updating in a callback).
-  // Update the modal's content. We'll use jQuery here, but you could use a data binding library or other methods instead.
-  var modal = $(this)
-  modal.find('.modal-title').text('New message to ' + recipient)
-  modal.find('.modal-body input').val(recipient)
-})
-
-// $('modalDeleteAndUpdate').on('show.bs.modal', function (event) {
-//   var button = $(event.relatedTarget) // Button that triggered the modal
-//   var recipient = button.data('whatever') // Extract info from data-* attributes
-//   // If necessary, you could initiate an AJAX request here (and then do the updating in a callback).
-//   // Update the modal's content. We'll use jQuery here, but you could use a data binding library or other methods instead.
-//   var modal = $(this)
-//   modal.find('.modal-title').text('New message to ' + recipient)
-//   modal.find('.modal-body input').val(recipient)
-// })
-
-'use strict'
-function sendRestaurantTable () {
-
-  const capacity = document.getElementById('capacity').value
-  const available = document.getElementById('available').value
-  const tableCallsign = document.getElementById('table_callsign').value
-
-  const newTable = { capacity: capacity, available: available, table_callsign: tableCallsign }
-
-  const xhttp = new XMLHttpRequest()
-  const url = 'http://localhost:3000/api/restaurant_tables'
-
-  xhttp.open('POST', url)
-  xhttp.setRequestHeader('Content-type', 'application/json')
-  xhttp.send(JSON.stringify(newTable))
-
-  xhttp.onreadystatechange = () => {
-    if (xhttp.readyState === 4 && xhttp.status == 200) {
-      getData(api)
+function getSingleRecord (id, api) {
+  const apiPath = String(api + '/' + id)
+  $.get(apiPath, function (data) {
+    if (data) {
+      fillUpdateDiv(data, api)
     }
-  }
-  $('#naamklant').val('')
-  $('#available').val('')
-  $('#table_callsign').val('')
+  })
 }
 
-// function getKlantById() {
-//   const id = klantData.id;
-//
-//   console.log(id);
-//   // const id = document.getElementById("bootId").value;
-//
-//   const xhttp = new XMLHttpRequest();
-//   const url = 'http://localhost:3000/api/klant/' + id;
-//
-//
-//   xhttp.open('GET', url);
-//   xhttp.send();
-//   xhttp.onreadystatechange = () => {
-//     if (xhttp.readyState === 4 && xhttp.status === 200) {
-//       const jsonResult = JSON.parse(xhttp.responseText);
-//       jsonResult.forEach(element => {
-//         let table = document.getElementById('klantByIdTable');
-//         let insertRow = table.insertRow();
-//
-//         for (let key in element) {
-//           let cell = insertRow.insertCell();
-//           cell.innerHTML = element[key];
-//         }
-//       });
-//     }
-//   }
-// }
-// DELETE FUNCTION
-function deleteTableById () {
-  const id = +document.getElementById('restauranttableId1').value
-  const xhttp = new XMLHttpRequest()
-  const url = 'http://localhost:3000/api/restaurant_tables/' + id
-
-  xhttp.open('DELETE', url)
-  xhttp.send()
-  xhttp.onreadystatechange = function () {
-    if (xhttp.readyState === 4 && xhttp.status === 204) {
-      console.log('de data is opgehaald')
-      getData(api)
-      console.log('de data is opgehaald')
-    }
+function submitNew (api) {
+  var formData = $('#modalForm').serializeArray().reduce(function (result, object) { result[object.name] = object.value; return result }, {})
+  for (var key in formData) {
+    if (formData[key] === '' || formData == null) delete formData[key]
   }
+
+  $.post({
+    url: api,
+    data: JSON.stringify(formData),
+    dataType: 'json',
+    success: getData(api),
+    error: function (error) {
+      console.log(error)
+    }
+  })
+
+  deselect()
+  $('#postDetail').modal('toggle')
 }
 
-function putTableById () {
-  const id = document.getElementById('restauranttableId1').value
-  const capacity = document.getElementById('capacity1').value
-  const available = document.getElementById('available1').value
-  const tableCallsign = document.getElementById('table_callsign1').value
+// this function perform cleaning up of the table
+// 1. remove eventually selected class
+// 2. clean the form using the reset method
+function deselect () {
+  $('#dataTable tr.selected').removeClass('selected')
 
-  const newTableById = { capacity: capacity, available: available, tableCallsign: tableCallsign }
+  document.getElementById('modalForm').reset()
+}
 
-  const xhttp = new XMLHttpRequest()
-  const url = 'http://localhost:3000/api/restaurant_tables/' + id
+function fillUpdateDiv (record, api) {
+  $('#btnsubmit').attr('onclick', 'submitEdit(' + record.id + ', "' + api + '");')
 
-  xhttp.open('put', url)
-  xhttp.setRequestHeader('Content-Type', 'application/json')
-  xhttp.send(JSON.stringify(newTableById))
+  document.getElementById('modal-title').innerHTML = 'Edit a table'
 
-  xhttp.onreadystatechange = function () {
-    if (xhttp.readyState === 4 && xhttp.status === 200) {
-      getData(api)
-    }
+  // this function fills the modal
+  fillModal(record)
+}
+
+//  show the usage of the popover here!
+function fillModal (record) {
+  // fill the modal
+  $('#id').val(record.id)
+  $('#title').val(record.title)
+  $('#body').val(record.body)
+
+  // set inline block to respect the margins if applicable
+  $('#deleteButton').css('display', 'inline-block')
+
+  // create the buttons for the confirmation
+  // first the cancel button which just does nothing
+  let confirmationButtons = '<button class="btn btn-secondary">Cancel</button>&nbsp;'
+
+  // than the confirmbutton which just invokes submitDelete(...)
+  confirmationButtons += `<button type="button" class="btn btn-danger" onclick="submitDelete('${record.id}', '${api}');">Confirm delete</button>`
+
+  // set the deleteButton to be a popover
+  // first dispose / distroy the popover on the deleteButton to be sure there is no active on!
+  $('#deleteButton').popover('dispose')
+  // the enable the popover
+  $('#deleteButton').popover({
+    animation: true,
+    content: confirmationButtons, // just use the above created confirmButtons for confirmation
+    html: true,
+    // eslint-disable-next-line no-undef
+    container: postDetail
+  })
+}
+
+function submitEdit (id, api) {
+  // shortcut for filling the formData as a JavaScript object with the fields in the form
+  var formData = $('#modalForm').serializeArray().reduce(function (result, object) { result[object.name] = object.value; return result }, {})
+  console.log('Formdata =>')
+  console.log(formData)
+  for (var key in formData) {
+    if (formData[key] === '' || formData == null) delete formData[key]
   }
+
+  console.log('Updating row with id:' + id)
+  $.ajax({
+    url: api + '/' + id,
+    type: 'put',
+    data: JSON.stringify(formData),
+    dataType: 'json',
+    success: getData(api),
+    error: function (error) {
+      console.log(error)
+    }
+  })
+
+  deselect()
+  $('#postDetail').modal('toggle')
+}
+
+function submitDelete (id, api) {
+  console.log(`Deleting row with id: ${id}`)
+  $.ajax({
+    url: api + '/' + id,
+    type: 'delete',
+    dataType: 'json',
+    success: getData(api)
+  })
+
+  $('#postDetail').modal('toggle')
 }
