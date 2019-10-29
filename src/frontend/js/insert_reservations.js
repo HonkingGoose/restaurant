@@ -1,3 +1,5 @@
+'use strict'
+
 function postReservations () {
     const reservationDate = document.getElementById('reservation_date').value
     const startTime = document.getElementById('start_time').value
