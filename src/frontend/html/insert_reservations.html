@@ -1,46 +1,67 @@
-<!DOCTYPE html>
-<html>
-  <head>
-    <title>Insert_Reservation</title>
-    <link rel="stylesheet" href="../style/reset.css">
-    <link rel="stylesheet" href="../style/style_global.css">
-    <script defer src="insert_reservation.js"></script>
-  </head>
-  <body>
-      <h1>Insert reservation</h1>
-      <h2>Reservation date</h2>
-      <div>
-          <p>Date</p>
-          <input id="date" type="date" name="date" value="">
-      </div>
-      <div>
-        <p>Start time</p>
-        <input id="starttime" type="time" name="starttime" value="">
-      </div>
-      <h2>Number of guests</h2>
-      <div>
-        <input id="nrguests" type="text" name="nrguests" value="">
-      </div>
-      <h2>Allergy</h2>
-      <div>
-        <input id="allergy" type="text" name="allergy" value="">
-      </div>
-      <div>
-        <p>Hide menuprices</p>
-        <input id="hideprice" class="checkbox" type="checkbox" name="hideprice" value="hideprice">
-      </div>
-      <h2>Special Needs</h2>
-      <div>
-        <input id="specialneeds" type="text" name="specialneeds" value="">
-      </div>
-      <h2>Contactinfos</h2>
-        <p>Name</p>
-        <input id="name" type="text" name="name" value="">
-        <p>Phonenumber</p>
-        <input id="phonenumber" type="number" name="phonenumber" value="">
-        <p>City</p>
-        <input id="city" type="text" name="city" value="">
-        <div>
-          <button id="sendButton">Save</button>
-        </div> 
-  </body>
+<!doctype html>
+
+<html lang="en">
+
+<head>
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css">
+</head>
+
+<body>
+  <div class="container-fluid">
+
+    <button type="button"  class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
+      Insert reservations
+    </button>
+
+    <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+              aria-hidden="true">
+              <div class="modal-dialog" role="document">
+                  <div class="modal-content">
+                      <div class="modal-header">
+                          <h5 class="modal-title" id="exampleModalLabel">Insert reservations</h5>
+                          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                              <span aria-hidden="true">&times;</span>
+                          </button>
+                      </div>
+                      <div class="modal-body">
+                        
+    <h2>Contactinfo guest</h2>
+    <div>
+        <p>Last name</p>
+        <input id="lastname" type="text" name="lastname" value="">
+        <p>First name</p>
+        <input id="firstname" type="text" name="firstname" value="">
+        <p>Date</p>
+        <input id="date" type="date" name="Date" value="">
+        <p>Starttime</p>
+        <input id="starttime" type="timestamp" name="starttime" value="">
+        <p>Number of guests</p>
+        <input id="numberofguests" type="number" name="numberofguests" value="">
+    </div>
+    <p>Telephone Number</p>
+    <div>
+      <input id="telephonenumber" type="number" name="telephonenumber" value="">
+    </div>
+    <p>E-mail address</p>
+    <div>
+      <input id="emailaddress" type="text" name="emailaddress" value="">
+    </div>
+    <p>Domicile</p>
+    <div>
+      <input id="domicile" class="text" name="domicile" value="">
+    </div>
+    
+                      </div>
+                      <div class="modal-footer">
+                          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                          <button type="button" class="btn btn-primary">Insert reservation</button>
+                      </div>
+                  </div>
+              </div>
+          </div>
+          <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
+          <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/js/bootstrap.min.js"></script>
+          <script src="../js/insert_reservations.js"></script>
+</body>
+</html>

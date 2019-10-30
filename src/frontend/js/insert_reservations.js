@@ -19,7 +19,7 @@ function postReservations () {
     }
   
     const xhttp = new XMLHttpRequest()
-    const url = 'http://localhost:3000/api/insert_reservations'
+    const url = 'http://localhost:3000/api/reservations'
   
     xhttp.open('POST', url)
     xhttp.setRequestHeader('Content-type', 'application/json')
@@ -27,7 +27,7 @@ function postReservations () {
   
     xhttp.onreadystatechange = () => {
       if (xhttp.readyState === 4 && xhttp.status === 200) {
-        getreservations()
+        
       }
     }
   }
