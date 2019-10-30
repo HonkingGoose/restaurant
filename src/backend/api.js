@@ -33,6 +33,27 @@ app.listen(port, () => {
   console.log('Server running on port: ', port)
 })
 
+function formatDates(input) {
+  let formattedInput = input
+  console.log('Before format: =>')
+  console.log(formattedInput[0])
+
+  for (let i = 0; i < Object.values(formattedInput[0]).length; i++) {
+    let row = Object.values(formattedInput[0])[i]
+    console.log(row)
+
+    if (typeof (row) === 'object' && row instanceof Date) {
+      row.setHours(row.getHours() + 1)
+      row = row.toISOString().substring(0, 10)
+
+    }
+  }
+
+  console.log('After format: =>')
+  console.log(formattedInput)
+  return formattedInput
+}
+
 // CONTACTINFOS BEGIN
 
 app.get('/api/contactinfos', (req, res) => {
@@ -48,7 +69,7 @@ app.get('/api/contactinfos/:id', (req, res) => {
   const id = +req.params.id
   connection.query('SELECT * FROM contactinfos WHERE id = ?', [id], (err, result) => {
     if (err) throw err
-    res.send(result)
+    res.send(result[0])
   })
 })
 
@@ -309,7 +330,6 @@ app.get('/api/reservations', (req, res) => {
   connection.query('SELECT * FROM reservations', (err, reservations) => {
     if (err) throw err
     res.send(reservations)
-    console.log(reservations)
   })
 })
 
@@ -324,6 +344,7 @@ app.get('/api/reservations/:id', (req, res) => {
 app.put('/api/reservations/:id', (req, res) => {
   const id = +req.params.id
   const inputUser = req.body
+  console.log(req.body)
   connection.query('UPDATE reservations SET ? WHERE id = ?', [inputUser, id], (err, response) => {
     if (err) throw err
     connection.query('SELECT * FROM reservations WHERE id = ?', id, (updateErr, updateReservations) => {
