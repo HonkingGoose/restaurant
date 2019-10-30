@@ -1,9 +1,64 @@
-<!DOCTYPE html>
-<html>
-  <head>
-    <title>Insert_Contactinfos</title>
-    <link rel="stylesheet" href="../style/reset.css">
-    <link rel="stylesheet" href="../style/style_global.css">
-    <script defer src="insert_contactinfos.js"></script>
-  </head>
-  <body>
+<!doctype html>
+
+<html lang="en">
+
+<head>
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css">
+</head>
+
+<body>
+  <div class="container-fluid">
+
+    <button type="button"  class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
+      Insert contactinfos
+    </button>
+
+    <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+              aria-hidden="true">
+              <div class="modal-dialog" role="document">
+                  <div class="modal-content">
+                      <div class="modal-header">
+                          <h5 class="modal-title" id="exampleModalLabel">Reservation guest info</h5>
+                          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                              <span aria-hidden="true">&times;</span>
+                          </button>
+                      </div>
+                      <div class="modal-body">
+                        
+    <h1>Guest</h1>
+    <div>
+        <p>Firstname</p>
+        <input id="firstname" type="text" name="firstname" value="">
+        <p>Prefix last name</p>
+        <input id="prefix_lastname" type="text" name="prefix_lastname" value="">
+        <p>Lastname</p>
+        <input id='lastname' type="text" name="lastname" value="">
+    </div>
+    <p>Telephone Number</p>
+    <div>
+      <input id="phonenumber" type="number" name="phonenumber" value="">
+    </div>
+    <p>E-mail address</p>
+    <div>
+      <input id="emailaddress" type="text" name="emailaddress" value="">
+    </div>
+    <p>Domicile</p>
+    <div>
+      <input id="domicile" class="text" name="domicile" value="">
+    </div>
+    
+                      </div>
+                      <div class="modal-footer">
+                          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                          <button type="button" onclick="postContactinfos()" class="btn btn-primary">Insert contactinfos</button>
+                          
+                      </div>
+                  </div>
+              </div>
+          </div>
+          <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
+          <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/js/bootstrap.min.js"></script>
+          <script src="../js/insert_contactinfos.js"></script>
+</body>
+</html>
