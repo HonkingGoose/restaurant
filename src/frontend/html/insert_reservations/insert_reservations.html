@@ -11,7 +11,7 @@
   <div class="container-fluid">
 
     <button type="button"  class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
-      Insert contactinfos
+      Insert reservations
     </button>
 
     <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
@@ -19,39 +19,35 @@
               <div class="modal-dialog" role="document">
                   <div class="modal-content">
                       <div class="modal-header">
-                          <h5 class="modal-title" id="exampleModalLabel">Reservation guest info</h5>
+                          <h5 class="modal-title" id="exampleModalLabel">Reservation info</h5>
                           <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                               <span aria-hidden="true">&times;</span>
                           </button>
                       </div>
                       <div class="modal-body">
                         
-    <h1>Guest</h1>
+    <h1>Reservation</h1>
     <div>
-        <p>Firstname</p>
-        <input id="firstname" type="text" name="firstname" value="">
-        <p>Prefix last name</p>
-        <input id="prefix_lastname" type="text" name="prefix_lastname" value="">
-        <p>Lastname</p>
-        <input id='lastname' type="text" name="lastname" value="">
-    </div>
-    <p>Telephone Number</p>
-    <div>
-      <input id="phonenumber" type="number" name="phonenumber" value="">
-    </div>
-    <p>E-mail address</p>
-    <div>
-      <input id="emailaddress" type="text" name="emailaddress" value="">
-    </div>
-    <!-- <p>Domicile</p>
-    <div>
-      <input id="domicile" class="text" name="domicile" value="">
-    </div> -->
+        <p>Reservation date</p>
+        <input id="reservation_date" type="text" name="reservation_date" value="">
+        <p>Start time</p>
+        <input id="start_time" type="text" name="start_time" value="">
+        <p>Hide menu price</p>
+        <input id='hide_menu_price' type="text" name="hide_menu_price" value="">
+        <p>Number of guest</p>
+        <input id="number_of_guests" type="number" name="number_of_guests" value="">
+        <p>Allergy</p>
+        <input id="allergy" type="text" name="allergy" value="">
+        <p>Special needs</p>
+        <input id='special_needs' type="text" name="special_needs" value="">
+        <p>Contact id</p>
+        <input id="contactinfos_id" type="number" name="contactinfos_id" value="">
+
     
                       </div>
                       <div class="modal-footer">
                           <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                          <button type="button" onclick="postContactinfos()" class="btn btn-primary">Insert contactinfos</button>
+                          <button type="button" onclick="postReservations()" class="btn btn-primary">Insert reservation</button>
                           
                       </div>
                   </div>

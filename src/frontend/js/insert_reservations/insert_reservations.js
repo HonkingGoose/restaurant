@@ -8,6 +8,7 @@ function postReservations () {
     const allergy = document.getElementById('allergy').value
     const specialNeeds = document.getElementById('special_needs').value
     const contactInfosId = document.getElementById('contactinfos_id').value
+    
     const newReservation = {
       reservation_date: reservationDate,
       start_time: startTime,
