@@ -1,4 +1,4 @@
-const api = 'http://localhost:3000/api/menu_items'
+const api = 'http://localhost:3000/api/restaurant_tables'
 
 $(document).ready(function () {
     initDataTable()
@@ -33,8 +33,8 @@ function initDataTable() {
     ]
 
     $('#dataTable').DataTable({
-        "order": [[0, "asc"]],
-        "columns": columns
+        order: [[0, "asc"]],
+        columns: columns
     });
 
     $('#dataTable tbody').on('click', 'tr', function () {
@@ -52,7 +52,6 @@ function initDataTable() {
 
         $('#postDetail').modal('toggle');
     });
-
 }
 
 function clear() {
@@ -80,7 +79,6 @@ function getSingleRecord(id, api) {
     })
 }
 
-
 function submitNew() {
     // var formData = $("#modalForm").serializeArray().reduce(function (result, object) { result[object.name] = object.value; return result }, {});
     // for (var key in formData) {
@@ -88,9 +86,9 @@ function submitNew() {
     // }
 
     const formData = {
-        name: $('#capacity').val(),
-        description: $('#available').val(),
-        price: $('#table_callsign').val()
+        capacity: $('#capacity').val(),
+        available: $('#available').val(),
+        table_callsign: $('#table_callsign').val()
       }
 
       $.ajax({
@@ -120,8 +118,6 @@ function deselect() {
     document.getElementById("modalForm").reset();
 }
 
-
-
 function fillUpdateDiv(record, api) {
     $("#btnsubmit").attr('onclick', 'submitEdit(' + record.id + ', "' + api + '");');
 
@@ -135,11 +131,10 @@ function fillUpdateDiv(record, api) {
 function fillModal(record) {
     // fill the modal
     // $("#id").val(record.id);
-    $("#capacity").val(record.name);
-    $("#available").val(record.description);
-    $("#table_callsign").val(record.price);
+    $("#capacity").val(record.capacity);
+    $("#available").val(record.available);
+    $("#table_callsign").val(record.table_callsign);
     
-
     // set inline block to respect the margins if applicable
     $("#deleteButton").css('display', 'inline-block');
 
@@ -166,19 +161,15 @@ function submitEdit(id) {
     // shortcut for filling the formData as a JavaScript object with the fields in the form
     // var formData = $('#modalForm').serializeArray().reduce(function (result, object) { result[object.name] = object.value; return result }, {})
    
-   
-   
     const formData = {
-      name: $('#capacity').val(),
-      description: $('#available').val(),
-      price: $('#table_callsign').val()
+    capacity: $('#capacity').val(),
+    available: $('#available').val(),
+    table_callsign: $('#table_callsign').val()
     }
-
 
     console.log('Formdata =>')
     console.log(JSON.stringify(formData));
      
-
     console.log("Updating row with id:" + id);
     console.log(formData);
     $.ajax({
