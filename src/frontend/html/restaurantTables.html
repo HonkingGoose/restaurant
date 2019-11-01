@@ -18,21 +18,16 @@
 </head>
 
 <body>
-
-
     <div class="container">
-
         <div class="row">
-
             <div class="col-lg-9">
-
                 <table id="dataTable" class="table table-striped table-bordered hover table-hover">
                 </table>
             </div>
             <div class="col-lg-3">
                 <!-- later with Font Awesome <i class="fa fa-plus btn btn-success" id="addBtn2"></i>-->
                 <button id="addBtn" class="btn btn-primary">New</button>
-                <button id="fetch" class="btn btn-success">Fetch</button>
+                <!-- <button id="fetch" class="btn btn-success">Fetch</button> -->
                 <button id="clear" class="btn btn-warning">Clear</button>
 
             </div>
@@ -47,19 +42,16 @@
                     </div>
                     <div class="modal-body">
                         <form id="modalForm" enctype='text/plain'>
-                            ID:<br>
-                            <input type='text' class="form-control" name='id' id="id"><br>
-                            Title:<br>
-                            <input type='text' class="form-control" name='title' id="title"><br>
-                            Body:<br>
-                            <input type='text' class="form-control" name='body' id="body"><br>
-
+                            Table_calsign:<br>
+                            <input type='text' class="form-control" name='table_calsign' id="table_calsign"><br>
+                            Capacity:<br>
+                            <input type='text' class="form-control" name='capacity' id="capacity"><br>
+                            Available:<br>
+                            <input type='text' class="form-control" name='available' id="available"><br>
                         </form>
-
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-success" id="btnsubmit">Submit</button>
-
                         <!-- this is the first, normal Delete button NOT TO BE CONFUSED WITH the popover-->
                         <!-- in fact, this will later contain a Popover -->
                         <a href="#" id="deleteButton" data-title="Are you sure" data-trigger="focus"
@@ -70,9 +62,6 @@
                 </div>
             </div>
         </div>
-
-
-
     </div>
 
     <script src="https://code.jquery.com/jquery-3.3.1.js"></script>

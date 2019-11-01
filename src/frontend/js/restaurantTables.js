@@ -89,13 +89,14 @@ function submitNew (api) {
   $.post({
     url: api,
     data: JSON.stringify(formData),
-    dataType: 'json',
+    contentType: 'json',
     success: getData(api),
     error: function (error) {
       console.log(error)
+      console.log(formData)
     }
   })
-
+  console.log(formData)
   deselect()
   $('#postDetail').modal('toggle')
 }
@@ -121,9 +122,9 @@ function fillUpdateDiv (record, api) {
 //  show the usage of the popover here!
 function fillModal (record) {
   // fill the modal
-  $('#id').val(record.id)
-  $('#title').val(record.title)
-  $('#body').val(record.body)
+  $('#table_calsign').val(record.table_calsign)
+  $('#capacity').val(record.capacity)
+  $('#available').val(record.available)
 
   // set inline block to respect the margins if applicable
   $('#deleteButton').css('display', 'inline-block')
@@ -150,11 +151,16 @@ function fillModal (record) {
 
 function submitEdit (id, api) {
   // shortcut for filling the formData as a JavaScript object with the fields in the form
-  var formData = $('#modalForm').serializeArray().reduce(function (result, object) { result[object.name] = object.value; return result }, {})
-  console.log('Formdata =>')
-  console.log(formData)
-  for (var key in formData) {
-    if (formData[key] === '' || formData == null) delete formData[key]
+  // var formData = $('#modalForm').serializeArray().reduce(function (result, object) { result[object.name] = object.value; return result }, {})
+  // console.log('Formdata =>')
+  // console.log(formData)
+  // for (var key in formData) {
+  //   if (formData[key] === '' || formData == null) delete formData[key]
+  // }
+  const formData = {
+    table_calsign: $('#table_calsign').val(),
+    capacity: $('#capacity').val(),
+    available: $('#available').val()
   }
 
   console.log('Updating row with id:' + id)
@@ -162,7 +168,7 @@ function submitEdit (id, api) {
     url: api + '/' + id,
     type: 'put',
     data: JSON.stringify(formData),
-    dataType: 'json',
+    contentType: 'application/json',
     success: getData(api),
     error: function (error) {
       console.log(error)
