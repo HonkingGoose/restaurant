@@ -9,24 +9,20 @@
 
 <body>
   <div class="container-fluid">
-
     <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
-      Insert guest contact info
+      Add guest contact info
     </button>
-
     <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
       aria-hidden="true">
       <div class="modal-dialog" role="document">
         <div class="modal-content">
           <div class="modal-header">
-            <h5 class="modal-title" id="exampleModalLabel">Reservation guest info</h5>
+            <h5 class="modal-title" id="exampleModalLabel">Add guest contact info</h5>
             <button type="button" class="close" data-dismiss="modal" aria-label="Close">
               <span aria-hidden="true">&times;</span>
             </button>
           </div>
           <div class="modal-body">
-
-            <h1>Guest</h1>
             <div>
               <p>First Name</p>
               <input id="firstname" type="text" name="firstname" value="">
@@ -34,11 +30,8 @@
               <input id="prefix_lastname" type="text" name="prefix_lastname" value="">
               <p>Last Name</p>
               <input id='lastname' type="text" name="lastname" value="">
-
               <p>Telephone Number</p>
-
               <input id="phonenumber" type="number" name="phonenumber" value="">
-
               <p>E-mail address</p>
             </div>
             <div>
@@ -48,12 +41,10 @@
     <div>
       <input id="domicile" class="text" name="domicile" value="">
     </div> -->
-
           </div>
           <div class="modal-footer">
             <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
             <button type="button" onclick="postContactinfos()" class="btn btn-primary">Submit</button>
-
           </div>
         </div>
       </div>
