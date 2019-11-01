@@ -23,10 +23,10 @@ $(document).ready(function () {
 
 function initDataTable () {
   const columns = [
-    { title: 'ID', data: 'id' },
-    { title: 'Table_Callsign', data: 'table_callsign' },
-    { title: 'Capacity', data: 'capacity' },
-    { title: 'Available', data: 'available' }
+    { title: 'id', data: 'id' },
+    { title: 'table_callsign', data: 'table_callsign' },
+    { title: 'capacity', data: 'capacity' },
+    { title: 'available', data: 'available' }
 
     /*,
         {  "render": function(data, type, row, meta){
@@ -49,7 +49,23 @@ function initDataTable () {
     var data = table.row(this).data()
 
     // this function fetches one record and fill the modal with the data and shows the modal for editing
-    getSingleRecord(data.id, api)
+    const xhttp = new XMLHttpRequest()
+    const url = 'http://localhost:3000/api/restaurant_table' + data.id
+
+    // getSingleRecord(api + data.id)
+    // $("id").val(data,id);
+    xhttp.open('GET', url)
+    xhttp.send()
+    xhttp.onreadystatechange = () => {
+      if (xhttp.readyState === 4 && xhttp.status === 200) {
+        const jsonResult = JSON.parse(xhttp.responseText)
+        // $("#id").val(jsonResult.id);
+        $('#table_callsign').val(jsonResult.table_callsign)
+        $('#capacity').val(jsonResult.capacity)
+        $('#available').val(jsonResult.available)
+        // $("#Starttijd1").val(jsonResult.eindtijd);
+      }
+    }
 
     $('#postDetail').modal('toggle')
   })
