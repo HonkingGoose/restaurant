@@ -11,7 +11,7 @@
   <div class="container-fluid">
 
     <button type="button"  class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
-      Insert reservations
+      Insert contactinfos
     </button>
 
     <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
@@ -19,49 +19,46 @@
               <div class="modal-dialog" role="document">
                   <div class="modal-content">
                       <div class="modal-header">
-                          <h5 class="modal-title" id="exampleModalLabel">Insert reservations</h5>
+                          <h5 class="modal-title" id="exampleModalLabel">Reservation guest info</h5>
                           <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                               <span aria-hidden="true">&times;</span>
                           </button>
                       </div>
                       <div class="modal-body">
                         
-    <h2>Contactinfo guest</h2>
+    <h1>Guest</h1>
     <div>
-        <p>Last name</p>
-        <input id="lastname" type="text" name="lastname" value="">
-        <p>First name</p>
+        <p>Firstname</p>
         <input id="firstname" type="text" name="firstname" value="">
-        <p>Date</p>
-        <input id="date" type="date" name="Date" value="">
-        <p>Starttime</p>
-        <input id="starttime" type="timestamp" name="starttime" value="">
-        <p>Number of guests</p>
-        <input id="numberofguests" type="number" name="numberofguests" value="">
+        <p>Prefix last name</p>
+        <input id="prefix_lastname" type="text" name="prefix_lastname" value="">
+        <p>Lastname</p>
+        <input id='lastname' type="text" name="lastname" value="">
     </div>
     <p>Telephone Number</p>
     <div>
-      <input id="telephonenumber" type="number" name="telephonenumber" value="">
+      <input id="phonenumber" type="number" name="phonenumber" value="">
     </div>
     <p>E-mail address</p>
     <div>
       <input id="emailaddress" type="text" name="emailaddress" value="">
     </div>
-    <p>Domicile</p>
+    <!-- <p>Domicile</p>
     <div>
       <input id="domicile" class="text" name="domicile" value="">
-    </div>
+    </div> -->
     
                       </div>
                       <div class="modal-footer">
                           <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                          <button type="button" class="btn btn-primary">Insert reservation</button>
+                          <button type="button" onclick="postContactinfos()" class="btn btn-primary">Insert contactinfos</button>
+                          
                       </div>
                   </div>
               </div>
           </div>
           <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
           <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/js/bootstrap.min.js"></script>
-          <script src="../js/insert_reservations.js"></script>
+          <script src="../../js/insert_reservations/insert_reservations.js"></script>
 </body>
 </html>
