@@ -33,8 +33,8 @@ app.listen(port, () => {
   console.log('Server running on port: ', port)
 })
 
-function formatDates(input) {
-  let formattedInput = input
+function formatDates (input) {
+  const formattedInput = input
   console.log('Before format: =>')
   console.log(formattedInput[0])
 
@@ -45,7 +45,6 @@ function formatDates(input) {
     if (typeof (row) === 'object' && row instanceof Date) {
       row.setHours(row.getHours() + 1)
       row = row.toISOString().substring(0, 10)
-
     }
   }
 
