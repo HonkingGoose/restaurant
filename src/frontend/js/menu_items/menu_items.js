@@ -1,216 +1,207 @@
 const api = 'http://localhost:3000/api/menu_items'
 
 $(document).ready(function () {
-    initDataTable()
+  initDataTable()
 
+  getData(api)
+
+  $('#fetch').click(function () {
     getData(api)
+  })
 
-    $("#fetch").click(function () {
-        getData(api);
-    })
-
-    $("#clear").click(function () {
-        clear();
-    })
-    $("#addBtn").on('click', function () {
-        document.getElementById("modal-title").innerHTML = "Create a table";
-        document.getElementById("modalForm").reset();
-        $("#btnsubmit").attr('onclick', 'submitNew("' + api + '");');
-        $('#postDetail').modal('toggle');
-    })
+  $('#clear').click(function () {
+    clear()
+  })
+  $('#addBtn').on('click', function () {
+    document.getElementById('modal-title').innerHTML = 'Create a table'
+    document.getElementById('modalForm').reset()
+    $('#btnsubmit').attr('onclick', 'submitNew("' + api + '");')
+    $('#postDetail').modal('toggle')
+  })
 })
 
-function initDataTable() {
-    columns = [
-        { title: "Name", data: "name" },
-        { title: "Description", data: "description" },
-        { title: "Price", data: "price" },
+function initDataTable () {
+  columns = [
+    { title: 'Name', data: 'name' },
+    { title: 'Description', data: 'description' },
+    { title: 'Price', data: 'price' }
 
-        /*,
+    /*,
         {  "render": function(data, type, row, meta){
             return '<a title="Delete this table" <i class="fa fa-pencil-alt"></i> </a>';
-        } },*/
-    ]
+        } }, */
+  ]
 
-    $('#dataTable').DataTable({
-        "order": [[0, "asc"]],
-        "columns": columns
-    });
+  $('#dataTable').DataTable({
+    order: [[0, 'asc']],
+    columns: columns
+  })
 
-    $('#dataTable tbody').on('click', 'tr', function () {
-        if ($(this).hasClass('selected')) {
-            $(this).removeClass('selected')
-        }
-        deselect();
-        $(this).addClass('selected')
-        var table = $('#dataTable').DataTable()
-        var data = table.row(this).data()
+  $('#dataTable tbody').on('click', 'tr', function () {
+    if ($(this).hasClass('selected')) {
+      $(this).removeClass('selected')
+    }
+    deselect()
+    $(this).addClass('selected')
+    var table = $('#dataTable').DataTable()
+    var data = table.row(this).data()
 
-        // this function fetches one record and fill the modal with the data and shows the modal for editing
-        fillUpdateDiv(data, api)
-        getSingleRecord(data.id, api);
+    // this function fetches one record and fill the modal with the data and shows the modal for editing
+    fillUpdateDiv(data, api)
+    getSingleRecord(data.id, api)
 
-        $('#postDetail').modal('toggle');
-    });
-
+    $('#postDetail').modal('toggle')
+  })
 }
 
-function clear() {
-    $("#dataTable").DataTable().clear();
-    $("#dataTable").DataTable().columns.adjust().draw();
+function clear () {
+  $('#dataTable').DataTable().clear()
+  $('#dataTable').DataTable().columns.adjust().draw()
 }
 
-function getData(api) {
-    // asynchronous REST GET
-    $.get(api, function (data) {
-        if (data) {
-            $("#dataTable").DataTable().clear();
-            $("#dataTable").DataTable().rows.add(data);
-            $("#dataTable").DataTable().columns.adjust().draw();
-        }
-    })
+function getData (api) {
+  // asynchronous REST GET
+  $.get(api, function (data) {
+    if (data) {
+      $('#dataTable').DataTable().clear()
+      $('#dataTable').DataTable().rows.add(data)
+      $('#dataTable').DataTable().columns.adjust().draw()
+    }
+  })
 }
 
-function getSingleRecord(id, api) {
-    const apiPath = String(api + "/" + id);
-    $.get(apiPath, function (data) {
-        if (data) {
-            fillUpdateDiv(data, api);
-        }
-    })
+function getSingleRecord (id, api) {
+  const apiPath = String(api + '/' + id)
+  $.get(apiPath, function (data) {
+    if (data) {
+      fillUpdateDiv(data, api)
+    }
+  })
 }
 
+function submitNew () {
+  // var formData = $("#modalForm").serializeArray().reduce(function (result, object) { result[object.name] = object.value; return result }, {});
+  // for (var key in formData) {
+  //     if (formData[key] == "" || formData == null) delete formData[key];
+  // }
 
-function submitNew() {
-    // var formData = $("#modalForm").serializeArray().reduce(function (result, object) { result[object.name] = object.value; return result }, {});
-    // for (var key in formData) {
-    //     if (formData[key] == "" || formData == null) delete formData[key];
-    // }
+  const formData = {
+    name: $('#name').val(),
+    description: $('#description').val(),
+    price: $('#price').val()
+  }
 
-    const formData = {
-        name: $('#name').val(),
-        description: $('#description').val(),
-        price: $('#price').val()
-      }
+  $.ajax({
+    url: api,
+    type: 'post',
+    data: JSON.stringify(formData),
+    contentType: 'application/json',
+    dataType: 'json',
+    success: function (data) {
+      getData(api)
+    },
+    error: function (error) {
+      console.log(error)
+    }
+  })
 
-      $.ajax({
-        url: api,
-        type: "post",
-        data: JSON.stringify(formData),
-        contentType: "application/json",
-        dataType: "json",
-        success: function(data) {
-            getData(api);
-        },
-        error: function (error) {
-            console.log(error);
-        }
-    });
-
-    deselect();
-    $('#postDetail').modal('toggle');
+  deselect()
+  $('#postDetail').modal('toggle')
 }
 
 // this function perform cleaning up of the table
 // 1. remove eventually selected class
 // 2. clean the form using the reset method
-function deselect() {
-    $('#dataTable tr.selected').removeClass('selected');
+function deselect () {
+  $('#dataTable tr.selected').removeClass('selected')
 
-    document.getElementById("modalForm").reset();
+  document.getElementById('modalForm').reset()
 }
 
+function fillUpdateDiv (record, api) {
+  $('#btnsubmit').attr('onclick', 'submitEdit(' + record.id + ', "' + api + '");')
 
+  document.getElementById('modal-title').innerHTML = 'Edit a table'
 
-function fillUpdateDiv(record, api) {
-    $("#btnsubmit").attr('onclick', 'submitEdit(' + record.id + ', "' + api + '");');
-
-    document.getElementById("modal-title").innerHTML = "Edit a table";
-
-    // this function fills the modal
-    fillModal(record);
+  // this function fills the modal
+  fillModal(record)
 }
 
 //  show the usage of the popover here!
-function fillModal(record) {
-    // fill the modal
-    // $("#id").val(record.id);
-    $("#name").val(record.name);
-    $("#description").val(record.description);
-    $("#price").val(record.price);
-    
+function fillModal (record) {
+  // fill the modal
+  // $("#id").val(record.id);
+  $('#name').val(record.name)
+  $('#description').val(record.description)
+  $('#price').val(record.price)
 
-    // set inline block to respect the margins if applicable
-    $("#deleteButton").css('display', 'inline-block');
+  // set inline block to respect the margins if applicable
+  $('#deleteButton').css('display', 'inline-block')
 
-    // create the buttons for the confirmation
-            // first the cancel button which just does nothing
-    let confirmationButtons= '<button class="btn btn-secondary">Cancel</button>&nbsp;';
+  // create the buttons for the confirmation
+  // first the cancel button which just does nothing
+  let confirmationButtons = '<button class="btn btn-secondary">Cancel</button>&nbsp;'
 
-        // than the confirmbutton which just invokes submitDelete(...)
-    confirmationButtons += `<button type="button" class="btn btn-danger" onclick="submitDelete('${record.id}', '${api}');">Confirm delete</button>`;
+  // than the confirmbutton which just invokes submitDelete(...)
+  confirmationButtons += `<button type="button" class="btn btn-danger" onclick="submitDelete('${record.id}', '${api}');">Confirm delete</button>`
 
-    // set the deleteButton to be a popover
-    // first dispose / distroy the popover on the deleteButton to be sure there is no active on!
-    $('#deleteButton').popover('dispose');
-    // the enable the popover
-    $('#deleteButton').popover({
-        animation: true,
-        content: confirmationButtons, // just use the above created confirmButtons for confirmation
-        html: true,
-        container: postDetail
-    });
+  // set the deleteButton to be a popover
+  // first dispose / distroy the popover on the deleteButton to be sure there is no active on!
+  $('#deleteButton').popover('dispose')
+  // the enable the popover
+  $('#deleteButton').popover({
+    animation: true,
+    content: confirmationButtons, // just use the above created confirmButtons for confirmation
+    html: true,
+    container: postDetail
+  })
 }
 
-function submitEdit(id) {
-    // shortcut for filling the formData as a JavaScript object with the fields in the form
-    // var formData = $('#modalForm').serializeArray().reduce(function (result, object) { result[object.name] = object.value; return result }, {})
-   
-   
-   
-    const formData = {
-      name: $('#name').val(),
-      description: $('#description').val(),
-      price: $('#price').val()
+function submitEdit (id) {
+  // shortcut for filling the formData as a JavaScript object with the fields in the form
+  // var formData = $('#modalForm').serializeArray().reduce(function (result, object) { result[object.name] = object.value; return result }, {})
+
+  const formData = {
+    name: $('#name').val(),
+    description: $('#description').val(),
+    price: $('#price').val()
+  }
+
+  console.log('Formdata =>')
+  console.log(JSON.stringify(formData))
+
+  console.log('Updating row with id:' + id)
+  console.log(formData)
+  $.ajax({
+    url: api + '/' + id,
+    type: 'put',
+    data: JSON.stringify(formData),
+    contentType: 'application/json',
+    dataType: 'json',
+    success: function (data) {
+      getData(api)
+    },
+    error: function (error) {
+      console.log(error)
     }
+  })
 
-
-    console.log('Formdata =>')
-    console.log(JSON.stringify(formData));
-     
-
-    console.log("Updating row with id:" + id);
-    console.log(formData);
-    $.ajax({
-        url: api + "/" + id,
-        type: "put",
-        data: JSON.stringify(formData),
-        contentType: "application/json",
-        dataType: "json",
-        success: function(data) {
-            getData(api);
-        },
-        error: function (error) {
-            console.log(error);
-        }
-    });
-
-    deselect();
-    $('#postDetail').modal('toggle');
+  deselect()
+  $('#postDetail').modal('toggle')
 }
 
-function submitDelete(id, api) {  
-    console.log(`Deleting row with id: ${id}`);
-    $.ajax({
-        url: api + "/" + id,
-        type: "delete",
-        dataType: 'json',
-        success: function(data) {
-            getData(api);
-        },
-        error: function (error) {
-            console.log(error);
-        }
-    });
-    $('#postDetail').modal('toggle');
+function submitDelete (id, api) {
+  console.log(`Deleting row with id: ${id}`)
+  $.ajax({
+    url: api + '/' + id,
+    type: 'delete',
+    dataType: 'json',
+    success: function (data) {
+      getData(api)
+    },
+    error: function (error) {
+      console.log(error)
+    }
+  })
+  $('#postDetail').modal('toggle')
 }
