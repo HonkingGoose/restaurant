@@ -1,6 +1,6 @@
 'use strict'
 
-function postContactinfos() {
+function postContactinfos () {
   const firstName = document.getElementById('firstname').value
   const prefixLastName = document.getElementById('prefix_lastname').value
   const lastName = document.getElementById('lastname').value
@@ -13,8 +13,8 @@ function postContactinfos() {
     prefix_lastname: prefixLastName,
     lastname: lastName,
     email: email,
-    telephone: phoneNumber,
-   // domicile: domicile
+    telephone: phoneNumber
+    // domicile: domicile
   }
 
   const xhttp = new XMLHttpRequest()
@@ -25,7 +25,7 @@ function postContactinfos() {
   xhttp.send(JSON.stringify(newContactinfos))
 
   xhttp.onreadystatechange = () => {
-    if (xhttp.readyState === 4 && xhttp.status === 200){
+    if (xhttp.readyState === 4 && xhttp.status === 200) {
     }
   }
 }
