@@ -3,12 +3,13 @@
 function postReservations () {
   const reservationDate = document.getElementById('reservation_date').value
   const startTime = document.getElementById('start_time').value
-  const hideMenuPrice = document.getElementById('hide_menu_price').value
+  const hideMenuPrice = document.getElementById('hide_menu_price').checked
   const numberOfGuests = document.getElementById('number_of_guests').value
   const allergy = document.getElementById('allergy').value
   const specialNeeds = document.getElementById('special_needs').value
   const contactInfosId = document.getElementById('contactinfos_id').value
 
+  console.log(hideMenuPrice)
   const newReservation = {
     reservation_date: reservationDate,
     start_time: startTime,
