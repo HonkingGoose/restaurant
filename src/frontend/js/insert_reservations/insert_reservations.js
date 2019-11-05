@@ -9,6 +9,7 @@ function postReservations () {
   const specialNeeds = document.getElementById('special_needs').value
   const contactInfosId = document.getElementById('contactinfos_id').value
 
+  console.log(hideMenuPrice)
   const newReservation = {
     reservation_date: reservationDate,
     start_time: startTime,
