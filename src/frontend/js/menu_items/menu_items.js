@@ -13,7 +13,7 @@ $(document).ready(function () {
     clear()
   })
   $('#addBtn').on('click', function () {
-    document.getElementById('modal-title').innerHTML = 'Create a table'
+    document.getElementById('modal-title').innerHTML = 'Create menu items'
     document.getElementById('modalForm').reset()
     $('#btnsubmit').attr('onclick', 'submitNew("' + api + '");')
     $('#postDetail').modal('toggle')
@@ -121,7 +121,7 @@ function deselect () {
 function fillUpdateDiv (record, api) {
   $('#btnsubmit').attr('onclick', 'submitEdit(' + record.id + ', "' + api + '");')
 
-  document.getElementById('modal-title').innerHTML = 'Edit a table'
+  document.getElementById('modal-title').innerHTML = 'Edit menu items'
 
   // this function fills the modal
   fillModal(record)

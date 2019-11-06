@@ -13,7 +13,7 @@ $(document).ready(function () {
     clear()
   })
   $('#addBtn').on('click', function () {
-    document.getElementById('modal-title').innerHTML = 'Create a table'
+    document.getElementById('modal-title').innerHTML = 'Create ingredients'
     document.getElementById('modalForm').reset()
     $('#btnsubmit').attr('onclick', 'submitNew("' + api + '");')
     $('#postDetail').modal('toggle')
@@ -121,7 +121,7 @@ function deselect () {
 function fillUpdateDiv (record, api) {
   $('#btnsubmit').attr('onclick', 'submitEdit(' + record.id + ', "' + api + '");')
 
-  document.getElementById('modal-title').innerHTML = 'Edit a table'
+  document.getElementById('modal-title').innerHTML = 'Edit ingredients'
 
   // this function fills the modal
   fillModal(record)
@@ -130,6 +130,7 @@ function fillUpdateDiv (record, api) {
 //  show the usage of the popover here!
 function fillModal (record) {
   // fill the modal
+  console.log(record.name)
   $('#name').val(record.name)
   $('#allergen').val(record.allergen)
   $('#unit_of_measurement').val(record.unit_of_measurement)
@@ -154,7 +155,7 @@ function fillModal (record) {
     content: confirmationButtons, // just use the above created confirmButtons for confirmation
     html: true,
     container: postDetail
-  })
+  }) 
 }
 
 function submitEdit (id, api) {

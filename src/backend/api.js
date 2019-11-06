@@ -378,7 +378,7 @@ app.get('/api/ingredients/:id', (request, response) => {
   const id = +request.params.id
   connection.query('select * from ingredients where id=?;', [id], (err, result) => {
     if (err) throw err
-    response.send(result)
+    response.send(result[0])
   })
 })
 
@@ -447,7 +447,7 @@ app.get('/api/menu_items/:id', (request, response) => {
   const id = +request.params.id
   connection.query('select * from menu_items where id=?;', [id], (err, result) => {
     if (err) throw err
-    response.send(result)
+    response.send(result[0])
   })
 })
 
