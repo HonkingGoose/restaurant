@@ -6,6 +6,17 @@
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css">
   <title>Create reservation</title>
+  <style>
+    .select-checkbox option::before {
+  content: "\2610";
+  width: 1.3em;
+  text-align: center;
+  display: inline-block;
+}
+.select-checkbox option:checked::before {
+  content: "\2611";
+}
+  </style>
 </head>
 
 <body>
@@ -26,15 +37,31 @@
           <div class="modal-body">
             <div>
               <p>Reservation date</p>
-              <input id="reservation_date" type="text" name="reservation_date" value="">
+              <input id="reservation_date" type="date" name="reservation_date" value="">
               <p>Start time</p>
-              <input id="start_time" type="text" name="start_time" value="">
+              <input id="start_time" type="time" name="start_time" value="">
               <p>Hide menu price</p>
               <input id='hide_menu_price' type="checkbox" name="hide_menu_price" value="">
               <p>Number of guests</p>
               <input id="number_of_guests" type="number" name="number_of_guests" value="">
               <p>Allergies</p>
-              <input id="allergy" type="text" name="allergy" value="">
+              <!-- <input id="allergy" type="text" name="allergy" value=""> -->
+              <select multiple id="allergy" class="select-checkbox" type="text" name="allergy">
+                  <option value="egg">egg</option>
+                  <option value="gluten">gluten</option>
+                  <option value="lupin">lupin</option>
+                  <option value="milk">milk</option>
+                  <option value="mustard">mustard</option>
+                  <option value="nuts">nuts</option>
+                  <option value="peanuts">peanuts</option>
+                  <option value="crustaceans">crustaceans</option>
+                  <option value="sulphite">sulphite</option>
+                  <option value="celery">celery</option>
+                  <option value="sesame">sesame</option>
+                  <option value="molluscs">molluscs</option>
+                  <option value="fish">fish</option>
+                  <option value="soya">soya</option>
+              </select>
               <p>Special needs</p>
               <input id='special_needs' type="text" name="special_needs" value="">
               <p>Contact id</p>

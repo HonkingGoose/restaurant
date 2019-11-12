@@ -5,20 +5,23 @@ function postReservations () {
   const startTime = document.getElementById('start_time').value
   const hideMenuPrice = document.getElementById('hide_menu_price').checked
   const numberOfGuests = document.getElementById('number_of_guests').value
-  const allergy = document.getElementById('allergy').value
+
+  let allergy = $('#allergy').val();
+  let x = allergy.toString();
+
   const specialNeeds = document.getElementById('special_needs').value
   const contactInfosId = document.getElementById('contactinfos_id').value
 
-  console.log(hideMenuPrice)
   const newReservation = {
     reservation_date: reservationDate,
     start_time: startTime,
     hide_menu_price: hideMenuPrice,
     number_of_guests: numberOfGuests,
-    allergy: allergy,
+    allergy: x,
     special_needs: specialNeeds,
     contactinfos_id: contactInfosId
   }
+
 
   const xhttp = new XMLHttpRequest()
   const url = 'http://localhost:3000/api/reservations'
