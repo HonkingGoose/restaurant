@@ -43,7 +43,7 @@
                     <div class="modal-body">
                         <form id="modalForm" enctype='text/plain'>
                             Table_calsign:<br>
-                            <input type='text' class="form-control" name='table_calsign' id="table_calsign"><br>
+                            <input type='text' class="form-control" name='table_callsign' id="table_callsign"><br>
                             Capacity:<br>
                             <input type='text' class="form-control" name='capacity' id="capacity"><br>
                             Available:<br>
@@ -54,14 +54,14 @@
                         <button type="button" class="btn btn-success" id="btnsubmit">Submit</button>
                         <!-- this is the first, normal Delete button NOT TO BE CONFUSED WITH the popover-->
                         <!-- in fact, this will later contain a Popover -->
-                        <a href="#" id="deleteButton" data-title="Are you sure" data-trigger="focus"
-                            data-toggle="clickover" data-placement="top" class="btn btn-danger">Delete</a>
+                        <!--  -->
                         <button type="button" class="btn btn-default" id="btnclose" onclick="deselect()"
                             data-dismiss="modal">Close</button>
                     </div>
                 </div>
             </div>
         </div>
+
     </div>
 
     <script src="https://code.jquery.com/jquery-3.3.1.js"></script>
@@ -75,7 +75,7 @@
 
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/js/bootstrap.min.js"></script>
 
-    <script src="../js/restaurantTables.js"></script>
+    <script src="../js/restaurant_tables/restaurant_tables.js"></script>
 
 
 </body>

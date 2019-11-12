@@ -190,7 +190,7 @@ function submitEdit (id) {
   $('#postDetail').modal('toggle')
 }
 
-function submitDelete (id, api) {
+function submitDelete(id, api) {
   console.log(`Deleting row with id: ${id}`)
   $.ajax({
     url: api + '/' + id,

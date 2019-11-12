@@ -13,10 +13,10 @@ $(document).ready(function () {
         clear();
     })
     $("#addBtn").on('click', function () {
-        document.getElementById("modal-title").innerHTML = "Create a table";
-        document.getElementById("modalForm").reset();
+        document.getElementById("modal-title-add").innerHTML = "Create a table";
+        document.getElementById("modalFormAdd").reset();
         $("#btnsubmit").attr('onclick', 'submitNew("' + api + '");');
-        $('#postDetail').modal('toggle');
+        $('#postDetailAdd').modal('toggle');
     })
 })
 
@@ -32,7 +32,7 @@ function initDataTable() {
         } },*/
     ]
 
-    $('#dataTable').DataTable({
+    const table = $('#dataTable').DataTable({
         order: [[0, "asc"]],
         columns: columns
     });
@@ -43,14 +43,15 @@ function initDataTable() {
         }
         deselect();
         $(this).addClass('selected')
-        var table = $('#dataTable').DataTable()
         var data = table.row(this).data()
+        console.log(data);
 
         // this function fetches one record and fill the modal with the data and shows the modal for editing
-        fillUpdateDiv(data, api)
+        // fillUpdateDiv(data, api)
+        console.log(api);
         getSingleRecord(data.id, api);
 
-        $('#postDetail').modal('toggle');
+        // $('#postDetail').modal('toggle');
     });
 }
 
@@ -72,8 +73,12 @@ function getData(api) {
 
 function getSingleRecord(id, api) {
     const apiPath = String(api + "/" + id);
+    console.log(apiPath);
     $.get(apiPath, function (data) {
         if (data) {
+          console.log("<from server");
+          console.log(data);
+          console.log(">from server");
             fillUpdateDiv(data, api);
         }
     })
@@ -87,9 +92,11 @@ function submitNew() {
 
     const formData = {
         capacity: $('#capacity').val(),
-        available: $('#available').val(),
-        table_callsign: $('#table_callsign').val()
+        table_callsign: $('#table_callsign').val(),
+        available: $('#available').checked(),
       }
+
+      console.log(formData)
 
       $.ajax({
         url: api,
@@ -98,11 +105,13 @@ function submitNew() {
         contentType: "application/json",
         dataType: "json",
         success: function(data) {
+          console.log(data);
             getData(api);
         },
         error: function (error) {
             console.log(error);
         }
+
     });
 
     deselect();
@@ -120,21 +129,23 @@ function deselect() {
 
 function fillUpdateDiv(record, api) {
     $("#btnsubmit").attr('onclick', 'submitEdit(' + record.id + ', "' + api + '");');
-
-    document.getElementById("modal-title").innerHTML = "Edit a table";
+    console.log(record)
+    document.getElementById('modal-title').innerHTML = 'Edit a table'
 
     // this function fills the modal
     fillModal(record);
+    $('#postDetail').modal('toggle');
 }
 
 //  show the usage of the popover here!
 function fillModal(record) {
+    console.log(record)
     // fill the modal
     // $("#id").val(record.id);
     $("#capacity").val(record.capacity);
     $("#available").val(record.available);
     $("#table_callsign").val(record.table_callsign);
-    
+
     // set inline block to respect the margins if applicable
     $("#deleteButton").css('display', 'inline-block');
 
@@ -160,21 +171,21 @@ function fillModal(record) {
 function submitEdit(id) {
     // shortcut for filling the formData as a JavaScript object with the fields in the form
     // var formData = $('#modalForm').serializeArray().reduce(function (result, object) { result[object.name] = object.value; return result }, {})
-   
+
     const formData = {
     capacity: $('#capacity').val(),
     available: $('#available').val(),
     table_callsign: $('#table_callsign').val()
     }
-
+    console.log(formData)
     console.log('Formdata =>')
     console.log(JSON.stringify(formData));
-     
+
     console.log("Updating row with id:" + id);
     console.log(formData);
     $.ajax({
         url: api + "/" + id,
-        type: "put",
+        type: 'put',
         data: JSON.stringify(formData),
         contentType: "application/json",
         dataType: "json",
@@ -190,7 +201,7 @@ function submitEdit(id) {
     $('#postDetail').modal('toggle');
 }
 
-function submitDelete(id, api) {  
+function submitDelete(id, api) {
     console.log(`Deleting row with id: ${id}`);
     $.ajax({
         url: api + "/" + id,
