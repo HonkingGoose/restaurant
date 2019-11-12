@@ -15,7 +15,7 @@ $(document).ready(function () {
     $("#addBtn").on('click', function () {
         document.getElementById("modal-title-add").innerHTML = "Create a table";
         document.getElementById("modalFormAdd").reset();
-        $("#btnsubmit").attr('onclick', 'submitNew("' + api + '");');
+        $("#btnsubmit1").attr('onclick', 'submitNew("' + api + '");');
         $('#postDetailAdd').modal('toggle');
     })
 })
@@ -93,10 +93,11 @@ function submitNew() {
     const formData = {
         capacity: $('#capacity').val(),
         table_callsign: $('#table_callsign').val(),
-        available: $('#available').checked(),
+        available: $('#availableAdd').is(":checked")
       }
 
       console.log(formData)
+      console.log("Einde log formdata");
 
       $.ajax({
         url: api,
