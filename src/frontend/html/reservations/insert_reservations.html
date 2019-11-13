@@ -1,5 +1,4 @@
 <!doctype html>
-
 <html lang="en">
 
 <head>
@@ -7,7 +6,7 @@
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css">
   <title>Create reservation</title>
   <style>
-    .select-checkbox option::before {
+  .select-checkbox option::before {
   content: "\2610";
   width: 1.3em;
   text-align: center;
@@ -18,7 +17,6 @@
 }
   </style>
 </head>
-
 <body>
   <div class="container-fluid">
     <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
@@ -37,16 +35,17 @@
           <div class="modal-body">
             <div>
               <p>Reservation date</p>
-              <input id="reservation_date" type="date" name="reservation_date" value="">
+              <input id="reservation_date" type="date" name="reservation_date" value="2019-01-01">
               <p>Start time</p>
-              <input id="start_time" type="time" name="start_time" value="">
+              <input id="start_time" type="time" name="start_time" value="12:00">
               <p>Hide menu price</p>
               <input id='hide_menu_price' type="checkbox" name="hide_menu_price" value="">
               <p>Number of guests</p>
-              <input id="number_of_guests" type="number" name="number_of_guests" value="">
+              <input id="number_of_guests" type="number" min="1" name="number_of_guests" value="1">
               <p>Allergies</p>
               <!-- <input id="allergy" type="text" name="allergy" value=""> -->
               <select multiple id="allergy" class="select-checkbox" type="text" name="allergy">
+                  <option value="" selected>...</option>
                   <option value="egg">egg</option>
                   <option value="gluten">gluten</option>
                   <option value="lupin">lupin</option>
@@ -64,8 +63,8 @@
               </select>
               <p>Special needs</p>
               <input id='special_needs' type="text" name="special_needs" value="">
-              <p>Contact id</p>
-              <input id="contactinfos_id" type="number" name="contactinfos_id" value="">
+              <!-- <p>Contact id</p>
+              <input id="contactinfos_id" type="number" name="contactinfos_id" value=""> -->
             </div>
             <div class="modal-footer">
               <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>

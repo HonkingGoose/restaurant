@@ -5,21 +5,25 @@ function postReservations () {
   const startTime = document.getElementById('start_time').value
   const hideMenuPrice = document.getElementById('hide_menu_price').checked
   const numberOfGuests = document.getElementById('number_of_guests').value
-
   let allergy = $('#allergy').val();
-  let x = allergy.toString();
+  let allergySet = allergy.toString();
+
+  console.log(reservationDate)
 
   const specialNeeds = document.getElementById('special_needs').value
-  const contactInfosId = document.getElementById('contactinfos_id').value
+
+
+  // const contactInfosId = document.getElementById('contactinfos_id').value
 
   const newReservation = {
     reservation_date: reservationDate,
     start_time: startTime,
     hide_menu_price: hideMenuPrice,
     number_of_guests: numberOfGuests,
-    allergy: x,
+    allergy: allergySet,
     special_needs: specialNeeds,
-    contactinfos_id: contactInfosId
+    // contactinfos_id: contactInfosId
+    contactinfos_id: 1
   }
 
 
