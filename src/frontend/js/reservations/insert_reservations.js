@@ -36,7 +36,23 @@ function postReservations () {
 
   xhttp.onreadystatechange = () => {
     if (xhttp.readyState === 4 && xhttp.status === 200) {
-
+      console.log(newReservation)
     }
   }
 }
+
+function time(){
+  let today = new Date();
+  let time = today.getHours() + ":" + today.getMinutes();
+  document.getElementById("start_time").defaultValue = time;
+  console.log(time)
+}
+time();
+
+function date(){
+  let today = new Date();
+  let date = today.getFullYear()+"-"+(today.getMonth() +1)+"-"+today.getDate();
+  document.getElementById("reservation_date").defaultValue = date;
+  console.log(date)
+}
+date();

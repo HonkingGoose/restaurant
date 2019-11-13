@@ -24,6 +24,7 @@ function initDataTable () {
   const columns = [
     // { title: 'ID', data: 'id' },
     // { title: 'Contactinfos ID', data: 'contactinfos_id' },
+    
     { title: 'Date', data: 'reservation_date' },
     { title: 'Time', data: 'start_time' },
     { title: 'Menu price hidden', data: 'hide_menu_price' },
@@ -128,15 +129,10 @@ function fillModal (record) {
   // fill the modal
   // $('#form-id').val(record.id)
   // $('#form-contactinfos_id').val(record.contactinfos_id)
-  let date;
-  date = record.reservation_date.slice(0, 10);
-  console.log(date)
-
-  $('#form-reservation-date').val(date)
+  $('#form-reservation-date').val(record.reservation_date)
   $('#form-start_time').val(record.start_time)
   $('#form-hide_menu_price').val(record.hide_menu_price)
   $('#form-number_of_guests').val(record.number_of_guests)
-  $('#form-allergy').val(record.allergy)
   $('#form-special_needs').val(record.special_needs)
 
   // set inline block to respect the margins if applicable
@@ -171,7 +167,7 @@ function submitEdit (id, api) {
     start_time: $('#form-start_time').val(),
     hide_menu_price: $('#form-hide_menu_price').val(),
     number_of_guests: $('#form-number_of_guests').val(),
-    allergy: $('#form-allergy').val(),
+    allergy: $('#allergy').val().toString(),
     special_needs: $('#form-special_needs').val(),
     contactinfos_id: 1
   }
