@@ -3,10 +3,10 @@ ReservationMaker = new ReservationMaker();
 
 // dateString: dd-mm-yyyy
 // timeString: hh:mm
-function createNewReservation(dateString, timeString) {
-    const jsDate = new Date(dateString);
-    jsDate.setHours(Number(timeString.substring(0, 2)), timeString.substring(3))
-    jsDate.setHours(jsDate.getHours() + 1)
+function createNewReservation(dateString, timeString, nrPeople) {
+    const date = ReservationMaker.createDate(dateString, timeString)
+
+    console.log(ReservationMaker.reservationPossible(date, nrPeople))
 }
 
-createNewReservation('2019-11-20', '17:45');
+createNewReservation('2019-11-20', '10:00', 5);
