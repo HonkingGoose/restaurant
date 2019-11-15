@@ -23,7 +23,8 @@ $(document).ready(function () {
 function initDataTable () {
   const columns = [
     // { title: 'ID', data: 'id' },
-    { title: 'Contactinfos ID', data: 'contactinfos_id' },
+    // { title: 'Contactinfos ID', data: 'contactinfos_id' },
+    
     { title: 'Date', data: 'reservation_date' },
     { title: 'Time', data: 'start_time' },
     { title: 'Menu price hidden', data: 'hide_menu_price' },
@@ -127,12 +128,11 @@ function fillUpdateDiv (record, api) {
 function fillModal (record) {
   // fill the modal
   // $('#form-id').val(record.id)
-  $('#form-contactinfos_id').val(record.contactinfos_id)
+  // $('#form-contactinfos_id').val(record.contactinfos_id)
   $('#form-reservation-date').val(record.reservation_date)
   $('#form-start_time').val(record.start_time)
   $('#form-hide_menu_price').val(record.hide_menu_price)
   $('#form-number_of_guests').val(record.number_of_guests)
-  $('#form-allergy').val(record.allergy)
   $('#form-special_needs').val(record.special_needs)
 
   // set inline block to respect the margins if applicable
@@ -167,9 +167,9 @@ function submitEdit (id, api) {
     start_time: $('#form-start_time').val(),
     hide_menu_price: $('#form-hide_menu_price').val(),
     number_of_guests: $('#form-number_of_guests').val(),
-    allergy: $('#form-allergy').val(),
+    allergy: $('#allergy').val().toString(),
     special_needs: $('#form-special_needs').val(),
-    contactinfos_id: $('#form-contactinfos_id').val()
+    contactinfos_id: 1
   }
   /* console.log('Formdata =>')
   console.log(JSON.stringify(formData))
@@ -183,15 +183,18 @@ function submitEdit (id, api) {
     url: api + '/' + id,
     type: 'put',
     data: JSON.stringify(formData),
+    contentType: 'application/json',
     dataType: 'json',
-    success: getData(api),
+    success: function (data) {
+      getData(api)
+    },
     error: function (error) {
       console.log(error)
     }
   })
 
   deselect()
-  $('#postDetail').modal('toggle')
+  $('#putDetail').modal('toggle')
 }
 
 // eslint-disable-next-line no-unused-vars

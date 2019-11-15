@@ -5,20 +5,27 @@ function postReservations () {
   const startTime = document.getElementById('start_time').value
   const hideMenuPrice = document.getElementById('hide_menu_price').checked
   const numberOfGuests = document.getElementById('number_of_guests').value
-  const allergy = document.getElementById('allergy').value
-  const specialNeeds = document.getElementById('special_needs').value
-  const contactInfosId = document.getElementById('contactinfos_id').value
+  let allergy = $('#allergy').val();
+  let allergySet = allergy.toString();
 
-  console.log(hideMenuPrice)
+  console.log(reservationDate)
+
+  const specialNeeds = document.getElementById('special_needs').value
+
+
+  // const contactInfosId = document.getElementById('contactinfos_id').value
+
   const newReservation = {
     reservation_date: reservationDate,
     start_time: startTime,
     hide_menu_price: hideMenuPrice,
     number_of_guests: numberOfGuests,
-    allergy: allergy,
+    allergy: allergySet,
     special_needs: specialNeeds,
-    contactinfos_id: contactInfosId
+    // contactinfos_id: contactInfosId
+    contactinfos_id: 1
   }
+
 
   const xhttp = new XMLHttpRequest()
   const url = 'http://localhost:3000/api/reservations'
@@ -29,7 +36,23 @@ function postReservations () {
 
   xhttp.onreadystatechange = () => {
     if (xhttp.readyState === 4 && xhttp.status === 200) {
-
+      console.log(newReservation)
     }
   }
 }
+
+function time(){
+  let today = new Date();
+  let time = today.getHours() + ":" + today.getMinutes();
+  document.getElementById("start_time").defaultValue = time;
+  console.log(time)
+}
+time();
+
+function date(){
+  let today = new Date();
+  let date = today.getFullYear()+"-"+(today.getMonth() +1)+"-"+today.getDate();
+  document.getElementById("reservation_date").defaultValue = date;
+  console.log(date)
+}
+date();

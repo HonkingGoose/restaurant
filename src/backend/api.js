@@ -341,9 +341,6 @@ app.get('/api/reservations/:id', (req, res) => {
 })
 
 app.put('/api/reservations/:id', (req, res) => {
-  const id = +req.params.id
-  const inputUser = req.body
-  console.log(req.body)
   connection.query('UPDATE reservations SET ? WHERE id = ?', [inputUser, id], (err, response) => {
     if (err) throw err
     connection.query('SELECT * FROM reservations WHERE id = ?', id, (updateErr, updateReservations) => {
@@ -378,7 +375,7 @@ app.get('/api/ingredients/:id', (request, response) => {
   const id = +request.params.id
   connection.query('select * from ingredients where id=?;', [id], (err, result) => {
     if (err) throw err
-    response.send(result)
+    response.send(result[0])
   })
 })
 
@@ -447,7 +444,7 @@ app.get('/api/menu_items/:id', (request, response) => {
   const id = +request.params.id
   connection.query('select * from menu_items where id=?;', [id], (err, result) => {
     if (err) throw err
-    response.send(result)
+    response.send(result[0])
   })
 })
 

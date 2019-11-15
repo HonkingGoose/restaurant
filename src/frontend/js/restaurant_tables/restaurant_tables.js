@@ -13,10 +13,17 @@ $(document).ready(function () {
     clear()
   })
   $('#addBtn').on('click', function () {
+<<<<<<< HEAD
     document.getElementById('modal-title-add').innerHTML = 'Create a table'
     document.getElementById('modalFormAdd').reset()
     $('#btnsubmit1').attr('onclick', 'submitNew("' + api + '");')
     $('#postDetailAdd').modal('toggle')
+=======
+    document.getElementById('modal-title').innerHTML = 'Create a table'
+    document.getElementById('modalForm').reset()
+    $('#btnsubmit').attr('onclick', 'submitNew("' + api + '");')
+    $('#postDetail').modal('toggle')
+>>>>>>> 7f23250bc49d61a1615791be6fc26dc7160a29f9
   })
 })
 
@@ -32,7 +39,11 @@ function initDataTable () {
         } }, */
   ]
 
+<<<<<<< HEAD
   const table = $('#dataTable').DataTable({
+=======
+  $('#dataTable').DataTable({
+>>>>>>> 7f23250bc49d61a1615791be6fc26dc7160a29f9
     order: [[0, 'asc']],
     columns: columns
   })
@@ -43,6 +54,7 @@ function initDataTable () {
     }
     deselect()
     $(this).addClass('selected')
+<<<<<<< HEAD
     var data = table.row(this).data()
     console.log(data)
 
@@ -52,6 +64,16 @@ function initDataTable () {
     getSingleRecord(data.id, api)
 
     // $('#postDetail').modal('toggle');
+=======
+    var table = $('#dataTable').DataTable()
+    var data = table.row(this).data()
+
+    // this function fetches one record and fill the modal with the data and shows the modal for editing
+    fillUpdateDiv(data, api)
+    getSingleRecord(data.id, api)
+
+    $('#postDetail').modal('toggle')
+>>>>>>> 7f23250bc49d61a1615791be6fc26dc7160a29f9
   })
 }
 
@@ -73,12 +95,17 @@ function getData (api) {
 
 function getSingleRecord (id, api) {
   const apiPath = String(api + '/' + id)
+<<<<<<< HEAD
   console.log(apiPath)
   $.get(apiPath, function (data) {
     if (data) {
       console.log('<from server')
       console.log(data)
       console.log('>from server')
+=======
+  $.get(apiPath, function (data) {
+    if (data) {
+>>>>>>> 7f23250bc49d61a1615791be6fc26dc7160a29f9
       fillUpdateDiv(data, api)
     }
   })
@@ -92,6 +119,7 @@ function submitNew () {
 
   const formData = {
     capacity: $('#capacity').val(),
+<<<<<<< HEAD
     table_callsign: $('#table_callsign').val(),
     available: $('#availableAdd').is(':checked')
   }
@@ -99,6 +127,12 @@ function submitNew () {
   console.log(formData)
   console.log('Einde log formdata')
 
+=======
+    available: $('#available').val(),
+    table_callsign: $('#table_callsign').val()
+  }
+
+>>>>>>> 7f23250bc49d61a1615791be6fc26dc7160a29f9
   $.ajax({
     url: api,
     type: 'post',
@@ -106,13 +140,19 @@ function submitNew () {
     contentType: 'application/json',
     dataType: 'json',
     success: function (data) {
+<<<<<<< HEAD
       console.log(data)
+=======
+>>>>>>> 7f23250bc49d61a1615791be6fc26dc7160a29f9
       getData(api)
     },
     error: function (error) {
       console.log(error)
     }
+<<<<<<< HEAD
 
+=======
+>>>>>>> 7f23250bc49d61a1615791be6fc26dc7160a29f9
   })
 
   deselect()
@@ -130,17 +170,28 @@ function deselect () {
 
 function fillUpdateDiv (record, api) {
   $('#btnsubmit').attr('onclick', 'submitEdit(' + record.id + ', "' + api + '");')
+<<<<<<< HEAD
   console.log(record)
   document.getElementById('modal-title').innerHTML = 'Edit a table'
 
   // this function fills the modal
   fillModal(record)
   $('#postDetail').modal('toggle')
+=======
+
+  document.getElementById('modal-title').innerHTML = 'Edit a table'
+
+  // this function fills the modal
+  fillModal(record)
+>>>>>>> 7f23250bc49d61a1615791be6fc26dc7160a29f9
 }
 
 //  show the usage of the popover here!
 function fillModal (record) {
+<<<<<<< HEAD
   console.log(record)
+=======
+>>>>>>> 7f23250bc49d61a1615791be6fc26dc7160a29f9
   // fill the modal
   // $("#id").val(record.id);
   $('#capacity').val(record.capacity)
@@ -178,7 +229,11 @@ function submitEdit (id) {
     available: $('#available').val(),
     table_callsign: $('#table_callsign').val()
   }
+<<<<<<< HEAD
   console.log(formData)
+=======
+
+>>>>>>> 7f23250bc49d61a1615791be6fc26dc7160a29f9
   console.log('Formdata =>')
   console.log(JSON.stringify(formData))
 
