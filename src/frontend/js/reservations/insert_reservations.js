@@ -5,14 +5,9 @@ function postReservations () {
   const startTime = document.getElementById('start_time').value
   const hideMenuPrice = document.getElementById('hide_menu_price').checked
   const numberOfGuests = document.getElementById('number_of_guests').value
-  let allergy = $('#allergy').val();
-  let allergySet = allergy.toString();
-
-  console.log(reservationDate)
-
+  const allergy = $('#allergy').val();
+  const allergySet = allergy.toString();
   const specialNeeds = document.getElementById('special_needs').value
-
-
   // const contactInfosId = document.getElementById('contactinfos_id').value
 
   const newReservation = {
@@ -26,14 +21,39 @@ function postReservations () {
     contactinfos_id: 1
   }
 
+  const date = new Date();
+  const nowDate = date.getFullYear() + '-' + (date.getMonth() + 1) + '-' + date.getDate()
+  const nowTime = date.getHours() + ':' + date.getMinutes()
+
+  const number1 = numberOfGuests === ''
+  const number2 = numberOfGuests <= 0
+  const checkDate = reservationDate < nowDate
+  const checkTime = startTime < nowTime
+
+  if (number1 || number2) {
+    console.log('fail')
+    document.querySelector('.invalidNumber').classList.add('visible');
+  }
+
+  if (checkDate) {
+    console.log('fail')
+    document.querySelector('.invalidDate').classList.add('visible');
+  }
+
+  if (checkTime) {
+    console.log('fail')
+    document.querySelector('.invalidTime').classList.add('visible');
+  }
+
+  if (number1 === true || number2 === true || checkDate === true || checkTime === true) {
+    return
+  }
 
   const xhttp = new XMLHttpRequest()
   const url = 'http://localhost:3000/api/reservations'
-
   xhttp.open('POST', url)
   xhttp.setRequestHeader('Content-type', 'application/json')
   xhttp.send(JSON.stringify(newReservation))
-
   xhttp.onreadystatechange = () => {
     if (xhttp.readyState === 4 && xhttp.status === 200) {
       console.log(newReservation)
@@ -41,18 +61,26 @@ function postReservations () {
   }
 }
 
-function time(){
-  let today = new Date();
-  let time = today.getHours() + ":" + today.getMinutes();
-  document.getElementById("start_time").defaultValue = time;
-  console.log(time)
+function time () {
+  const today = new Date()
+  const time = today.getHours() + ':' + today.getMinutes()
+  document.getElementById('start_time').defaultValue = time
 }
-time();
+time()
 
-function date(){
-  let today = new Date();
-  let date = today.getFullYear()+"-"+(today.getMonth() +1)+"-"+today.getDate();
-  document.getElementById("reservation_date").defaultValue = date;
-  console.log(date)
+function date () {
+  const today = new Date()
+  const date = today.getFullYear() + '-' + (today.getMonth() + 1) + '-' + today.getDate()
+  document.getElementById('reservation_date').defaultValue = date
 }
-date();
+date()
+
+function resetDate() {
+      document.querySelector('.invalidDate').classList.remove('visible');
+}
+function resetTime() {
+  document.querySelector('.invalidTime').classList.remove('visible');
+}
+function resetNumber() {
+  document.querySelector('.invalidNumber').classList.remove('visible');
+}
