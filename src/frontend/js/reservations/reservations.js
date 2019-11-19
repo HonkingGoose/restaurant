@@ -20,6 +20,21 @@ $(document).ready(function () {
   })
 })
 
+function time () {
+  const today = new Date()
+  const time = today.getHours() + ':' + today.getMinutes()
+  document.getElementById('form-start_time').defaultValue = time
+  console.log(time)
+}
+time()
+
+function date () {
+  const today = new Date()
+  const date = today.getFullYear() + '-' + (today.getMonth() + 1) + '-' + today.getDate()
+  document.getElementById('form-reservation_date').defaultValue = date
+}
+date()
+
 function initDataTable () {
   const columns = [
     // { title: 'ID', data: 'id' },
