@@ -54,12 +54,37 @@ module.exports = class ReservationMaker {
   }
 
   pickTables(availableTables, nrPeople) {
-    console.log(pickTablesRecursive(availableTables.sort(Table.compare), nrPeople, null, null))
-    return true
-  }
+    let totalSeatsAvailable = 0;
+    for (const table of availableTables) {
+      totalSeatsAvailable += table.capacity
+    }
 
-  pickTablesRecursive(availableTables, nrPeople, bestSolution, totalCapacity) {
-    for ()
+    if (totalSeatsAvailable >= nrPeople) {
+      console.log("There is enough space")
+    } else {
+      console.log("Not enough space at this date + time!")
+      return false
+    }
+
+    // attempt to find a perfect solution
+    for (const table of availableTables) {
+      if (table.capacity == nrPeople) {
+        // solution found
+      }
+    }
+
+    // find the most optimal alternative
+    /*
+
+      a => number of table seats wasted
+      b => number of extra tables used (-min amount of tables necessary)
+
+      c = abs((a * 2 + b) / b - 1)
+      optimal solution is where c is as low as possible
+
+    */
+
+    return true
   }
 
   checkOverlap(reservation, date) {
