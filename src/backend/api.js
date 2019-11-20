@@ -342,7 +342,7 @@ app.get('/api/reservations/:id', (req, res) => {
 
 app.put('/api/reservations/:id', (req, res) => {
   const inputUser = req.body
-  const id = +request.params.id
+  const id = +req.params.id
   connection.query('UPDATE reservations SET ? WHERE id = ?', [inputUser, id], (err, response) => {
     if (err) throw err
     connection.query('SELECT * FROM reservations WHERE id = ?', id, (updateErr, updateReservations) => {
