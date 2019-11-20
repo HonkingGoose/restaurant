@@ -7,14 +7,6 @@ create table all_menus (id int primary key auto_increment,
   menu_name varchar(1000) not null
 );
 
-create table contactinfos (id int primary key auto_increment,
-  firstname varchar(1000) not null,
-  prefix_lastname varchar(1000),
-  lastname varchar(1000) not null,
-  email varchar(1000) not null,
-  telephone varchar(1000) not null
-);
-
 create table ingredients (id int primary key auto_increment,
   name varchar(1000) not null,
   allergen varchar(1000),
@@ -49,14 +41,13 @@ create table reservations (id int primary key auto_increment,
   number_of_guests int not null,
   allergy varchar(1000),
   special_needs varchar(1000),
-  contactinfos_id int not null,
-  foreign key (contactinfos_id) references contactinfos(id)
+  firstname varchar(1000) not null,
+  telephone varchar(1000) not null
 );
 
 create table restaurant_invoices (id int primary key auto_increment,
   total_price double not null,
-  contactinfos_id int not null,
-  foreign key (contactinfos_id) references contactinfos(id)
+  contactinfos_id int not null
 );
 
 create table restaurant_tables (id int primary key auto_increment,
