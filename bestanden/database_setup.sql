@@ -41,7 +41,7 @@ create table reservations (id int primary key auto_increment,
   number_of_guests int not null,
   allergy varchar(1000),
   special_needs varchar(1000),
-  firstname varchar(1000) not null,
+  fullName varchar(1000) not null,
   telephone varchar(1000) not null
 );
 
