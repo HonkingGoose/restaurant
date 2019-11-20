@@ -1,0 +1,21 @@
+.invalidNumber, .invalidDate, .invalidTime{
+    color: red;
+    visibility: hidden;
+}
+    .visible{
+        visibility: visible;
+    }
+
+.red{
+    color: red;
+}
+
+.select-checkbox option::before {
+    content: "\2610";
+    width: 1.3em;
+    text-align: center;
+    display: inline-block;
+  }
+  .select-checkbox option:checked::before {
+    content: "\2611";
+  }
