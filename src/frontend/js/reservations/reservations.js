@@ -20,26 +20,25 @@ $(document).ready(function () {
   })
 })
 
-function time () {
-  const today = new Date()
-  const time = today.getHours() + ':' + today.getMinutes()
-  document.getElementById('form-start_time').defaultValue = time
-  console.log(time)
-}
-time()
+// function time () {
+//   const today = new Date()
+//   const time = today.getHours() + ':' + today.getMinutes()
+//   document.getElementById('form-start_time').defaultValue = time
+//   console.log(time)
+// }
+// time()
 
-function date () {
-  const today = new Date()
-  const date = today.getFullYear() + '-' + (today.getMonth() + 1) + '-' + today.getDate()
-  document.getElementById('form-reservation_date').defaultValue = date
-}
-date()
+// function date () {
+//   const today = new Date()
+//   const date = today.getFullYear() + '-' + (today.getMonth() + 1) + '-' + today.getDate()
+//   document.getElementById('form-reservation_date').defaultValue = date
+// }
+// date()
 
 function initDataTable () {
   const columns = [
     // { title: 'ID', data: 'id' },
     // { title: 'Contactinfos ID', data: 'contactinfos_id' },
-    
     { title: 'Date', data: 'reservation_date' },
     { title: 'Time', data: 'start_time' },
     { title: 'Menu price hidden', data: 'hide_menu_price' },
@@ -146,7 +145,8 @@ function fillModal (record) {
   // fill the modal
   // $('#form-id').val(record.id)
   // $('#form-contactinfos_id').val(record.contactinfos_id)
-  $('#form-reservation_date').val(record.reservation_date)
+  console.log("test")
+  $('#form-reservation_date').val(record.reservation_date.split("T")[0])
   $('#form-start_time').val(record.start_time)
   $('#form-hide_menu_price').val(record.hide_menu_price)
   $('#form-fullName').val(record.fullName)

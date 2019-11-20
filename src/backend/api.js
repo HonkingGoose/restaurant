@@ -318,7 +318,6 @@ app.delete('/api/restaurant_orders/:id', (req, res) => {
 
 app.post('/api/reservations', (req, res) => {
   const content = req.body
-  console.log(content)
   connection.query('INSERT INTO reservations SET ?', content, (err, result) => {
     if (err) throw err
     res.send(result)
