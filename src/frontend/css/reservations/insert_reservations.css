@@ -1,4 +1,4 @@
-.invalidNumber, .invalidDate, .invalidTime{
+.invalidNumber, .invalidDate, .invalidTime, .invalidName, .invalidTelephone{
     color: red;
     visibility: hidden;
 }

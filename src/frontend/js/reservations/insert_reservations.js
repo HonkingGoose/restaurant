@@ -4,11 +4,12 @@ function postReservations () {
   const reservationDate = document.getElementById('reservation_date').value
   const startTime = document.getElementById('start_time').value
   const hideMenuPrice = document.getElementById('hide_menu_price').checked
+  const fullName = document.getElementById('fullName').value
+  const telephone = document.getElementById('telephone').value
   const numberOfGuests = document.getElementById('number_of_guests').value
-  const allergy = $('#allergy').val();
-  const allergySet = allergy.toString();
+  const allergy = $('#allergy').val()
+  const allergySet = allergy.toString()
   const specialNeeds = document.getElementById('special_needs').value
-  // const contactInfosId = document.getElementById('contactinfos_id').value
 
   const newReservation = {
     reservation_date: reservationDate,
@@ -17,8 +18,8 @@ function postReservations () {
     number_of_guests: numberOfGuests,
     allergy: allergySet,
     special_needs: specialNeeds,
-    // contactinfos_id: contactInfosId
-    contactinfos_id: 1
+    fullName: fullName,
+    telephone: telephone
   }
 
   const date = new Date();
@@ -29,6 +30,8 @@ function postReservations () {
   const number2 = numberOfGuests <= 0
   const checkDate = reservationDate < nowDate
   const checkTime = startTime < nowTime
+  const checkName = fullName === ''
+  const checkTelephone = telephone === ''
 
   if (number1 || number2) {
     console.log('fail')
@@ -45,7 +48,17 @@ function postReservations () {
     document.querySelector('.invalidTime').classList.add('visible');
   }
 
-  if (number1 === true || number2 === true || checkDate === true || checkTime === true) {
+  if (checkName) {
+    console.log('fail')
+    document.querySelector('.invalidName').classList.add('visible');
+  }
+
+  if (checkTelephone) {
+    console.log('fail')
+    document.querySelector('.invalidTelephone').classList.add('visible')
+  }
+
+  if (number1 === true || number2 === true || checkDate === true || checkTime === true || checkName === true || checkTelephone === true) {
     return
   }
 
@@ -63,7 +76,13 @@ function postReservations () {
 
 function time () {
   const today = new Date()
-  const time = today.getHours() + ':' + today.getMinutes()
+  const hours = today.getHours()
+  const minutes = (today.getMinutes() < 10? '0' : '') + today.getMinutes();
+
+  const time = hours + ':' + minutes
+
+  console.log(time)
+
   document.getElementById('start_time').defaultValue = time
 }
 time()
@@ -75,12 +94,18 @@ function date () {
 }
 date()
 
-function resetDate() {
-      document.querySelector('.invalidDate').classList.remove('visible');
+function resetDate () {
+      document.querySelector('.invalidDate').classList.remove('visible')
 }
-function resetTime() {
-  document.querySelector('.invalidTime').classList.remove('visible');
+function resetTime () {
+  document.querySelector('.invalidTime').classList.remove('visible')
 }
-function resetNumber() {
-  document.querySelector('.invalidNumber').classList.remove('visible');
+function resetNumber () {
+  document.querySelector('.invalidNumber').classList.remove('visible')
+}
+function resetName () {
+  document.querySelector('.invalidName').classList.remove('visible')
+}
+function resetTelephone () {
+  document.querySelector('.invalidTelephone').classList.remove('visible')
 }
