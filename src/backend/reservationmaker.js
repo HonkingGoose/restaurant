@@ -1,6 +1,7 @@
 const durationOfVisit = 180; // minutes
 
 const SQLHandler = require('./sql.js')
+let Algorithm = require('./algorithm.js')
 
 module.exports = class ReservationMaker {
   constructor () {
@@ -72,6 +73,9 @@ module.exports = class ReservationMaker {
         // solution found
       }
     }
+
+    Algorithm = new Algorithm();
+    Algorithm.init(availableTables, nrPeople)
 
     // find the most optimal alternative
     /*
