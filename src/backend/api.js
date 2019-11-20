@@ -481,3 +481,8 @@ app.put('/api/menu_items/:id', function (req, res) {
     })
   })
 })
+
+// MENU_ITEMS END
+
+// HonkingGoose test
+app.use(express.static('../frontend'))
