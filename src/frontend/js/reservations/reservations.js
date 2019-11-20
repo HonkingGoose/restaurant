@@ -44,6 +44,8 @@ function initDataTable () {
     { title: 'Time', data: 'start_time' },
     { title: 'Menu price hidden', data: 'hide_menu_price' },
     { title: 'Number of guests', data: 'number_of_guests' },
+    { title: 'Guest name', data: 'fullName'},
+    { title: 'Phone number guest', data: 'telephone' },
     { title: 'Allergies', data: 'allergy' },
     { title: 'Special needs', data: 'special_needs' }
 
@@ -144,10 +146,13 @@ function fillModal (record) {
   // fill the modal
   // $('#form-id').val(record.id)
   // $('#form-contactinfos_id').val(record.contactinfos_id)
-  $('#form-reservation-date').val(record.reservation_date)
+  $('#form-reservation_date').val(record.reservation_date)
   $('#form-start_time').val(record.start_time)
   $('#form-hide_menu_price').val(record.hide_menu_price)
+  $('#form-fullName').val(record.fullName)
+  $('#form-telephone').val(record.telephone)
   $('#form-number_of_guests').val(record.number_of_guests)
+  $('#allergy').val(record.allergy)
   $('#form-special_needs').val(record.special_needs)
 
   // set inline block to respect the margins if applicable
@@ -179,12 +184,13 @@ function submitEdit (id, api) {
   // var formData = $('#modalForm').serializeArray().reduce(function (result, object) { result[object.name] = object.value; return result }, {})
   const formData = {
     reservation_date: $('#form-reservation_date').val(),
+    fullName: $('#form-fullName').val(),
+    telephone:$('#form-telephone').val(),
     start_time: $('#form-start_time').val(),
     hide_menu_price: $('#form-hide_menu_price').val(),
     number_of_guests: $('#form-number_of_guests').val(),
     allergy: $('#allergy').val().toString(),
-    special_needs: $('#form-special_needs').val(),
-    contactinfos_id: 1
+    special_needs: $('#form-special_needs').val()
   }
   /* console.log('Formdata =>')
   console.log(JSON.stringify(formData))
