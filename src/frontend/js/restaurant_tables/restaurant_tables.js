@@ -194,8 +194,9 @@ function submitEdit (id) {
 
     const formData = {
       capacity: $('#capacity').val(),
-      available: $('#available').val(),
-      table_callsign: $('#table_callsign').val()
+      table_callsign: $('#table_callsign').val(),
+      available: $('#availableAdd').is(":checked")
+
     }
     console.log(formData)
     console.log('Formdata =>')
