@@ -21,6 +21,7 @@
     "body-parser": "^1.19.0",
     "bootstrap4-toggle": "^3.6.1",
     "express": "^4.17.1",
+    "express-validator": "^6.2.0",
     "mysql": "^2.17.1"
   },
   "devDependencies": {

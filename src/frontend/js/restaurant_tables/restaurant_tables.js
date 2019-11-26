@@ -5,27 +5,25 @@ $(document).ready(function () {
 
   getData(api)
 
-  $('#fetch').click(function () {
-    getData(api)
-  })
 
-  $('#clear').click(function () {
-    clear()
+    $("#fetch").click(function () {
+        getData(api);
+    })
+
+    $("#clear").click(function () {
+        clear();
+    })
+    $("#addBtn").on('click', function () {
+        document.getElementById("modal-title-add").innerHTML = "Create a table";
+        document.getElementById("modalFormAdd").reset();
+        $("#btnsubmit1").attr('onclick', 'submitNew("' + api + '");');
+        $('#postDetailAdd').modal('toggle');
+    })
+
+    $("#inputCapacityAdd").hide();
+
+
   })
-  $('#addBtn').on('click', function () {
-<<<<<<< HEAD
-    document.getElementById('modal-title-add').innerHTML = 'Create a table'
-    document.getElementById('modalFormAdd').reset()
-    $('#btnsubmit1').attr('onclick', 'submitNew("' + api + '");')
-    $('#postDetailAdd').modal('toggle')
-=======
-    document.getElementById('modal-title').innerHTML = 'Create a table'
-    document.getElementById('modalForm').reset()
-    $('#btnsubmit').attr('onclick', 'submitNew("' + api + '");')
-    $('#postDetail').modal('toggle')
->>>>>>> 7f23250bc49d61a1615791be6fc26dc7160a29f9
-  })
-})
 
 function initDataTable () {
   columns = [
@@ -39,11 +37,7 @@ function initDataTable () {
         } }, */
   ]
 
-<<<<<<< HEAD
   const table = $('#dataTable').DataTable({
-=======
-  $('#dataTable').DataTable({
->>>>>>> 7f23250bc49d61a1615791be6fc26dc7160a29f9
     order: [[0, 'asc']],
     columns: columns
   })
@@ -54,17 +48,6 @@ function initDataTable () {
     }
     deselect()
     $(this).addClass('selected')
-<<<<<<< HEAD
-    var data = table.row(this).data()
-    console.log(data)
-
-    // this function fetches one record and fill the modal with the data and shows the modal for editing
-    // fillUpdateDiv(data, api)
-    console.log(api)
-    getSingleRecord(data.id, api)
-
-    // $('#postDetail').modal('toggle');
-=======
     var table = $('#dataTable').DataTable()
     var data = table.row(this).data()
 
@@ -72,8 +55,7 @@ function initDataTable () {
     fillUpdateDiv(data, api)
     getSingleRecord(data.id, api)
 
-    $('#postDetail').modal('toggle')
->>>>>>> 7f23250bc49d61a1615791be6fc26dc7160a29f9
+    // $('#postDetail').modal('toggle')
   })
 }
 
@@ -82,81 +64,79 @@ function clear () {
   $('#dataTable').DataTable().columns.adjust().draw()
 }
 
-function getData (api) {
-  // asynchronous REST GET
-  $.get(api, function (data) {
-    if (data) {
-      $('#dataTable').DataTable().clear()
-      $('#dataTable').DataTable().rows.add(data)
-      $('#dataTable').DataTable().columns.adjust().draw()
-    }
-  })
+function getData(api) {
+    // asynchronous REST GET
+    $.get(api, function (data) {
+            if (data) {
+                        $("#dataTable").DataTable().clear();
+                        for(let i=0; i < data.length; i++) {
+                          if (data[i].available == 1) {
+                          data[i].available = 'available';
+                        }
+
+                        else {
+                          data[i].available = 'out of order'
+                        }
+                      }
+                    }
+        // if (data) {
+            // $("#dataTable").DataTable().clear();
+            $("#dataTable").DataTable().rows.add(data);
+            $("#dataTable").DataTable().columns.adjust().draw();
+        // }
+    })
 }
 
 function getSingleRecord (id, api) {
   const apiPath = String(api + '/' + id)
-<<<<<<< HEAD
-  console.log(apiPath)
   $.get(apiPath, function (data) {
     if (data) {
-      console.log('<from server')
-      console.log(data)
-      console.log('>from server')
-=======
-  $.get(apiPath, function (data) {
-    if (data) {
->>>>>>> 7f23250bc49d61a1615791be6fc26dc7160a29f9
       fillUpdateDiv(data, api)
     }
   })
 }
 
-function submitNew () {
-  // var formData = $("#modalForm").serializeArray().reduce(function (result, object) { result[object.name] = object.value; return result }, {});
-  // for (var key in formData) {
-  //     if (formData[key] == "" || formData == null) delete formData[key];
-  // }
+function submitNew() {
+    // var formData = $("#modalForm").serializeArray().reduce(function (result, object) { result[object.name] = object.value; return result }, {});
+    // for (var key in formData) {
+    //     if (formData[key] == "" || formData == null) delete formData[key];
+    // }
 
-  const formData = {
-    capacity: $('#capacity').val(),
-<<<<<<< HEAD
-    table_callsign: $('#table_callsign').val(),
-    available: $('#availableAdd').is(':checked')
-  }
+    const formData = {
+        capacity: $('#capacityAdd').val(),
+        table_callsign: $('#table_callsignAdd').val(),
+        available: $('#availableAdd').is(":checked")
+      }
 
-  console.log(formData)
-  console.log('Einde log formdata')
+      console.log(formData)
+      console.log("Einde log formdata");
 
-=======
-    available: $('#available').val(),
-    table_callsign: $('#table_callsign').val()
-  }
+      $.ajax({
+        url: api,
+        type: "post",
+        data: JSON.stringify(formData),
+        contentType: "application/json",
+        dataType: "json",
+        success: function(data) {
+          console.log(data);
+            getData(api);
+            $('#table_callsignAdd').val(''),
+            $('#capacityAdd').val('')
+            alert('restaurant_table saved in database');
+        },
+        error: function () {
+          // getElementById('inputCapacityAdd') {
+          //
+          // }
+            alert("capacity must be a number!");
+            // // console.log(error);
+            // $("#inputCapacityAdd").show();
+        }
 
->>>>>>> 7f23250bc49d61a1615791be6fc26dc7160a29f9
-  $.ajax({
-    url: api,
-    type: 'post',
-    data: JSON.stringify(formData),
-    contentType: 'application/json',
-    dataType: 'json',
-    success: function (data) {
-<<<<<<< HEAD
-      console.log(data)
-=======
->>>>>>> 7f23250bc49d61a1615791be6fc26dc7160a29f9
-      getData(api)
-    },
-    error: function (error) {
-      console.log(error)
-    }
-<<<<<<< HEAD
+    });
 
-=======
->>>>>>> 7f23250bc49d61a1615791be6fc26dc7160a29f9
-  })
-
-  deselect()
-  $('#postDetail').modal('toggle')
+    select();
+    $('#postDetailAdd').modal('toggle');
 }
 
 // this function perform cleaning up of the table
@@ -170,28 +150,16 @@ function deselect () {
 
 function fillUpdateDiv (record, api) {
   $('#btnsubmit').attr('onclick', 'submitEdit(' + record.id + ', "' + api + '");')
-<<<<<<< HEAD
   console.log(record)
   document.getElementById('modal-title').innerHTML = 'Edit a table'
 
   // this function fills the modal
   fillModal(record)
   $('#postDetail').modal('toggle')
-=======
-
-  document.getElementById('modal-title').innerHTML = 'Edit a table'
-
-  // this function fills the modal
-  fillModal(record)
->>>>>>> 7f23250bc49d61a1615791be6fc26dc7160a29f9
 }
 
 //  show the usage of the popover here!
 function fillModal (record) {
-<<<<<<< HEAD
-  console.log(record)
-=======
->>>>>>> 7f23250bc49d61a1615791be6fc26dc7160a29f9
   // fill the modal
   // $("#id").val(record.id);
   $('#capacity').val(record.capacity)
@@ -224,37 +192,38 @@ function submitEdit (id) {
   // shortcut for filling the formData as a JavaScript object with the fields in the form
   // var formData = $('#modalForm').serializeArray().reduce(function (result, object) { result[object.name] = object.value; return result }, {})
 
-  const formData = {
-    capacity: $('#capacity').val(),
-    available: $('#available').val(),
-    table_callsign: $('#table_callsign').val()
-  }
-<<<<<<< HEAD
-  console.log(formData)
-=======
-
->>>>>>> 7f23250bc49d61a1615791be6fc26dc7160a29f9
-  console.log('Formdata =>')
-  console.log(JSON.stringify(formData))
-
-  console.log('Updating row with id:' + id)
-  console.log(formData)
-  $.ajax({
-    url: api + '/' + id,
-    type: 'put',
-    data: JSON.stringify(formData),
-    contentType: 'application/json',
-    dataType: 'json',
-    success: function (data) {
-      getData(api)
-    },
-    error: function (error) {
-      console.log(error)
+    const formData = {
+      capacity: $('#capacity').val(),
+      available: $('#available').val(),
+      table_callsign: $('#table_callsign').val()
     }
-  })
+    console.log(formData)
+    console.log('Formdata =>')
+    console.log(JSON.stringify(formData));
 
-  deselect()
-  $('#postDetail').modal('toggle')
+    console.log("Updating row with id:" + id);
+    console.log(formData);
+    $.ajax({
+        url: api + "/" + id,
+        type: 'put',
+        data: JSON.stringify(formData),
+        contentType: "application/json",
+        dataType: "json",
+        success: function(data) {
+            getData(api);
+            deselect();
+            $('#postDetail').modal('toggle');
+
+        },
+        error: function (error) {
+          // deselect();
+          $('#postDetail').modal('show');
+            console.log(error);
+            alert('value of capacity_field must be a number')
+        }
+    });
+
+
 }
 
 function submitDelete (id, api) {
@@ -272,3 +241,27 @@ function submitDelete (id, api) {
   })
   $('#postDetail').modal('toggle')
 }
+
+$('#capacityAdd').keypress(function() {
+   var input = $("#capacityAdd").val();
+     if(input != number) {
+       $("#inputCapacityAdd").show();
+     }
+     else {
+       $("#inputCapacityAdd").hide();
+     }
+});
+
+// (function input() {
+//   var input = $("#");
+//
+//   keyup: function() {
+//        var value = input.val(); // get value when key pressed
+//
+//        // input.val(""); // reset value of input element
+//
+//        if(value != number) {
+//            alert("must be a number"); // if there is a value, display it
+//        }
+//    }
+// })();
