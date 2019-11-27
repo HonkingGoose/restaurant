@@ -215,7 +215,7 @@ function submitEdit (id, api) {
   })
 
   deselect()
-  $('#putDetail').modal('toggle')
+  $('#postDetail').modal('toggle')
 }
 
 // eslint-disable-next-line no-unused-vars
