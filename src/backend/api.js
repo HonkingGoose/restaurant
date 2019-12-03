@@ -394,6 +394,9 @@ app.get('/api/ingredients', (req, res) => {
 
 app.get('/api/ingredients/:id', (request, response) => {
   const id = +request.params.id
+
+  if (id < 1) {response.status(404).end(); return}
+
   connection.query('select * from ingredients where id=?;', [id], (err, result) => {
     if (err) throw err
     response.send(result[0])
@@ -412,6 +415,8 @@ app.post('/api/ingredients', function (req, res) {
 app.delete('/api/ingredients/:id', function (req, res) {
   const id = +req.params.id
 
+  if (id < 1) {res.status(404).end(); return}
+
   connection.query('DELETE FROM ingredients WHERE id = ?', id, (err, result) => {
     if (err) throw err
     console.log('Deleted ', result.affectedRows, ' rows')
@@ -422,6 +427,8 @@ app.delete('/api/ingredients/:id', function (req, res) {
 app.put('/api/ingredients/:id', function (req, res) {
   const id = +req.params.id
   const inputUser = req.body
+
+  if (id < 1) {res.status(404).end(); return}
 
   connection.query('UPDATE ingredients SET ? WHERE id = ?', [inputUser, id], (err, response) => {
     if (err) throw err

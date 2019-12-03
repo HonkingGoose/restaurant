@@ -63,7 +63,7 @@ describe('Ingredients API tests:', function () {
       }
     })
   })
-  it('GET path/:id should return a customer with id: id', function (done) {
+  it('GET ' + baseUrl + '/:id should return a customer with id: id', function (done) {
     const fixture = {
       name: 'APItestinput',
       allergen: 'APItestinput',
@@ -87,7 +87,7 @@ describe('Ingredients API tests:', function () {
       }
     })
   })
-  it('GET path:/-1 should return status code 404', function (done) {
+  it('GET ' + baseUrl + '/-1 should return status code 404', function (done) {
     const options = {
       uri: `${baseUrl}/-1`,
       json: true
@@ -101,7 +101,7 @@ describe('Ingredients API tests:', function () {
       }
     })
   })
-  it('PUT path/api/ingredients/id should modify a ingredient', function (done) {
+  it('PUT ' + baseUrl + '/id should modify a ingredient', function (done) {
     const fixture = {
       name: 'APItestinputmodify',
       allergen: 'APItestinputmodify',
@@ -126,7 +126,7 @@ describe('Ingredients API tests:', function () {
       }
     })
   })
-  it('PUT path/api/ingredients/-1 should send status code 404', function (done) {
+  it('PUT ' + baseUrl + '/-1 should send status code 404', function (done) {
     const fixture = {
       name: 'APItestinputmodifytargeted',
       allergen: 'APItestinputmodifytargeted',
@@ -146,7 +146,7 @@ describe('Ingredients API tests:', function () {
       }
     })
   })
-  it('DELETE path/api/ingredients should delete the just created ingredient', function (done) {
+  it('DELETE ' + baseUrl + '/id should delete the just created ingredient', function (done) {
     const options = {
       uri: `${baseUrl}/${id}`
     }
@@ -167,7 +167,7 @@ describe('Ingredients API tests:', function () {
       })
     })
   })
-  it('DELETE http://localhost:8080/api/customers/-1 should send status code 404', function (done) {
+  it('DELETE ' + baseUrl + '/-1 should send status code 404', function (done) {
     const options = {
       uri: `${baseUrl}/-1`
     }
