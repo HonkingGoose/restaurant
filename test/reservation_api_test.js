@@ -8,14 +8,14 @@ const port = 3000
 
 const baseUrl = 'http://localhost:' + port + '/api/reservations'
 
-let id // for later storing an id in between to tests
+let id // for later storing an id in between tests
 
 // Mocking configuration
 const reservationDate = faker.date.future()
-const start_time = '12:00'
+const startTime = reservationDate
 const hideMenuPrice = faker.random.number({ min: 0, max: 1 }) // or faker.random.boolean() if a boolean is needed
 const numberOfGuests = faker.random.number({ min: 1, max: 100 })
-const specialNeeds = faker.hacker.phrase()
+const specialNeeds = 'TESTDATA ' + faker.hacker.phrase()
 const allergyList = [
   'egg',
   'gluten',
@@ -30,16 +30,18 @@ const allergyList = [
   'sesame',
   'molluscs',
   'fish',
-  'soya']
+  'soya',
+  '']
 const randomAllergyFromList = allergyList[Math.floor(Math.random() * allergyList.length)]
-const fullName = faker.name.findName()
+const fullName = faker.name.firstName() + ' ' + faker.name.lastName()
 const telephoneNumber = faker.helpers.replaceSymbolWithNumber('06#########')
-const telephoneNumberWithScore = faker.helpers.replaceSymbolWithNumber('06-#########')
 
 // Fixture setup
-const randomFixture = {
-  reservation_date: reservationDate,
-  start_time: '12:00',
+// Convert the Faker reservationDate from a object to a String with format yyyy-mm-dd
+// Convert the Faker reservationDate from a object to a String with format hh:mm:ss
+const fixture = {
+  reservation_date: reservationDate.toISOString().split('T')[0],
+  start_time: startTime.toISOString().split('T')[1].split('.')[0],
   hide_menu_price: hideMenuPrice,
   number_of_guests: numberOfGuests,
   allergy: randomAllergyFromList,
@@ -50,13 +52,34 @@ const randomFixture = {
 
 describe('Reservation API tests:', function () {
   describe('POST', function () {
-    it('with available date and time should create a reservation')
+    it('Create a reservation with no regards to availability', function (done) {
+      const options = {
+        uri: baseUrl,
+        json: fixture
+      }
+      request.post(options, function (error, response, responseBody) {
+        if (error) done(error)
+        else {
+          expect(responseBody.reservationDate).to.equal(fixture.reservationDate)
+          expect(responseBody.start_time).to.equal(fixture.start_time)
+          expect(responseBody.hide_menu_price).to.be.equal(fixture.hide_menu_price)
+          expect(responseBody.number_of_guests).to.be.equal(fixture.number_of_guests)
+          expect(responseBody.allergy).to.be.equal(fixture.allergy)
+          expect(responseBody.special_needs).to.be.equal(fixture.special_needs)
+          expect(responseBody.fullName).to.be.equal(fixture.fullName)
+          expect(responseBody.telephone).to.be.equal(fixture.telephone)
+          expect(response.statusCode).to.be.equal(201)
+          id = +responseBody.id
+          expect(id).to.be.greaterThan(0)
+          done()
+        }
+      })
+    })
     it('with not available date and time in future, should return a error message')
     it('with date in the past should return a error message ')
-    it('OPTIONAL: with telephone number with score should also work')
   })
   describe('GET', function () {
-    it('should return a response body', function (done) {
+    it(baseUrl + ' should return a list', function (done) {
       const options = {
         uri: baseUrl,
         json: true
@@ -65,33 +88,105 @@ describe('Reservation API tests:', function () {
         if (error) done(error)
         else {
           expect(responseBody.length).to.be.greaterThan(0)
+          expect(response.statusCode).to.be.equal(200)
+          done()
         }
       })
     })
-    it('should return status code 200', function (done) {
+    it(baseUrl + '/:id should return a reservation with id: id', function (done) {
       const options = {
-        uri: baseUrl,
+        uri: `${baseUrl}/${id}`,
         json: true
       }
       request.get(options, function (error, response, responseBody) {
         if (error) done(error)
         else {
+          expect(responseBody).to.include({ id: id })
+          expect(responseBody.id).to.be.equal(3)
           expect(response.statusCode).to.be.equal(200)
+          done()
         }
       })
     })
-    it('/api/reservations/ should return a list of reservations')
-    it('/api/reservations/:id should return a reservation with id: id')
-    // remember to add :id to base url!
-    it('/api/reservations/-1 should return status code 404')
-    // remember to add :id to base url!
+    it(baseUrl + '/-1 should return status code 404', function (done) {
+      const options = {
+        uri: `${baseUrl}/${-1}`,
+        json: true
+      }
+      request.get(options, function (error, response, responseBody) {
+        if (error) done(error)
+        else {
+          expect(response.statusCode).to.be.equal(404)
+          done()
+        }
+      })
+    })
   })
   describe('PUT', function () {
-    it('/api/reservations/id should modify a reservation')
-    it('/api/reservations/-1 should return status code 404')
+    it(baseUrl + '/:id should modify a reservation', function (done) {
+      const updateReservation = fixture
+      updateReservation.special_needs = 'TESTDATA PUT ' + faker.hacker.phrase()
+      const options = {
+        uri: `${baseUrl}/${id}`,
+        json: updateReservation
+      }
+      request.put(options, function (error, response, responseBody) {
+        if (error) done(error)
+        else {
+          expect(response.statusCode).to.be.equal(202)
+          expect(responseBody).to.include({ id: id })
+          expect(responseBody).to.include({ special_needs: updateReservation.special_needs })
+          done()
+        }
+      })
+    })
+    it(baseUrl + '/-1 should return status code 404', function (done) {
+      const options = {
+        uri: `${baseUrl}/${-1}`,
+        json: true
+      }
+      request.put(options, function (error, response, responseBody) {
+        if (error) done(error)
+        else {
+          expect(response.statusCode).to.be.equal(404)
+          done()
+        }
+      })
+    })
   })
   describe('DELETE', function () {
-    it('/api/reservations should delete the just created reservation')
-    it('/api/reservations/-1 should return status code 404')
+    it(baseUrl + '/:id should delete the just created reservation', function (done) {
+      const options = {
+        uri: `${baseUrl}/${id}`,
+        json: true
+      }
+      request.delete(options, function (error, response, responseBody) {
+        if (error) done(error)
+        else {
+          expect(response.statusCode).to.be.equal(204)
+        }
+        // Try to GET the reservation that was just deleted, this should return status code 404
+        request.get(options, function (error, response, responseBody) {
+          if (error) done(error)
+          else {
+            expect(response.statusCode).to.be.equal(404)
+            done()
+          }
+        })
+      })
+    })
+    it(baseUrl + '/-1 should return status code 404', function (done) {
+      const options = {
+        uri: `${baseUrl}/${-1}`,
+        json: true
+      }
+      request.delete(options, function (error, response, responseBody) {
+        if (error) done(error)
+        else {
+          expect(response.statusCode).to.be.equal(404)
+          done()
+        }
+      })
+    })
   })
 })
