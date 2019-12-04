@@ -20,21 +20,6 @@ $(document).ready(function () {
   })
 })
 
-// function time () {
-//   const today = new Date()
-//   const time = today.getHours() + ':' + today.getMinutes()
-//   document.getElementById('form-start_time').defaultValue = time
-//   console.log(time)
-// }
-// time()
-
-// function date () {
-//   const today = new Date()
-//   const date = today.getFullYear() + '-' + (today.getMonth() + 1) + '-' + today.getDate()
-//   document.getElementById('form-reservation_date').defaultValue = date
-// }
-// date()
-
 function initDataTable () {
   const columns = [
     // { title: 'ID', data: 'id' },
@@ -145,7 +130,6 @@ function fillModal (record) {
   // fill the modal
   // $('#form-id').val(record.id)
   // $('#form-contactinfos_id').val(record.contactinfos_id)
-  console.log("test")
   $('#form-reservation_date').val(record.reservation_date.split("T")[0])
   $('#form-start_time').val(record.start_time)
   $('#form-hide_menu_price').val(record.hide_menu_price)
@@ -199,7 +183,7 @@ function submitEdit (id, api) {
   } */
 
   console.log('Updating row with id:' + id)
-  console.log(formData)
+
   $.ajax({
     url: api + '/' + id,
     type: 'put',

@@ -347,15 +347,12 @@ app.get('/api/reservations', (req, res) => {
   res.setHeader('Content-Type', 'application/json')
   connection.query('SELECT * FROM reservations', (err, reservations) => {
     if (err) throw err
- // Edit the date to a workable format   
-    for(let i = 0; i < reservations.length; i++){
+// Edit the date to a workable format   
+    for (let i = 0; i < reservations.length; i++) {
       const date = JSON.stringify(reservations[i].reservation_date)
-      const dateSplit1 = date.split("T")[0]
+      const dateSplit1 = date.split('T')[0]
       const dateSplit2 = dateSplit1.split('\"')[1]
-      const dateSplit3 = dateSplit2.split("-");
-      const dateSplit4 = dateSplit3[2] + "-" + dateSplit3[1] + "-" + dateSplit3[0]
-      reservations[i].reservation_date = dateSplit4
-      console.log(dateSplit4)
+      reservations[i].reservation_date = dateSplit2
     }
     res.send(reservations)
   })
