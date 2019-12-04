@@ -1,0 +1,996 @@
+{
+  "id": "10578676-97e0-4f8d-a956-c170367ef470",
+  "version": "2.0",
+  "name": "Restaurant",
+  "url": "http://localhost:3000/html/restaurant_tables/restaurant_tables.html",
+  "tests": [{
+    "id": "35ca5822-4b8d-43b2-a6c4-fb8a4418176a",
+    "name": "Ingredients: add ingredient",
+    "commands": [{
+      "id": "0c9731b8-0700-4d58-819c-8a9bae2b2856",
+      "comment": "",
+      "command": "open",
+      "target": "http://localhost:3000/html/ingredients/ingredients.html",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "295cdbdd-79c3-4183-adf1-5323aa5d8b6e",
+      "comment": "",
+      "command": "click",
+      "target": "id=addBtn",
+      "targets": [
+        ["id=addBtn", "id"],
+        ["css=#addBtn", "css:finder"],
+        ["xpath=//button[@id='addBtn']", "xpath:attributes"],
+        ["xpath=//button", "xpath:position"],
+        ["xpath=//button[contains(.,'New')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }, {
+      "id": "95df6c60-fa12-4d68-aabd-3ff3d224d2d9",
+      "comment": "",
+      "command": "click",
+      "target": "id=name",
+      "targets": [
+        ["id=name", "id"],
+        ["name=name", "name"],
+        ["css=#name", "css:finder"],
+        ["xpath=//input[@id='name']", "xpath:attributes"],
+        ["xpath=//form[@id='modalForm']/input", "xpath:idRelative"],
+        ["xpath=//form/input", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "b4d27baf-730d-46d4-874a-459f7d308ede",
+      "comment": "",
+      "command": "type",
+      "target": "id=name",
+      "targets": [
+        ["id=name", "id"],
+        ["name=name", "name"],
+        ["css=#name", "css:finder"],
+        ["xpath=//input[@id='name']", "xpath:attributes"],
+        ["xpath=//form[@id='modalForm']/input", "xpath:idRelative"],
+        ["xpath=//form/input", "xpath:position"]
+      ],
+      "value": "test"
+    }, {
+      "id": "3596587a-b4ae-4c0d-80da-040c6fd92ef8",
+      "comment": "",
+      "command": "click",
+      "target": "id=allergen",
+      "targets": [
+        ["id=allergen", "id"],
+        ["name=allergen", "name"],
+        ["css=#allergen", "css:finder"],
+        ["xpath=//input[@id='allergen']", "xpath:attributes"],
+        ["xpath=//form[@id='modalForm']/input[2]", "xpath:idRelative"],
+        ["xpath=//input[2]", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "b1abde9e-271b-4de8-bfbd-150bf044a3c1",
+      "comment": "",
+      "command": "type",
+      "target": "id=allergen",
+      "targets": [
+        ["id=allergen", "id"],
+        ["name=allergen", "name"],
+        ["css=#allergen", "css:finder"],
+        ["xpath=//input[@id='allergen']", "xpath:attributes"],
+        ["xpath=//form[@id='modalForm']/input[2]", "xpath:idRelative"],
+        ["xpath=//input[2]", "xpath:position"]
+      ],
+      "value": "test"
+    }, {
+      "id": "a065c22c-8a59-402c-8c6d-92654ef14478",
+      "comment": "",
+      "command": "click",
+      "target": "id=unit_of_measurement",
+      "targets": [
+        ["id=unit_of_measurement", "id"],
+        ["name=unit_of_measurement", "name"],
+        ["css=#unit_of_measurement", "css:finder"],
+        ["xpath=//input[@id='unit_of_measurement']", "xpath:attributes"],
+        ["xpath=//form[@id='modalForm']/input[3]", "xpath:idRelative"],
+        ["xpath=//input[3]", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "8cce499e-95bc-4e39-b943-d73d446f4730",
+      "comment": "",
+      "command": "type",
+      "target": "id=unit_of_measurement",
+      "targets": [
+        ["id=unit_of_measurement", "id"],
+        ["name=unit_of_measurement", "name"],
+        ["css=#unit_of_measurement", "css:finder"],
+        ["xpath=//input[@id='unit_of_measurement']", "xpath:attributes"],
+        ["xpath=//form[@id='modalForm']/input[3]", "xpath:idRelative"],
+        ["xpath=//input[3]", "xpath:position"]
+      ],
+      "value": "kg"
+    }, {
+      "id": "4ad258f0-28d7-48eb-a1ae-0b309e147753",
+      "comment": "",
+      "command": "click",
+      "target": "id=amount_in_stock",
+      "targets": [
+        ["id=amount_in_stock", "id"],
+        ["name=amount_in_stock", "name"],
+        ["css=#amount_in_stock", "css:finder"],
+        ["xpath=//input[@id='amount_in_stock']", "xpath:attributes"],
+        ["xpath=//form[@id='modalForm']/input[4]", "xpath:idRelative"],
+        ["xpath=//input[4]", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "1d197d67-bf79-4f38-b98d-df8b5caaf35b",
+      "comment": "",
+      "command": "type",
+      "target": "id=amount_in_stock",
+      "targets": [
+        ["id=amount_in_stock", "id"],
+        ["name=amount_in_stock", "name"],
+        ["css=#amount_in_stock", "css:finder"],
+        ["xpath=//input[@id='amount_in_stock']", "xpath:attributes"],
+        ["xpath=//form[@id='modalForm']/input[4]", "xpath:idRelative"],
+        ["xpath=//input[4]", "xpath:position"]
+      ],
+      "value": "1"
+    }, {
+      "id": "19f58f51-aa1a-410d-9d05-0975bf2ef966",
+      "comment": "",
+      "command": "click",
+      "target": "id=btnsubmit",
+      "targets": [
+        ["id=btnsubmit", "id"],
+        ["css=#btnsubmit", "css:finder"],
+        ["xpath=//button[@id='btnsubmit']", "xpath:attributes"],
+        ["xpath=//div[@id='postDetail']/div/div/div[3]/button", "xpath:idRelative"],
+        ["xpath=//div[3]/button", "xpath:position"],
+        ["xpath=//button[contains(.,'Submit')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }]
+  }, {
+    "id": "f4e14cb5-cb81-4489-a9df-09b4073d8cfd",
+    "name": "Ingredients: remove ingredient",
+    "commands": [{
+      "id": "2ac7f4b5-f320-4272-be6f-dad421900d65",
+      "comment": "",
+      "command": "open",
+      "target": "http://localhost:3000/html/ingredients/ingredients.html",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "1c0d92a3-206b-48f7-8403-eb64ec5a27a4",
+      "comment": "",
+      "command": "click",
+      "target": "css=td:nth-child(2)",
+      "targets": [
+        ["css=td:nth-child(2)", "css:finder"],
+        ["xpath=//table[@id='dataTable']/tbody/tr/td[2]", "xpath:idRelative"],
+        ["xpath=//td[2]", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "56c9a05a-3782-4616-a4d8-8753208b329b",
+      "comment": "",
+      "command": "mouseOver",
+      "target": "id=deleteButton",
+      "targets": [
+        ["id=deleteButton", "id"],
+        ["linkText=Delete", "linkText"],
+        ["css=#deleteButton", "css:finder"],
+        ["xpath=//a[contains(text(),'Delete')]", "xpath:link"],
+        ["xpath=//a[@id='deleteButton']", "xpath:attributes"],
+        ["xpath=//div[@id='postDetail']/div/div/div[3]/a", "xpath:idRelative"],
+        ["xpath=(//a[contains(@href, '#')])[4]", "xpath:href"],
+        ["xpath=//div[3]/a", "xpath:position"],
+        ["xpath=//a[contains(.,'Delete')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }, {
+      "id": "cf91db3c-2020-49ec-866f-bab565e12090",
+      "comment": "",
+      "command": "click",
+      "target": "id=deleteButton",
+      "targets": [
+        ["id=deleteButton", "id"],
+        ["linkText=Delete", "linkText"],
+        ["css=#deleteButton", "css:finder"],
+        ["xpath=//a[contains(text(),'Delete')]", "xpath:link"],
+        ["xpath=//a[@id='deleteButton']", "xpath:attributes"],
+        ["xpath=//div[@id='postDetail']/div/div/div[3]/a", "xpath:idRelative"],
+        ["xpath=(//a[contains(@href, '#')])[4]", "xpath:href"],
+        ["xpath=//div[3]/a", "xpath:position"],
+        ["xpath=//a[contains(.,'Delete')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }, {
+      "id": "6ba6f7d4-5c2e-4032-89c9-b8428d02f7b6",
+      "comment": "",
+      "command": "mouseOut",
+      "target": "id=deleteButton",
+      "targets": [
+        ["id=deleteButton", "id"],
+        ["linkText=Delete", "linkText"],
+        ["css=#deleteButton", "css:finder"],
+        ["xpath=//a[contains(text(),'Delete')]", "xpath:link"],
+        ["xpath=//a[@id='deleteButton']", "xpath:attributes"],
+        ["xpath=//div[@id='postDetail']/div/div/div[3]/a", "xpath:idRelative"],
+        ["xpath=(//a[contains(@href, '#')])[4]", "xpath:href"],
+        ["xpath=//div[3]/a", "xpath:position"],
+        ["xpath=//a[contains(.,'Delete')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }, {
+      "id": "6855f81c-edd5-4eaf-90b5-c3b750ba2a61",
+      "comment": "",
+      "command": "click",
+      "target": "css=.popover-body > .btn-danger",
+      "targets": [
+        ["css=.popover-body > .btn-danger", "css:finder"],
+        ["xpath=(//button[@type='button'])[4]", "xpath:attributes"],
+        ["xpath=//div[@id='popover138079']/div[2]/button[2]", "xpath:idRelative"],
+        ["xpath=//div[2]/button[2]", "xpath:position"],
+        ["xpath=//button[contains(.,'Confirm delete')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }]
+  }, {
+    "id": "26753bd8-c687-49d3-89a2-45f991240e95",
+    "name": "Index: click create reservation link",
+    "commands": [{
+      "id": "f76149ff-36c9-4492-be5f-dc90605096fd",
+      "comment": "",
+      "command": "click",
+      "target": "linkText=Create reservation",
+      "targets": [
+        ["linkText=Create reservation", "linkText"],
+        ["css=.nav-item:nth-child(1)", "css:finder"],
+        ["xpath=//a[contains(text(),'Create reservation')]", "xpath:link"],
+        ["xpath=//a[contains(@href, 'reservations/insert_reservations.html')]", "xpath:href"],
+        ["xpath=//a", "xpath:position"],
+        ["xpath=//a[contains(.,'Create reservation')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }, {
+      "id": "7c403240-4bea-4682-b6ef-23eac59b3075",
+      "comment": "",
+      "command": "close",
+      "target": "",
+      "targets": [],
+      "value": ""
+    }]
+  }, {
+    "id": "8bb57e21-c2b3-44d4-b8e1-cdc5a902be52",
+    "name": "Index: click view all reservations",
+    "commands": [{
+      "id": "4b1e7cda-8ff9-4b9b-b94b-a517fa195bdf",
+      "comment": "",
+      "command": "open",
+      "target": "http://localhost:3000/html/index.html",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "d9df455e-91ed-4c25-90f1-31bfa1762fa3",
+      "comment": "",
+      "command": "click",
+      "target": "linkText=View all reservations",
+      "targets": [
+        ["linkText=View all reservations", "linkText"],
+        ["css=.nav-item:nth-child(2)", "css:finder"],
+        ["xpath=//a[contains(text(),'View all reservations')]", "xpath:link"],
+        ["xpath=//a[contains(@href, 'reservations/reservations.html')]", "xpath:href"],
+        ["xpath=//a[2]", "xpath:position"],
+        ["xpath=//a[contains(.,'View all reservations')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }]
+  }, {
+    "id": "83aa09b7-8c07-45db-978c-e454fed87910",
+    "name": "Index: view guests contact info",
+    "commands": [{
+      "id": "a2757d89-7d46-47b2-8890-efb1794d49ee",
+      "comment": "",
+      "command": "open",
+      "target": "http://localhost:3000/html/index.html",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "0ee2c820-284f-4c32-b6d5-bca1b90db58d",
+      "comment": "",
+      "command": "click",
+      "target": "linkText=View guests contact info",
+      "targets": [
+        ["linkText=View guests contact info", "linkText"],
+        ["css=.nav-item:nth-child(3)", "css:finder"],
+        ["xpath=//a[contains(text(),'View guests contact info')]", "xpath:link"],
+        ["xpath=//a[contains(@href, 'contactinfos/contactinfos.html')]", "xpath:href"],
+        ["xpath=//a[3]", "xpath:position"],
+        ["xpath=//a[contains(.,'View guests contact info')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }]
+  }, {
+    "id": "934883f4-accc-4b16-8102-d97be7bda146",
+    "name": "Index: click create guest contact info",
+    "commands": [{
+      "id": "c2a50ec4-e4c6-4f30-90f8-f937c0d8c83b",
+      "comment": "",
+      "command": "open",
+      "target": "http://localhost:3000/html/index.html",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "d2c60ecd-f99b-4027-bb20-abe98fef1dcb",
+      "comment": "",
+      "command": "click",
+      "target": "linkText=Create guest contact info",
+      "targets": [
+        ["linkText=Create guest contact info", "linkText"],
+        ["css=.nav-item:nth-child(4)", "css:finder"],
+        ["xpath=//a[contains(text(),'Create guest contact info')]", "xpath:link"],
+        ["xpath=//a[contains(@href, 'contactinfos/insert_contactinfos.html')]", "xpath:href"],
+        ["xpath=//a[4]", "xpath:position"],
+        ["xpath=//a[contains(.,'Create guest contact info')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }]
+  }, {
+    "id": "ae892c5a-7ef1-4e69-b3e7-a55ddedbebc3",
+    "name": "Index: click Ingredients",
+    "commands": [{
+      "id": "eb362795-ff21-48f5-b1b8-07fbbc9b7c9b",
+      "comment": "",
+      "command": "open",
+      "target": "http://localhost:3000/html/index.html",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "ddeb102d-cb24-4e8a-ac55-d0719b4905c6",
+      "comment": "",
+      "command": "click",
+      "target": "linkText=Ingredients",
+      "targets": [
+        ["linkText=Ingredients", "linkText"],
+        ["css=.nav-item:nth-child(5)", "css:finder"],
+        ["xpath=//a[contains(text(),'Ingredients')]", "xpath:link"],
+        ["xpath=//a[contains(@href, 'ingredients/ingredients.html')]", "xpath:href"],
+        ["xpath=//a[5]", "xpath:position"],
+        ["xpath=//a[contains(.,'Ingredients')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }]
+  }, {
+    "id": "03af0f06-68c8-4931-ba67-a95d53a9e756",
+    "name": "Index: click menu items",
+    "commands": [{
+      "id": "8177ba1c-bd81-4165-b673-0cad50eada82",
+      "comment": "",
+      "command": "open",
+      "target": "http://localhost:3000/html/index.html",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "34cfde5c-eda9-4046-b9cf-d19e92a3dd29",
+      "comment": "",
+      "command": "click",
+      "target": "linkText=Menu items",
+      "targets": [
+        ["linkText=Menu items", "linkText"],
+        ["css=.nav-item:nth-child(6)", "css:finder"],
+        ["xpath=//a[contains(text(),'Menu items')]", "xpath:link"],
+        ["xpath=//a[contains(@href, 'menu_items/menu_items.html')]", "xpath:href"],
+        ["xpath=//a[6]", "xpath:position"],
+        ["xpath=//a[contains(.,'Menu items')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }]
+  }, {
+    "id": "dc384cb7-36f5-4f2f-96ef-2bb5b1d28f20",
+    "name": "Index: click restaurant tables",
+    "commands": [{
+      "id": "36403293-0532-4b47-8882-b758dfb0d29f",
+      "comment": "",
+      "command": "open",
+      "target": "http://localhost:3000/html/index.html",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "6f89c462-756b-4c0c-8ae8-595dad14e304",
+      "comment": "",
+      "command": "click",
+      "target": "linkText=Restaurant tables",
+      "targets": [
+        ["linkText=Restaurant tables", "linkText"],
+        ["css=.nav-item:nth-child(7)", "css:finder"],
+        ["xpath=//a[contains(text(),'Restaurant tables')]", "xpath:link"],
+        ["xpath=//a[contains(@href, 'restaurant_tables/restaurant_tables.html')]", "xpath:href"],
+        ["xpath=//a[7]", "xpath:position"],
+        ["xpath=//a[contains(.,'Restaurant tables')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }]
+  }, {
+    "id": "11f6ea04-529e-4a9e-bf75-7dc68f88bccd",
+    "name": "Create Reservation: create reservation",
+    "commands": []
+  }, {
+    "id": "6817f68b-bf47-4a4c-b620-92c7dba67422",
+    "name": "Menu Items: Add menu item",
+    "commands": [{
+      "id": "54b258dc-5257-4a23-afe8-089c6d71d662",
+      "comment": "",
+      "command": "open",
+      "target": "http://localhost:3000/html/menu_items/menu_items.html",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "e26ed4c3-8775-4e61-b159-cdb558309fd8",
+      "comment": "",
+      "command": "click",
+      "target": "id=addBtn",
+      "targets": [
+        ["id=addBtn", "id"],
+        ["css=#addBtn", "css:finder"],
+        ["xpath=//button[@id='addBtn']", "xpath:attributes"],
+        ["xpath=//button", "xpath:position"],
+        ["xpath=//button[contains(.,'New')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }, {
+      "id": "82c68492-6612-4307-88c4-2fdb099bf9be",
+      "comment": "",
+      "command": "click",
+      "target": "id=name",
+      "targets": [
+        ["id=name", "id"],
+        ["name=name", "name"],
+        ["css=#name", "css:finder"],
+        ["xpath=//input[@id='name']", "xpath:attributes"],
+        ["xpath=//form[@id='modalForm']/input", "xpath:idRelative"],
+        ["xpath=//form/input", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "aaab829b-7308-4d0d-a06a-c845a27dfa29",
+      "comment": "",
+      "command": "type",
+      "target": "id=name",
+      "targets": [
+        ["id=name", "id"],
+        ["name=name", "name"],
+        ["css=#name", "css:finder"],
+        ["xpath=//input[@id='name']", "xpath:attributes"],
+        ["xpath=//form[@id='modalForm']/input", "xpath:idRelative"],
+        ["xpath=//form/input", "xpath:position"]
+      ],
+      "value": "test"
+    }, {
+      "id": "a79acc00-6e45-4938-b40e-a95adc529871",
+      "comment": "",
+      "command": "click",
+      "target": "id=description",
+      "targets": [
+        ["id=description", "id"],
+        ["name=description", "name"],
+        ["css=#description", "css:finder"],
+        ["xpath=//input[@id='description']", "xpath:attributes"],
+        ["xpath=//form[@id='modalForm']/input[2]", "xpath:idRelative"],
+        ["xpath=//input[2]", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "65f9b04d-8be8-4a99-892c-715e9ee612f7",
+      "comment": "",
+      "command": "type",
+      "target": "id=description",
+      "targets": [
+        ["id=description", "id"],
+        ["name=description", "name"],
+        ["css=#description", "css:finder"],
+        ["xpath=//input[@id='description']", "xpath:attributes"],
+        ["xpath=//form[@id='modalForm']/input[2]", "xpath:idRelative"],
+        ["xpath=//input[2]", "xpath:position"]
+      ],
+      "value": "test"
+    }, {
+      "id": "a188f161-171c-4515-a136-d0a303638ffa",
+      "comment": "",
+      "command": "click",
+      "target": "id=price",
+      "targets": [
+        ["id=price", "id"],
+        ["name=price", "name"],
+        ["css=#price", "css:finder"],
+        ["xpath=//input[@id='price']", "xpath:attributes"],
+        ["xpath=//form[@id='modalForm']/input[3]", "xpath:idRelative"],
+        ["xpath=//input[3]", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "ecf01c44-48fc-4bc7-b3f0-675c37c63137",
+      "comment": "",
+      "command": "type",
+      "target": "id=price",
+      "targets": [
+        ["id=price", "id"],
+        ["name=price", "name"],
+        ["css=#price", "css:finder"],
+        ["xpath=//input[@id='price']", "xpath:attributes"],
+        ["xpath=//form[@id='modalForm']/input[3]", "xpath:idRelative"],
+        ["xpath=//input[3]", "xpath:position"]
+      ],
+      "value": "1.99"
+    }, {
+      "id": "f8c3c606-a64e-4bbe-875f-1c64d26535ed",
+      "comment": "",
+      "command": "click",
+      "target": "id=btnsubmit",
+      "targets": [
+        ["id=btnsubmit", "id"],
+        ["css=#btnsubmit", "css:finder"],
+        ["xpath=//button[@id='btnsubmit']", "xpath:attributes"],
+        ["xpath=//div[@id='postDetail']/div/div/div[3]/button", "xpath:idRelative"],
+        ["xpath=//div[3]/button", "xpath:position"],
+        ["xpath=//button[contains(.,'Submit')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }]
+  }, {
+    "id": "84ae66cd-1e0e-4cef-87eb-b76139ba47b3",
+    "name": "Menu Items: Delete menu item",
+    "commands": [{
+      "id": "19dd0b07-bd6b-4896-a36a-b7525cb0fb56",
+      "comment": "",
+      "command": "open",
+      "target": "http://localhost:3000/html/menu_items/menu_items.html",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "ee7da051-f867-48a3-b17e-62f37bc3658e",
+      "comment": "",
+      "command": "click",
+      "target": "css=.odd > td:nth-child(2)",
+      "targets": [
+        ["css=.odd > td:nth-child(2)", "css:finder"],
+        ["xpath=//table[@id='dataTable']/tbody/tr/td[2]", "xpath:idRelative"],
+        ["xpath=//td[2]", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "ba0ec636-5a0d-440b-9de3-675162223eb7",
+      "comment": "",
+      "command": "mouseOver",
+      "target": "id=deleteButton",
+      "targets": [
+        ["id=deleteButton", "id"],
+        ["linkText=Delete", "linkText"],
+        ["css=#deleteButton", "css:finder"],
+        ["xpath=//a[contains(text(),'Delete')]", "xpath:link"],
+        ["xpath=//a[@id='deleteButton']", "xpath:attributes"],
+        ["xpath=//div[@id='postDetail']/div/div/div[3]/a", "xpath:idRelative"],
+        ["xpath=(//a[contains(@href, '#')])[4]", "xpath:href"],
+        ["xpath=//div[3]/a", "xpath:position"],
+        ["xpath=//a[contains(.,'Delete')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }, {
+      "id": "23c0551d-4da1-4de2-b54c-9ee8ddab6862",
+      "comment": "",
+      "command": "click",
+      "target": "id=deleteButton",
+      "targets": [
+        ["id=deleteButton", "id"],
+        ["linkText=Delete", "linkText"],
+        ["css=#deleteButton", "css:finder"],
+        ["xpath=//a[contains(text(),'Delete')]", "xpath:link"],
+        ["xpath=//a[@id='deleteButton']", "xpath:attributes"],
+        ["xpath=//div[@id='postDetail']/div/div/div[3]/a", "xpath:idRelative"],
+        ["xpath=(//a[contains(@href, '#')])[4]", "xpath:href"],
+        ["xpath=//div[3]/a", "xpath:position"],
+        ["xpath=//a[contains(.,'Delete')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }, {
+      "id": "38e6eab7-04b1-4ed7-90f1-1c6b9af33e13",
+      "comment": "",
+      "command": "mouseOut",
+      "target": "id=deleteButton",
+      "targets": [
+        ["id=deleteButton", "id"],
+        ["linkText=Delete", "linkText"],
+        ["css=#deleteButton", "css:finder"],
+        ["xpath=//a[contains(text(),'Delete')]", "xpath:link"],
+        ["xpath=//a[@id='deleteButton']", "xpath:attributes"],
+        ["xpath=//div[@id='postDetail']/div/div/div[3]/a", "xpath:idRelative"],
+        ["xpath=(//a[contains(@href, '#')])[4]", "xpath:href"],
+        ["xpath=//div[3]/a", "xpath:position"],
+        ["xpath=//a[contains(.,'Delete')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }, {
+      "id": "679fa050-2827-4ba7-924f-3c4029167cc7",
+      "comment": "",
+      "command": "click",
+      "target": "css=.popover-body > .btn-danger",
+      "targets": [
+        ["css=.popover-body > .btn-danger", "css:finder"],
+        ["xpath=(//button[@type='button'])[4]", "xpath:attributes"],
+        ["xpath=//div[@id='popover874725']/div[2]/button[2]", "xpath:idRelative"],
+        ["xpath=//div[2]/button[2]", "xpath:position"],
+        ["xpath=//button[contains(.,'Confirm delete')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }]
+  }, {
+    "id": "8da5abd3-190d-4d0f-8372-c97958ced95d",
+    "name": "Menu Items: Modify menu item",
+    "commands": [{
+      "id": "1c3db26c-3ef5-4fbb-a934-6e198840aca6",
+      "comment": "",
+      "command": "open",
+      "target": "http://localhost:3000/html/menu_items/menu_items.html",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "1b9be22a-33d9-4b43-a9cf-a72d4d47cc94",
+      "comment": "",
+      "command": "click",
+      "target": "css=.sorting_1",
+      "targets": [
+        ["css=.sorting_1", "css:finder"],
+        ["xpath=//table[@id='dataTable']/tbody/tr/td", "xpath:idRelative"],
+        ["xpath=//td", "xpath:position"],
+        ["xpath=//td[contains(.,'test')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }, {
+      "id": "ed6f21ec-654f-4723-b623-0066d0fdc3c6",
+      "comment": "",
+      "command": "click",
+      "target": "id=price",
+      "targets": [
+        ["id=price", "id"],
+        ["name=price", "name"],
+        ["css=#price", "css:finder"],
+        ["xpath=//input[@id='price']", "xpath:attributes"],
+        ["xpath=//form[@id='modalForm']/input[3]", "xpath:idRelative"],
+        ["xpath=//input[3]", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "b6ff8435-53dc-4ebd-9fbb-8a183e4074df",
+      "comment": "",
+      "command": "type",
+      "target": "id=price",
+      "targets": [
+        ["id=price", "id"],
+        ["name=price", "name"],
+        ["css=#price", "css:finder"],
+        ["xpath=//input[@id='price']", "xpath:attributes"],
+        ["xpath=//form[@id='modalForm']/input[3]", "xpath:idRelative"],
+        ["xpath=//input[3]", "xpath:position"]
+      ],
+      "value": "99.99"
+    }, {
+      "id": "699b05f8-abe2-4077-9785-984638644256",
+      "comment": "",
+      "command": "click",
+      "target": "id=btnsubmit",
+      "targets": [
+        ["id=btnsubmit", "id"],
+        ["css=#btnsubmit", "css:finder"],
+        ["xpath=//button[@id='btnsubmit']", "xpath:attributes"],
+        ["xpath=//div[@id='postDetail']/div/div/div[3]/button", "xpath:idRelative"],
+        ["xpath=//div[3]/button", "xpath:position"],
+        ["xpath=//button[contains(.,'Submit')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }]
+  }, {
+    "id": "b6740943-2f25-4cde-8154-3980a152cba4",
+    "name": "Menu Items: Add menu item, Price with comma",
+    "commands": [{
+      "id": "2858842f-1f20-40dc-8627-a8820fff9ffe",
+      "comment": "",
+      "command": "open",
+      "target": "http://localhost:3000/html/menu_items/menu_items.html",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "4675a6e4-2642-45f4-ac0c-45a6655df3e1",
+      "comment": "",
+      "command": "click",
+      "target": "id=addBtn",
+      "targets": [
+        ["id=addBtn", "id"],
+        ["css=#addBtn", "css:finder"],
+        ["xpath=//button[@id='addBtn']", "xpath:attributes"],
+        ["xpath=//button", "xpath:position"],
+        ["xpath=//button[contains(.,'New')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }, {
+      "id": "fd835366-6e66-4157-af2c-1a1bdc321625",
+      "comment": "",
+      "command": "click",
+      "target": "id=name",
+      "targets": [
+        ["id=name", "id"],
+        ["name=name", "name"],
+        ["css=#name", "css:finder"],
+        ["xpath=//input[@id='name']", "xpath:attributes"],
+        ["xpath=//form[@id='modalForm']/input", "xpath:idRelative"],
+        ["xpath=//form/input", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "5633b18b-5bd0-4963-be0e-1da090bbae19",
+      "comment": "",
+      "command": "type",
+      "target": "id=name",
+      "targets": [
+        ["id=name", "id"],
+        ["name=name", "name"],
+        ["css=#name", "css:finder"],
+        ["xpath=//input[@id='name']", "xpath:attributes"],
+        ["xpath=//form[@id='modalForm']/input", "xpath:idRelative"],
+        ["xpath=//form/input", "xpath:position"]
+      ],
+      "value": "test price with comma"
+    }, {
+      "id": "8d094cbf-45d6-419c-ab46-27d33a750d95",
+      "comment": "",
+      "command": "click",
+      "target": "id=description",
+      "targets": [
+        ["id=description", "id"],
+        ["name=description", "name"],
+        ["css=#description", "css:finder"],
+        ["xpath=//input[@id='description']", "xpath:attributes"],
+        ["xpath=//form[@id='modalForm']/input[2]", "xpath:idRelative"],
+        ["xpath=//input[2]", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "bdd908f5-ce1c-4964-aa1f-0520c0fd9b8a",
+      "comment": "",
+      "command": "type",
+      "target": "id=description",
+      "targets": [
+        ["id=description", "id"],
+        ["name=description", "name"],
+        ["css=#description", "css:finder"],
+        ["xpath=//input[@id='description']", "xpath:attributes"],
+        ["xpath=//form[@id='modalForm']/input[2]", "xpath:idRelative"],
+        ["xpath=//input[2]", "xpath:position"]
+      ],
+      "value": "test"
+    }, {
+      "id": "2ad5cac7-995d-44f3-abca-45f5cea62f8f",
+      "comment": "",
+      "command": "click",
+      "target": "id=price",
+      "targets": [
+        ["id=price", "id"],
+        ["name=price", "name"],
+        ["css=#price", "css:finder"],
+        ["xpath=//input[@id='price']", "xpath:attributes"],
+        ["xpath=//form[@id='modalForm']/input[3]", "xpath:idRelative"],
+        ["xpath=//input[3]", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "0f2b3da4-63fb-4f1d-8ee4-60efa9a728d0",
+      "comment": "",
+      "command": "type",
+      "target": "id=price",
+      "targets": [
+        ["id=price", "id"],
+        ["name=price", "name"],
+        ["css=#price", "css:finder"],
+        ["xpath=//input[@id='price']", "xpath:attributes"],
+        ["xpath=//form[@id='modalForm']/input[3]", "xpath:idRelative"],
+        ["xpath=//input[3]", "xpath:position"]
+      ],
+      "value": "99,99"
+    }, {
+      "id": "f5b207c0-eb9a-41a7-90c8-d6e1be518714",
+      "comment": "",
+      "command": "click",
+      "target": "id=btnsubmit",
+      "targets": [
+        ["id=btnsubmit", "id"],
+        ["css=#btnsubmit", "css:finder"],
+        ["xpath=//button[@id='btnsubmit']", "xpath:attributes"],
+        ["xpath=//div[@id='postDetail']/div/div/div[3]/button", "xpath:idRelative"],
+        ["xpath=//div[3]/button", "xpath:position"],
+        ["xpath=//button[contains(.,'Submit')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }]
+  }, {
+    "id": "5fbb0442-1d56-4e85-8506-e41f3084d271",
+    "name": "Restaurant Tables: Add new table (DUMMY TO BE FILLED LATER)",
+    "commands": []
+  }, {
+    "id": "6ba2bb3d-f70c-4a45-bf48-b91b85c65e19",
+    "name": "Ingredients: modify ingredient",
+    "commands": [{
+      "id": "b4f53c0d-e9d8-4979-a822-9f3ac506035f",
+      "comment": "",
+      "command": "open",
+      "target": "http://localhost:3000/html/ingredients/ingredients.html",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "17acc877-4e7e-4967-8ff8-7db12747b1ab",
+      "comment": "",
+      "command": "click",
+      "target": "css=td:nth-child(2)",
+      "targets": [
+        ["css=td:nth-child(2)", "css:finder"],
+        ["xpath=//table[@id='dataTable']/tbody/tr/td[2]", "xpath:idRelative"],
+        ["xpath=//td[2]", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "6ad19cf0-032a-49aa-8caa-22d0d80e770e",
+      "comment": "",
+      "command": "click",
+      "target": "id=name",
+      "targets": [
+        ["id=name", "id"],
+        ["name=name", "name"],
+        ["css=#name", "css:finder"],
+        ["xpath=//input[@id='name']", "xpath:attributes"],
+        ["xpath=//form[@id='modalForm']/input", "xpath:idRelative"],
+        ["xpath=//form/input", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "8bb8c730-796a-4c77-a5f2-d9200889e15b",
+      "comment": "",
+      "command": "type",
+      "target": "id=name",
+      "targets": [
+        ["id=name", "id"],
+        ["name=name", "name"],
+        ["css=#name", "css:finder"],
+        ["xpath=//input[@id='name']", "xpath:attributes"],
+        ["xpath=//form[@id='modalForm']/input", "xpath:idRelative"],
+        ["xpath=//form/input", "xpath:position"]
+      ],
+      "value": "testmodify"
+    }, {
+      "id": "90e1fa0a-53dc-452d-b251-89d28ac8bfbe",
+      "comment": "",
+      "command": "click",
+      "target": "id=allergen",
+      "targets": [
+        ["id=allergen", "id"],
+        ["name=allergen", "name"],
+        ["css=#allergen", "css:finder"],
+        ["xpath=//input[@id='allergen']", "xpath:attributes"],
+        ["xpath=//form[@id='modalForm']/input[2]", "xpath:idRelative"],
+        ["xpath=//input[2]", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "ff71af5d-4a25-44de-8cef-91f6e5a7fb1d",
+      "comment": "",
+      "command": "type",
+      "target": "id=allergen",
+      "targets": [
+        ["id=allergen", "id"],
+        ["name=allergen", "name"],
+        ["css=#allergen", "css:finder"],
+        ["xpath=//input[@id='allergen']", "xpath:attributes"],
+        ["xpath=//form[@id='modalForm']/input[2]", "xpath:idRelative"],
+        ["xpath=//input[2]", "xpath:position"]
+      ],
+      "value": "testmodify"
+    }, {
+      "id": "70413862-1958-44ee-a9aa-c366cf08aa36",
+      "comment": "",
+      "command": "click",
+      "target": "css=html",
+      "targets": [
+        ["css=html", "css:finder"],
+        ["xpath=//html", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "7cd2f83a-0958-4fd5-9dd5-43a792fa2df9",
+      "comment": "",
+      "command": "type",
+      "target": "id=unit_of_measurement",
+      "targets": [
+        ["id=unit_of_measurement", "id"],
+        ["name=unit_of_measurement", "name"],
+        ["css=#unit_of_measurement", "css:finder"],
+        ["xpath=//input[@id='unit_of_measurement']", "xpath:attributes"],
+        ["xpath=//form[@id='modalForm']/input[3]", "xpath:idRelative"],
+        ["xpath=//input[3]", "xpath:position"]
+      ],
+      "value": "pounds"
+    }, {
+      "id": "9472c141-cbee-44d6-822e-1910dfb3e9fc",
+      "comment": "",
+      "command": "click",
+      "target": "id=amount_in_stock",
+      "targets": [
+        ["id=amount_in_stock", "id"],
+        ["name=amount_in_stock", "name"],
+        ["css=#amount_in_stock", "css:finder"],
+        ["xpath=//input[@id='amount_in_stock']", "xpath:attributes"],
+        ["xpath=//form[@id='modalForm']/input[4]", "xpath:idRelative"],
+        ["xpath=//input[4]", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "9478c680-c73c-4c08-b2de-67d7f74de563",
+      "comment": "",
+      "command": "type",
+      "target": "id=amount_in_stock",
+      "targets": [
+        ["id=amount_in_stock", "id"],
+        ["name=amount_in_stock", "name"],
+        ["css=#amount_in_stock", "css:finder"],
+        ["xpath=//input[@id='amount_in_stock']", "xpath:attributes"],
+        ["xpath=//form[@id='modalForm']/input[4]", "xpath:idRelative"],
+        ["xpath=//input[4]", "xpath:position"]
+      ],
+      "value": "10"
+    }, {
+      "id": "d8c1a8a7-a200-4105-863b-6ee3cc68db62",
+      "comment": "",
+      "command": "click",
+      "target": "id=btnsubmit",
+      "targets": [
+        ["id=btnsubmit", "id"],
+        ["css=#btnsubmit", "css:finder"],
+        ["xpath=//button[@id='btnsubmit']", "xpath:attributes"],
+        ["xpath=//div[@id='postDetail']/div/div/div[3]/button", "xpath:idRelative"],
+        ["xpath=//div[3]/button", "xpath:position"],
+        ["xpath=//button[contains(.,'Submit')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }]
+  }],
+  "suites": [{
+    "id": "1f7c6ec5-5f72-453c-a44c-876638350d95",
+    "name": "Ingredient view",
+    "persistSession": false,
+    "parallel": false,
+    "timeout": 300,
+    "tests": ["35ca5822-4b8d-43b2-a6c4-fb8a4418176a", "6ba2bb3d-f70c-4a45-bf48-b91b85c65e19", "f4e14cb5-cb81-4489-a9df-09b4073d8cfd"]
+  }, {
+    "id": "68de166b-3f65-4724-bee8-4d097d6b706f",
+    "name": "Index",
+    "persistSession": false,
+    "parallel": false,
+    "timeout": 300,
+    "tests": ["934883f4-accc-4b16-8102-d97be7bda146", "ae892c5a-7ef1-4e69-b3e7-a55ddedbebc3", "03af0f06-68c8-4931-ba67-a95d53a9e756", "dc384cb7-36f5-4f2f-96ef-2bb5b1d28f20", "8bb57e21-c2b3-44d4-b8e1-cdc5a902be52", "83aa09b7-8c07-45db-978c-e454fed87910"]
+  }, {
+    "id": "6c8c0832-6b61-4e41-9e65-6477601b5b2b",
+    "name": "Create reservation",
+    "persistSession": false,
+    "parallel": false,
+    "timeout": 300,
+    "tests": ["11f6ea04-529e-4a9e-bf75-7dc68f88bccd"]
+  }, {
+    "id": "6095ce29-b1de-439a-9708-254f6fca50a4",
+    "name": "Menu Items",
+    "persistSession": false,
+    "parallel": false,
+    "timeout": 300,
+    "tests": ["6817f68b-bf47-4a4c-b620-92c7dba67422", "8da5abd3-190d-4d0f-8372-c97958ced95d", "84ae66cd-1e0e-4cef-87eb-b76139ba47b3", "b6740943-2f25-4cde-8154-3980a152cba4"]
+  }],
+  "urls": ["http://localhost:3000/html/index.html", "http://localhost:3000/html/ingredients/ingredients.html", "http://localhost:3000/html/reservations/insert_reservations.html", "http://localhost:3000/html/menu_items/menu_items.html", "http://localhost:3000/html/restaurant_tables/restaurant_tables.html"],
+  "plugins": []
+}
