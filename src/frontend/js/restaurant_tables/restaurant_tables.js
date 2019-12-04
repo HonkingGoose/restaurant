@@ -123,27 +123,38 @@ function submitNew() {
             $('#table_callsignAdd').val(''),
             $('#capacityAdd').val('')
             alert('restaurant_table saved in database');
+            deselect();
+            $('#postDetailAdd').modal('toggle');
         },
         error: function (data) {
-          if(data.available = null) {
-            console.log("this field can not be empty")
-          } else {
-          console.log(data.available)
-          console.log(data.capacity)
-          console.log(data.table_callsign)
+          let errors = data.responseJSON;
 
-          // getElementById('inputCapacityAdd') {
-          //
-          // }
-            alert("capacity must be a number!");
-            // // console.log(error);
-            // $("#inputCapacityAdd").show();
+          for(let error of errors) {
+            if(error.param === "table_callsign") {
+                alert("Table_calsign field should not be empty");
+            }
+            else if(error.param === "capacity") {
+              alert("Capacity field should be provided with numbers")
+            }
           }
+          // if(data.available == null) {
+          //     alert("You need to provide a table callsign");
+          //
+          //   } else {
+          //
+          // // getElementById('inputCapacityAdd') {
+          // //
+          // // }
+          //   alert("capacity must be a number!");
+          //   // // console.log(error);
+          //   // $("#inputCapacityAdd").show();
+          // }
+
         }
 
     });
-    deselect();
-    $('#postDetailAdd').modal('toggle');
+    // deselect();
+    // $('#postDetailAdd').modal('toggle');
 }
 
 // this function perform cleaning up of the table
@@ -217,16 +228,49 @@ function submitEdit (id) {
         contentType: "application/json",
         dataType: "json",
         success: function(data) {
-            getData(api);
-            deselect();
-            $('#postDetail').modal('toggle');
-
-        },
-        error: function (error) {
-          select();
+          getData(api);
+          deselect();
           $('#postDetail').modal('toggle');
-            console.log(error);
-            alert('value of capacity_field must be a number')
+        },
+        error: function (data) { // list of error // data is an XmlHttpRequest
+
+          let errors = data.responseJSON;
+
+          for(let error of errors) {
+            if(error.param === "table_callsign") {
+                alert("Table_calsign field should not be empty");
+            }
+            else if(error.param === "capacity") {
+              alert("Capacity field should be provided with numbers")
+            }
+          }
+
+          //   if(data.table_callsign == null) {
+          //   alert("You need to provide a table callsign")
+          //   // select();
+          //   // $('#postDetail').modal('toggle');
+          //   next();
+          // } else if(data.available == String) {
+          //   alert("Capacity must be filled in with a number")
+          //   // select();
+          //   // $('#postDetail').modal('toggle');
+          //   next();
+          // } else if(data.table_callsign == null && data.capacity == null ) {
+          //   alert("Fields can not be empty")
+          //   // select();
+          //   // $('#postDetail').modal('toggle');
+          //   next();
+          // } else if(data.capacity == null) {
+          //   alert("capacity field can not be empty")
+          //   next();
+          // } else {
+          //   alert("Something went wrong please try again")
+          // }
+          // getData(api);
+          // select();
+          // $('#postDetail').modal('toggle');
+          //   console.log(error);
+          //   alert('value of capacity_field must be a number')
         }
     });
 

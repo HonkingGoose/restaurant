@@ -127,13 +127,18 @@ app.get('/api/restaurant_tables/:id', (req, res) => {
 })
 
 app.post('/api/restaurant_tables', [
-  check('capacity').isNumeric()
+  check('capacity').isNumeric(),
+  check('table_callsign').not().isEmpty()
 ],  (req, res) => {
   const errors = validationResult(req);
   if (!errors.isEmpty()) {
-      return res.status(422).json({ errors: errors.array() });
+      res.status(422).send(errors.array());
+      // return res.status(422).json({ errors: errors.array() });
+
     }
     else {
+      const id = +req.params.id
+      const inputUser = req.body
       const content = req.body
       connection.query('INSERT INTO restaurant_tables SET ?', content, (err, result) => {
         if (err) throw err
@@ -153,11 +158,12 @@ app.delete('/api/restaurant_tables/:id', function (req, res) {
 })
 
 app.put('/api/restaurant_tables/:id',  [
-  check('capacity').isNumeric()
+  check('capacity').isNumeric(),
+  check('table_callsign').not().isEmpty()
 ], (req, res) => {
   const errors = validationResult(req);
   if (!errors.isEmpty()) {
-      return res.status(422).json({ errors: errors.array() });
+    res.status(422).send(errors.array());
   }
   else {
     const id = +req.params.id
