@@ -43,7 +43,7 @@ function postReservations () {
     document.querySelector('.invalidDate').classList.add('visible');
   }
 
-  if (checkTime) {
+  if (checkDate && checkTime) {
     console.log('fail')
     document.querySelector('.invalidTime').classList.add('visible');
   }
