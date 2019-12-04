@@ -124,18 +124,25 @@ function submitNew() {
             $('#capacityAdd').val('')
             alert('restaurant_table saved in database');
         },
-        error: function () {
+        error: function (data) {
+          if(data.available = null) {
+            console.log("this field can not be empty")
+          } else {
+          console.log(data.available)
+          console.log(data.capacity)
+          console.log(data.table_callsign)
+
           // getElementById('inputCapacityAdd') {
           //
           // }
             alert("capacity must be a number!");
             // // console.log(error);
             // $("#inputCapacityAdd").show();
+          }
         }
 
     });
-
-    select();
+    deselect();
     $('#postDetailAdd').modal('toggle');
 }
 
@@ -196,7 +203,6 @@ function submitEdit (id) {
       capacity: $('#capacity').val(),
       table_callsign: $('#table_callsign').val(),
       available: $('#availableAdd').is(":checked")
-
     }
     console.log(formData)
     console.log('Formdata =>')
@@ -217,8 +223,8 @@ function submitEdit (id) {
 
         },
         error: function (error) {
-          // deselect();
-          $('#postDetail').modal('show');
+          select();
+          $('#postDetail').modal('toggle');
             console.log(error);
             alert('value of capacity_field must be a number')
         }
