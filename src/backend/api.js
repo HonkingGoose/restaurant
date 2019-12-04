@@ -26,7 +26,7 @@ app.use(function (req, res, next) {
 })
 
 const bodyParser = require('body-parser')
-const { check, validationResult } = require('express-validator');
+const { check, validationResult } = require('express-validator')
 
 app.use(bodyParser.json())
 
@@ -129,22 +129,20 @@ app.get('/api/restaurant_tables/:id', (req, res) => {
 app.post('/api/restaurant_tables', [
   check('capacity').isNumeric(),
   check('table_callsign').not().isEmpty()
-],  (req, res) => {
-  const errors = validationResult(req);
+], (req, res) => {
+  const errors = validationResult(req)
   if (!errors.isEmpty()) {
-      res.status(422).send(errors.array());
-      // return res.status(422).json({ errors: errors.array() });
-
-    }
-    else {
-      const id = +req.params.id
-      const inputUser = req.body
-      const content = req.body
-      connection.query('INSERT INTO restaurant_tables SET ?', content, (err, result) => {
-        if (err) throw err
-        res.send(result)
-      })
-    }
+    res.status(422).send(errors.array())
+    // return res.status(422).json({ errors: errors.array() });
+  } else {
+    const id = +req.params.id
+    const inputUser = req.body
+    const content = req.body
+    connection.query('INSERT INTO restaurant_tables SET ?', content, (err, result) => {
+      if (err) throw err
+      res.send(result)
+    })
+  }
 })
 
 app.delete('/api/restaurant_tables/:id', function (req, res) {
@@ -157,18 +155,17 @@ app.delete('/api/restaurant_tables/:id', function (req, res) {
   })
 })
 
-app.put('/api/restaurant_tables/:id',  [
+app.put('/api/restaurant_tables/:id', [
   check('capacity').isNumeric(),
   check('table_callsign').not().isEmpty()
 ], (req, res) => {
-  const errors = validationResult(req);
+  const errors = validationResult(req)
   if (!errors.isEmpty()) {
-    res.status(422).send(errors.array());
-  }
-  else {
+    res.status(422).send(errors.array())
+  } else {
     const id = +req.params.id
     const inputUser = req.body
-    console.log(inputUser);
+    console.log(inputUser)
 
     connection.query('UPDATE restaurant_tables SET ? WHERE id = ?', [inputUser, id], (err, response) => {
       if (err) throw err
@@ -178,7 +175,6 @@ app.put('/api/restaurant_tables/:id',  [
       })
     })
   }
-
 })
 
 // RESTAURANT_TABLES END
@@ -353,7 +349,7 @@ app.get('/api/reservations', (req, res) => {
   res.setHeader('Content-Type', 'application/json')
   connection.query('SELECT * FROM reservations', (err, reservations) => {
     if (err) throw err
-// Edit the date to a workable format   
+    // Edit the date to a workable format
     for (let i = 0; i < reservations.length; i++) {
       const date = JSON.stringify(reservations[i].reservation_date)
       const dateSplit1 = date.split('T')[0]
@@ -408,7 +404,7 @@ app.get('/api/ingredients', (req, res) => {
 app.get('/api/ingredients/:id', (request, response) => {
   const id = +request.params.id
 
-  if (id < 1) {response.status(404).end(); return}
+  if (id < 1) { response.status(404).end(); return }
 
   connection.query('select * from ingredients where id=?;', [id], (err, result) => {
     if (err) throw err
@@ -428,7 +424,7 @@ app.post('/api/ingredients', function (req, res) {
 app.delete('/api/ingredients/:id', function (req, res) {
   const id = +req.params.id
 
-  if (id < 1) {res.status(404).end(); return}
+  if (id < 1) { res.status(404).end(); return }
 
   connection.query('DELETE FROM ingredients WHERE id = ?', id, (err, result) => {
     if (err) throw err
@@ -441,7 +437,7 @@ app.put('/api/ingredients/:id', function (req, res) {
   const id = +req.params.id
   const inputUser = req.body
 
-  if (id < 1) {res.status(404).end(); return}
+  if (id < 1) { res.status(404).end(); return }
 
   connection.query('UPDATE ingredients SET ? WHERE id = ?', [inputUser, id], (err, response) => {
     if (err) throw err
