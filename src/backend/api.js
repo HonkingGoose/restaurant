@@ -341,7 +341,11 @@ app.post('/api/reservations', (req, res) => {
   const content = req.body
   connection.query('INSERT INTO reservations SET ?', content, (err, result) => {
     if (err) throw err
-    res.send(result)
+    let id = result.insertId;
+    connection.query('select * from reservations where id=?', [id], (error, resultaat) => {
+        res.status(201)
+        res.send(resultaat[0]);
+    });
   })
 })
 
@@ -363,7 +367,10 @@ app.get('/api/reservations', (req, res) => {
 app.get('/api/reservations/:id', (req, res) => {
   const id = +req.params.id
   connection.query('SELECT * FROM reservations WHERE id = ?', [id], (err, result) => {
-    if (err) throw err
+  if (err){
+    res.status(404)
+    throw err
+  }
     res.send(result[0])
   })
 })
@@ -373,13 +380,13 @@ app.put('/api/reservations/:id', (req, res) => {
   const id = +req.params.id
   connection.query('UPDATE reservations SET ? WHERE id = ?', [inputUser, id], (err, response) => {
     if (err) throw err
-    connection.query('SELECT * FROM reservations WHERE id = ?', id, (updateErr, updateReservations) => {
-      if (updateErr) throw err
-      res.send(updateReservations)
-    })
+    let id = result.insertId;
+    connection.query('select * from reservations where id=?', [id], (error, resultaat) => {
+        res.status(202)
+        res.send(resultaat[0]);
+    });
   })
 })
-
 app.delete('/api/reservations/:id', (req, res) => {
   const id = +req.params.id
   connection.query('DELETE FROM reservations WHERE id = ?', id, (err, result) => {
@@ -417,7 +424,7 @@ app.post('/api/ingredients', function (req, res) {
 
   connection.query('INSERT INTO ingredients SET ?', content, (err, result) => {
     if (err) throw err
-    res.send(result)
+    res.send(result);
   })
 })
 
