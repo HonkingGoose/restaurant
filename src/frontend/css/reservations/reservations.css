@@ -1,11 +1,3 @@
-.invalidNumber, .invalidDate, .invalidTime, .invalidName, .invalidTelephone{
-    color: red;
-    visibility: hidden;
-}
-    .visible{
-        visibility: visible;
-    }
-
 .red{
     color: red;
 }

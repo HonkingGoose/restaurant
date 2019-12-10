@@ -5,33 +5,33 @@ $(document).ready(function () {
 
   getData(api)
 
-  $('#fetch').click(function () {
-    getData(api)
-  })
 
-  $('#clear').click(function () {
-    clear()
+    $("#fetch").click(function () {
+        getData(api);
+    })
+
+    $("#clear").click(function () {
+        clear();
+    })
+    $("#addBtn").on('click', function () {
+        document.getElementById("modal-title").innerHTML = "Create reservation";
+        document.getElementById("modalForm").reset();
+        $("#btnsubmit").attr('onclick', 'submitNew("' + api + '");');
+        $('#postDetail').modal('toggle');
+    })                  
   })
-  $('#addBtn').on('click', function () {
-    document.getElementById('modal-title').innerHTML = 'Create a table'
-    document.getElementById('modalForm').reset()
-    $('#btnsubmit').attr('onclick', 'submitNew("' + api + '");')
-    $('#postDetail').modal('toggle')
-  })
-})
 
 function initDataTable () {
-  const columns = [
-    // { title: 'ID', data: 'id' },
-    // { title: 'Contactinfos ID', data: 'contactinfos_id' },
+  columns = [
     { title: 'Date', data: 'reservation_date' },
     { title: 'Time', data: 'start_time' },
-    { title: 'Menu price hidden', data: 'hide_menu_price' },
-    { title: 'Number of guests', data: 'number_of_guests' },
-    { title: 'Guest name', data: 'fullName'},
-    { title: 'Phone number guest', data: 'telephone' },
-    { title: 'Allergies', data: 'allergy' },
-    { title: 'Special needs', data: 'special_needs' }
+    { title: 'Hide menu price', data: 'hide_menu_price' },
+    { title: 'Number of guests', data: 'number_of_guests'},
+    { title: 'allergy', data: 'allergy'},
+    { title: 'Special needs', data: 'special_needs'},
+    { title: 'Name', data: 'fullName'},
+    { title: 'Telephone', data: 'telephone'}
+
 
     /*,
         {  "render": function(data, type, row, meta){
@@ -39,7 +39,7 @@ function initDataTable () {
         } }, */
   ]
 
-  $('#dataTable').DataTable({
+  const table = $('#dataTable').DataTable({
     order: [[0, 'asc']],
     columns: columns
   })
@@ -57,7 +57,7 @@ function initDataTable () {
     fillUpdateDiv(data, api)
     getSingleRecord(data.id, api)
 
-    $('#postDetail').modal('toggle')
+    // $('#postDetail').modal('toggle')
   })
 }
 
@@ -66,9 +66,9 @@ function clear () {
   $('#dataTable').DataTable().columns.adjust().draw()
 }
 
-function getData (api) {
-  // asynchronous REST GET
-  $.get(api, function (data) {
+function getData(api) {
+   // asynchronous REST GET
+   $.get(api, function (data) {
     if (data) {
       $('#dataTable').DataTable().clear()
       $('#dataTable').DataTable().rows.add(data)
@@ -86,25 +86,99 @@ function getSingleRecord (id, api) {
   })
 }
 
-// eslint-disable-next-line no-unused-vars
-function submitNew (api) {
-  var formData = $('#modalForm').serializeArray().reduce(function (result, object) { result[object.name] = object.value; return result }, {})
-  for (var key in formData) {
-    if (formData[key] === '' || formData == null) delete formData[key]
+function submitNew() {
+
+    const formData = {
+        reservation_date: $('#reservation_date').val(),
+        start_time: $('#start_time').val(),
+        hide_menu_price: $('#hide_menu_price').val(),
+        number_of_guests: $('#number_of_guests').val(),
+        allergy: $('#allergy').val(),
+        special_needs: $('#special_needs').val(),
+        fullName: $('#fullName').val(),
+        telephone: $('#telephone').val()
+    }
+
+
+//Checks if name of guest is noted and does not contain numbers
+  const checkName = fullName === ''
+
+  if (checkName) {
+      alert('invalid: guest name')
+      return
   }
 
-  $.post({
-    url: api,
-    data: JSON.stringify(formData),
-    dataType: 'json',
-    success: getData(api),
-    error: function (error) {
-      console.log(error)
-    }
-  })
+  for(let i = 0; i < 10; i++){
+      if(formData.fullName.includes(i)){
+          alert('Invalid: guest name')
+      }
+  }
 
-  deselect()
-  $('#postDetail').modal('toggle')
+
+//Checks if telephone of guest is noted
+  const checkTelephone = telephone === ''
+  if (checkTelephone) {
+      alert('invalid: telephonenumber')
+      return
+  }
+// Checks if date is not in the past
+  const date = new Date()
+  const year = date.getFullYear();
+  const month = (date.getMonth() < 10 ? "0" : "") + parseInt(date.getMonth() + 1);
+  const day = (date.getDate() < 10 ? "0" : "") + date.getDate();
+  const nowDate = year + '-' + month + '-' + day
+  const nowTime = date.getHours() + ':' + date.getMinutes()
+  const checkDate = formData.reservation_date < nowDate
+
+
+  if (checkDate) {
+      alert('invalid: reservation date')
+      return
+  }
+
+// Checks if time is not in the past
+  const checkToday = formData.reservation_date == nowDate
+  const checkTime = $('#start_time').val() < nowTime
+
+  if (checkToday && checkTime){
+      alert('invalid: reservation time')
+      return
+  }
+
+// after the checks -> days get + 1 to compensate for time difference    
+  const dateFormat = formData.reservation_date.split("-")[0] + "-" + formData.reservation_date.split("-")[1] + "-" + (parseInt(formData.reservation_date.split("-")[2]) + 1)
+  formData.reservation_date = dateFormat
+
+//Checks if number of guest is not "", 0,<0
+  const number1 = formData.number_of_guests === ''
+  const number2 = formData.number_of_guests <= 0
+  const number3 = formData.number_of_guests >= 100
+
+  if (number1 || number2) {
+      alert('invalid: Number of guest')
+      return
+  } else if (number3){
+      alert('invalid: to many guest. Please contact customer service')
+      return
+  }
+      $.ajax({
+        url: api,
+        type: "post",
+        data: JSON.stringify(formData),
+        contentType: "application/json",
+        dataType: "json",
+        success: function(data) {
+            getData(api);
+            alert('Reservation saved in database');
+        },
+        error: function (error) {
+            console.log(error);
+        }
+
+    });
+
+    deselect();
+    $('#postDetail').modal('toggle');
 }
 
 // this function perform cleaning up of the table
@@ -118,26 +192,25 @@ function deselect () {
 
 function fillUpdateDiv (record, api) {
   $('#btnsubmit').attr('onclick', 'submitEdit(' + record.id + ', "' + api + '");')
-
-  document.getElementById('modal-title').innerHTML = 'Edit a table'
+  document.getElementById('modal-title').innerHTML = 'Edit reservation'
 
   // this function fills the modal
   fillModal(record)
+  $('#postDetail').modal('toggle')
 }
 
 //  show the usage of the popover here!
 function fillModal (record) {
   // fill the modal
-  // $('#form-id').val(record.id)
-  // $('#form-contactinfos_id').val(record.contactinfos_id)
-  $('#form-reservation_date').val(record.reservation_date.split("T")[0])
-  $('#form-start_time').val(record.start_time)
-  $('#form-hide_menu_price').val(record.hide_menu_price)
-  $('#form-fullName').val(record.fullName)
-  $('#form-telephone').val(record.telephone)
-  $('#form-number_of_guests').val(record.number_of_guests)
+  // $("#id").val(record.id);
+  $('#reservation_date').val(record.reservation_date.split("T")[0])
+  $('#start_time').val(record.start_time)
+  $('#hide_menu_price').val(record.hide_menu_price)
+  $('#number_of_guests').val(record.number_of_guests)
   $('#allergy').val(record.allergy)
-  $('#form-special_needs').val(record.special_needs)
+  $('#special_needs').val(record.special_needs)
+  $('#fullName').val(record.fullName)
+  $('#telephone').val(record.telephone)
 
   // set inline block to respect the margins if applicable
   $('#deleteButton').css('display', 'inline-block')
@@ -157,38 +230,114 @@ function fillModal (record) {
     animation: true,
     content: confirmationButtons, // just use the above created confirmButtons for confirmation
     html: true,
-    // eslint-disable-next-line no-undef
     container: postDetail
   })
 }
 
-// eslint-disable-next-line no-unused-vars
-function submitEdit (id, api) {
+function submitEdit (id) {
   // shortcut for filling the formData as a JavaScript object with the fields in the form
   // var formData = $('#modalForm').serializeArray().reduce(function (result, object) { result[object.name] = object.value; return result }, {})
-  const formData = {
-    reservation_date: $('#form-reservation_date').val(),
-    fullName: $('#form-fullName').val(),
-    telephone:$('#form-telephone').val(),
-    start_time: $('#form-start_time').val(),
-    hide_menu_price: $('#form-hide_menu_price').val(),
-    number_of_guests: $('#form-number_of_guests').val(),
-    allergy: $('#allergy').val().toString(),
-    special_needs: $('#form-special_needs').val()
-  }
-  /* console.log('Formdata =>')
-  console.log(JSON.stringify(formData))
-  for (var key in formData) {
-    if (formData[key] === '' || formData == null) delete formData[key]
-  } */
+  
+    const formData = {
+        reservation_date: $('#reservation_date').val(),
+        start_time: $('#start_time').val(),
+        hide_menu_price: $('#hide_menu_price').val(),
+        number_of_guests: $('#number_of_guests').val(),
+        allergy: $('#allergy').val().toString(),
+        special_needs: $('#special_needs').val(),
+        fullName: $('#fullName').val(),
+        telephone: $('#telephone').val()
+    }
 
-  console.log('Updating row with id:' + id)
+//Checks if name of guest is noted and does not contain numbers
+    const checkName = fullName === ''
 
+    if (checkName) {
+        alert('invalid: guest name')
+        return
+    }
+
+    for(let i = 0; i < 10; i++){
+        if(formData.fullName.includes(i)){
+            alert('Invalid: guest name')
+        }
+    }
+
+
+//Checks if telephone of guest is noted
+    const checkTelephone = telephone === ''
+    if (checkTelephone) {
+        alert('invalid: telephonenumber')
+        return
+    }
+// Checks if date is not in the past
+    const date = new Date()
+    const year = date.getFullYear();
+    const month = (date.getMonth() < 10 ? "0" : "") + parseInt(date.getMonth() + 1);
+    const day = (date.getDate() < 10 ? "0" : "") + date.getDate();
+    const nowDate = year + '-' + month + '-' + day
+    const nowTime = date.getHours() + ':' + date.getMinutes()
+    const checkDate = formData.reservation_date < nowDate
+    
+
+    if (checkDate) {
+        alert('invalid: reservation date')
+        return
+    }
+
+// Checks if time is not in the past
+    const checkToday = formData.reservation_date == nowDate
+    const checkTime = $('#start_time').val() < nowTime
+
+    if (checkToday && checkTime){
+        alert('invalid: reservation time')
+        return
+    }
+
+// after the checks -> days get + 1 to compensate for time difference    
+    const dateFormat = formData.reservation_date.split("-")[0] + "-" + formData.reservation_date.split("-")[1] + "-" + (parseInt(formData.reservation_date.split("-")[2]) + 1)
+    formData.reservation_date = dateFormat
+
+//Checks if number of guest is not "", 0,<0
+    const number1 = formData.number_of_guests === ''
+    const number2 = formData.number_of_guests <= 0
+    const number3 = formData.number_of_guests >= 100
+
+    if (number1 || number2) {
+        alert('invalid: Number of guest')
+        return
+    } else if (number3){
+        alert('invalid: to many guest. Please contact customer service')
+        return
+    }
+
+    $.ajax({
+        url: api + "/" + id,
+        type: 'put',
+        data: JSON.stringify(formData),
+        contentType: "application/json",
+        dataType: "json",
+        success: function(data) {
+            getData(api);
+            deselect();
+            $('#postDetail').modal('toggle');
+
+        },
+        error: function (error) {
+          // deselect();
+          $('#postDetail').modal('show');
+            console.log(error);
+        }
+    });
+
+
+}
+
+function submitDelete (id, api) {
+  console.log(`Deleting row with id: ${id}`)
   $.ajax({
     url: api + '/' + id,
-    type: 'put',
-    data: JSON.stringify(formData),
-    contentType: 'application/json',
+    type: 'delete',
     dataType: 'json',
     success: function (data) {
       getData(api)
@@ -197,20 +346,6 @@ function submitEdit (id, api) {
       console.log(error)
     }
   })
-
-  deselect()
   $('#postDetail').modal('toggle')
 }
 
-// eslint-disable-next-line no-unused-vars
-function submitDelete (id, api) {
-  console.log(`Deleting row with id: ${id}`)
-  $.ajax({
-    url: api + '/' + id,
-    type: 'delete',
-    dataType: 'json',
-    success: getData(api)
-  })
-
-  $('#postDetail').modal('toggle')
-}
