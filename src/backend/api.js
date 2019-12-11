@@ -385,8 +385,12 @@ app.put('/api/reservations/:id', (req, res) => {
   connection.query('UPDATE reservations SET ? WHERE id = ?', [inputUser, id], (err, response) => {
     if (err) throw err
     connection.query('select * from reservations where id=?', [id], (error, resultaat) => {
-      res.status(202)
-      res.send(resultaat[0])
+      if (error) {
+        throw err
+      } else {
+        res.status(202)
+        res.send(resultaat[0])
+      }
     })
   })
 })
