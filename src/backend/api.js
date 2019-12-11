@@ -368,9 +368,12 @@ app.get('/api/reservations/:id', (req, res) => {
   const id = +req.params.id
   if (id < 1) { res.status(404).end(); return }
   connection.query('SELECT * FROM reservations WHERE id = ?', [id], (err, result) => {
-  if (err){
+  if (err) {
     res.status(404)
     throw err
+  }
+  else if (result.length < 1) {
+    res.status(404)
   }
     res.send(result[0])
   })
