@@ -390,7 +390,7 @@ app.put('/api/reservations/:id', (req, res) => {
 })
 app.delete('/api/reservations/:id', (req, res) => {
   const id = +req.params.id
-  connection.query('DELETE FROM reservations WHERE id = ?', id, (err, result) => {
+  connection.query('DELETE FROM reservations WHERE id = ?', [id], (err, result) => {
     if (err) throw err
     console.log('Deleted ', result.affectedRows, ' rows')
     res.status(204).end()
