@@ -102,7 +102,7 @@ describe('Reservation API tests:', function () {
         if (error) done(error)
         else {
           expect(responseBody).to.include({ id: id })
-          expect(responseBody.id).to.be.equal(3)
+          expect(responseBody.id).to.be.equal(id)
           expect(response.statusCode).to.be.equal(200)
           done()
         }
