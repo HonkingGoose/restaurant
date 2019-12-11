@@ -131,7 +131,7 @@ function submitNew() {
 
           for(let error of errors) {
             if(error.param === "table_callsign") {
-                alert("Table_calsign field should not be empty");
+                alert("Table_callsign field should not be empty");
             }
             else if(error.param === "capacity") {
               alert("Capacity field should be provided with numbers")
@@ -238,7 +238,7 @@ function submitEdit (id) {
 
           for(let error of errors) {
             if(error.param === "table_callsign") {
-                alert("Table_calsign field should not be empty");
+                alert("Table_callsign field should not be empty");
             }
             else if(error.param === "capacity") {
               alert("Capacity field should be provided with numbers")
