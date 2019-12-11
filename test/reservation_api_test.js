@@ -12,6 +12,8 @@ let id // for later storing an id in between tests
 
 // Mocking configuration
 const reservationDate = faker.date.future()
+const reservationDateHistory = faker.date.past()
+const startTimeHistory = reservationDate
 const startTime = reservationDate
 const hideMenuPrice = faker.random.number({ min: 0, max: 1 }) // or faker.random.boolean() if a boolean is needed
 const numberOfGuests = faker.random.number({ min: 1, max: 100 })
@@ -50,6 +52,17 @@ const fixture = {
   telephone: telephoneNumber
 }
 
+const fixturePast = {
+  reservation_date: reservationDateHistory.toISOString().split('T')[0],
+  start_time: startTimeHistory.toISOString().split('T')[1].split('.')[0],
+  hide_menu_price: hideMenuPrice,
+  number_of_guests: numberOfGuests,
+  allergy: randomAllergyFromList,
+  special_needs: specialNeeds,
+  fullName: fullName,
+  telephone: telephoneNumber
+}
+
 describe('Reservation API tests:', function () {
   describe('POST', function () {
     it('Create a reservation with no regards to availability', function (done) {
@@ -76,7 +89,20 @@ describe('Reservation API tests:', function () {
       })
     })
     it('with not available date and time in future, should return a error message')
-    it('with date in the past should return a error message ')
+    it('with date in the past should return a error message ', function (done) {
+      const options = {
+        uri: baseUrl,
+        json: fixturePast
+      }
+      fixturePast.special_needs = 'TESTDATA DATE IN PAST'
+      request.post(options, function (error, response) {
+        if (error) done(error)
+        else {
+          expect(response.statusCode).to.be.equal(404)
+          done()
+        }
+      })
+    })
   })
   describe('GET', function () {
     it(baseUrl + ' should return a list', function (done) {
