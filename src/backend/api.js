@@ -339,6 +339,14 @@ app.delete('/api/restaurant_orders/:id', (req, res) => {
 
 app.post('/api/reservations', (req, res) => {
   const content = req.body
+  const d = new Date()
+  const today = d.getFullYear() + "-" + (d.getMonth() +1) + "-" + d.getDate()
+
+  const x = new Error('Can not make a reservation in the past!');
+  if (content.reservation_date < today){
+    res.status(404)
+    throw x
+  } 
   connection.query('INSERT INTO reservations SET ?', content, (err, result) => {
     if (err) throw err
     const id = result.insertId
