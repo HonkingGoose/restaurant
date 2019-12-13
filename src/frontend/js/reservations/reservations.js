@@ -91,9 +91,9 @@ function submitNew() {
     const formData = {
         reservation_date: $('#reservation_date').val(),
         start_time: $('#start_time').val(),
-        hide_menu_price: $('#hide_menu_price').val(),
+        hide_menu_price: $('#hide_menu_price').is(":checked"),
         number_of_guests: $('#number_of_guests').val(),
-        allergy: $('#allergy').val(),
+        allergy: $('#allergy').val().toString(),
         special_needs: $('#special_needs').val(),
         fullName: $('#fullName').val(),
         telephone: $('#telephone').val()
@@ -205,7 +205,13 @@ function fillModal (record) {
   // $("#id").val(record.id);
   $('#reservation_date').val(record.reservation_date.split("T")[0])
   $('#start_time').val(record.start_time)
-  $('#hide_menu_price').val(record.hide_menu_price)
+  if (record.hide_menu_price === 1){
+    $('#hide_menu_price').attr("checked", true)
+  } else {
+    $('#hide_menu_price').attr("checked", false)
+  }
+  // $('#hide_menu_price').val(record.hide_menu_price)
+  console.log(record.hide_menu_price)
   $('#number_of_guests').val(record.number_of_guests)
   $('#allergy').val(record.allergy)
   $('#special_needs').val(record.special_needs)
@@ -241,7 +247,7 @@ function submitEdit (id) {
     const formData = {
         reservation_date: $('#reservation_date').val(),
         start_time: $('#start_time').val(),
-        hide_menu_price: $('#hide_menu_price').val(),
+        hide_menu_price: $('#hide_menu_price').is(":checked"),
         number_of_guests: $('#number_of_guests').val(),
         allergy: $('#allergy').val().toString(),
         special_needs: $('#special_needs').val(),

@@ -181,7 +181,11 @@ function fillModal (record) {
   // fill the modal
   // $("#id").val(record.id);
   $('#capacity').val(record.capacity)
-  $('#available').val(record.available)
+  if (record.available === 1){
+    $('#available').attr("checked", true)
+  } else {
+    $('#available').attr("checked", false)
+  }
   $('#table_callsign').val(record.table_callsign)
 
   // set inline block to respect the margins if applicable
