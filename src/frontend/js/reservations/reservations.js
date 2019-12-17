@@ -108,26 +108,23 @@ function submitNew() {
 
 
 //Checks if name of guest is noted and does not contain numbers
-  const checkName = fullName === ''
+//Checks if name of guest is noted and does not contain numbers
+if (formData.fullName === '') {
+  alert('invalid: guest name')
+  return
+}
 
-  if (checkName) {
-      alert('invalid: guest name')
-      return
+for(let i = 0; i < 10; i++){
+  if(formData.fullName.includes(i)){
+      alert('Invalid: guest name')
   }
-
-  for(let i = 0; i < 10; i++){
-      if(formData.fullName.includes(i)){
-          alert('Invalid: guest name')
-      }
-  }
-
+}
 
 //Checks if telephone of guest is noted
-  const checkTelephone = telephone === ''
-  if (checkTelephone) {
-      alert('invalid: telephonenumber')
-      return
-  }
+if (formData.telephone === '') {
+  alert('invalid: telephonenumber')
+  return
+}
 // Checks if date is not in the past
   const date = new Date()
   const year = date.getFullYear();
@@ -289,9 +286,7 @@ function submitEdit (id) {
 
 
 //Checks if name of guest is noted and does not contain numbers
-    const checkName = fullName === ''
-
-    if (checkName) {
+    if (formData.fullName === '') {
         alert('invalid: guest name')
         return
     }
@@ -304,8 +299,7 @@ function submitEdit (id) {
 
 
 //Checks if telephone of guest is noted
-    const checkTelephone = telephone === ''
-    if (checkTelephone) {
+    if (formData.telephone === '') {
         alert('invalid: telephonenumber')
         return
     }
