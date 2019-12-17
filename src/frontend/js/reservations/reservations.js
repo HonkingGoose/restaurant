@@ -88,12 +88,19 @@ function getSingleRecord (id, api) {
 
 function submitNew() {
 
+  let allergyNew = [];
+  for (let i = 0; i < 15; i++) {
+     if ($('.allergy' + [i]).is(":checked")) {
+      allergyNew.push($('.allergy' + [i]).val())
+    }
+  }
+
     const formData = {
         reservation_date: $('#reservation_date').val(),
         start_time: $('#start_time').val(),
         hide_menu_price: $('#hide_menu_price').is(":checked"),
         number_of_guests: $('#number_of_guests').val(),
-        allergy: $('#allergy').val().toString(),
+        allergy: allergyNew.toString(),
         special_needs: $('#special_needs').val(),
         fullName: $('#fullName').val(),
         telephone: $('#telephone').val()
@@ -243,17 +250,24 @@ function fillModal (record) {
 function submitEdit (id) {
   // shortcut for filling the formData as a JavaScript object with the fields in the form
   // var formData = $('#modalForm').serializeArray().reduce(function (result, object) { result[object.name] = object.value; return result }, {})
+  let allergyEdit = [];
+  for (let i = 0; i < 15; i++) {
+     if ($('.allergy' + [i]).is(":checked")) {
+      allergyEdit.push($('.allergy' + [i]).val())
+    }
+  }
 
     const formData = {
         reservation_date: $('#reservation_date').val(),
         start_time: $('#start_time').val(),
         hide_menu_price: $('#hide_menu_price').is(":checked"),
         number_of_guests: $('#number_of_guests').val(),
-        allergy: $('#allergy').val().toString(),
+        allergy: allergyEdit.toString(),
         special_needs: $('#special_needs').val(),
         fullName: $('#fullName').val(),
         telephone: $('#telephone').val()
     }
+
 
 //Checks if name of guest is noted and does not contain numbers
     const checkName = fullName === ''

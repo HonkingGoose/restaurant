@@ -71,3 +71,17 @@
   .slider.round:before {
     border-radius: 50%;
   }
+
+  #allergy{
+    display: flex;
+    flex-direction: column;
+    height: 15vh;
+    overflow-y: scroll;
+    border: solid 1px #CED4DA;
+  }
+    #allergy div:hover{
+      background-color: #ECECEC;
+    }
+    #allergy label{
+      width: 6vw;
+    }

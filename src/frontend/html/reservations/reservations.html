@@ -59,22 +59,21 @@
                             Number of guests:<span class="red">*</span><br>
                             <input type='number' class="form-control" name="number_of_guests" id="number_of_guests"><br>
                             Allergy:<br>
-                            <select multiple id="allergy" class="select-checkbox" type="text" name="allergy">
-                                    <option value="egg">egg</option>
-                                    <option value="gluten">gluten</option>
-                                    <option value="lupin">lupin</option>
-                                    <option value="milk">milk</option>
-                                    <option value="mustard">mustard</option>
-                                    <option value="nuts">nuts</option>
-                                    <option value="peanuts">peanuts</option>
-                                    <option value="crustaceans">crustaceans</option>
-                                    <option value="sulphite">sulphite</option>
-                                    <option value="celery">celery</option>
-                                    <option value="sesame">sesame</option>
-                                    <option value="molluscs">molluscs</option>
-                                    <option value="fish">fish</option>
-                                    <option value="soya">soya</option>
-                                </select><br><br>
+                            <div id="allergy" name="allergy">
+                                <div><label>eggs:</label><input type="checkbox" value="egg" class="allergy0 egg"></div> 
+                                <div><label>gluten:</label><input type="checkbox" value="gluten" class="allergy1 gluten"></div> 
+                                <div><label>lupin:</label><input type="checkbox" value="lupin" class="allergy2 lupin"></div> 
+                                <div><label>milk:</label><input type="checkbox" value="milk" class="allergy3 milk"></div> 
+                                <div><label>mustard:</label><input type="checkbox" value="mustard" class="allergy4 mustard"></div> 
+                                <div><label>nuts:</label><input type="checkbox" value="nuts" class="allergy5 nuts"></div> 
+                                <div><label>crustaceans:</label><input type="checkbox" value="crustaceans" class="allergy6 crustaceans"></div> 
+                                <div><label>sulphite:</label><input type="checkbox" value="sulphite" class="allergy7 sulphite"></div> 
+                                <div><label>celery:</label><input type="checkbox" value="celery" class="allergy8 celery"></div> 
+                                <div><label>sesame:</label><input type="checkbox" value="sesame" class="allergy9 sesame"></div> 
+                                <div><label>molluscs:</label><input type="checkbox" value="molluscs" class="allergy10 molluscs"></div> 
+                                <div><label>fish:</label><input type="checkbox" value="fish" class="allergy11 fish"></div> 
+                                <div><label>soya:</label><input type="checkbox" value="soya" class="allergy12 soya"></div> 
+                            </div><br><br>
                             Special needs:<br>
                             <input type='text' class="form-control" name="special_needs" id="special_needs"><br>
                         </form>
