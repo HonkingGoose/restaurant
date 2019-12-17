@@ -351,8 +351,12 @@ app.post('/api/reservations', (req, res) => {
     if (err) throw err
     const id = result.insertId
     connection.query('select * from reservations where id=?', [id], (error, resultaat) => {
-      res.status(201)
-      res.send(resultaat[0])
+      if (error) {
+        throw error
+      } else {
+        res.status(201)
+        res.send(resultaat[0])
+      }
     })
   })
 })
