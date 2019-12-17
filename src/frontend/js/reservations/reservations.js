@@ -210,10 +210,10 @@ function fillModal (record) {
   } else {
     $('#hide_menu_price').attr("checked", false)
   }
-  // $('#hide_menu_price').val(record.hide_menu_price)
-  console.log(record.hide_menu_price)
+
   $('#number_of_guests').val(record.number_of_guests)
   $('#allergy').val(record.allergy)
+  console.log(record.allergy)
   $('#special_needs').val(record.special_needs)
   $('#fullName').val(record.fullName)
   $('#telephone').val(record.telephone)
