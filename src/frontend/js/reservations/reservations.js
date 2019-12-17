@@ -208,6 +208,7 @@ function fillUpdateDiv (record, api) {
 
 //  show the usage of the popover here!
 function fillModal (record) {
+
   // fill the modal
   // $("#id").val(record.id);
   $('#reservation_date').val(record.reservation_date.split("T")[0])
@@ -219,8 +220,26 @@ function fillModal (record) {
   }
 
   $('#number_of_guests').val(record.number_of_guests)
-  $('#allergy').val(record.allergy)
-  console.log(record.allergy)
+
+
+  const allergyItem = record.allergy.split(',');
+  let allergyFill = [];
+
+  for(let i = 0; i < allergyItem.length; i++){
+    allergyFill.push(allergyItem[i])
+  }
+
+  for(let i = 0; i < 15; i++){
+    if(allergyFill.includes($('.allergy' + [i]).val())){
+      $('.allergy' + [i]).attr('checked', true)
+      console.log('ja')
+    } else {
+      $('.allergy' + [i]).attr('checked', false)
+      console.log('nee')
+    }
+  }
+
+
   $('#special_needs').val(record.special_needs)
   $('#fullName').val(record.fullName)
   $('#telephone').val(record.telephone)
