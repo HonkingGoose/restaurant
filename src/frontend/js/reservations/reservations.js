@@ -18,7 +18,7 @@ $(document).ready(function () {
         document.getElementById("modalForm").reset();
         $("#btnsubmit").attr('onclick', 'submitNew("' + api + '");');
         $('#postDetail').modal('toggle');
-    })                  
+    })
   })
 
 function initDataTable () {
@@ -145,7 +145,7 @@ function submitNew() {
       return
   }
 
-// after the checks -> days get + 1 to compensate for time difference    
+// after the checks -> days get + 1 to compensate for time difference
   const dateFormat = formData.reservation_date.split("-")[0] + "-" + formData.reservation_date.split("-")[1] + "-" + (parseInt(formData.reservation_date.split("-")[2]) + 1)
   formData.reservation_date = dateFormat
 
@@ -155,10 +155,10 @@ function submitNew() {
   const number3 = formData.number_of_guests >= 100
 
   if (number1 || number2) {
-      alert('invalid: Number of guest')
+      alert('invalid: Number of guests')
       return
   } else if (number3){
-      alert('invalid: to many guest. Please contact customer service')
+      alert('invalid: too many guests. Please contact customer service.')
       return
   }
       $.ajax({
@@ -243,7 +243,7 @@ function fillModal (record) {
 function submitEdit (id) {
   // shortcut for filling the formData as a JavaScript object with the fields in the form
   // var formData = $('#modalForm').serializeArray().reduce(function (result, object) { result[object.name] = object.value; return result }, {})
-  
+
     const formData = {
         reservation_date: $('#reservation_date').val(),
         start_time: $('#start_time').val(),
@@ -284,7 +284,7 @@ function submitEdit (id) {
     const nowDate = year + '-' + month + '-' + day
     const nowTime = date.getHours() + ':' + date.getMinutes()
     const checkDate = formData.reservation_date < nowDate
-    
+
 
     if (checkDate) {
         alert('invalid: reservation date')
@@ -300,7 +300,7 @@ function submitEdit (id) {
         return
     }
 
-// after the checks -> days get + 1 to compensate for time difference    
+// after the checks -> days get + 1 to compensate for time difference
     const dateFormat = formData.reservation_date.split("-")[0] + "-" + formData.reservation_date.split("-")[1] + "-" + (parseInt(formData.reservation_date.split("-")[2]) + 1)
     formData.reservation_date = dateFormat
 
@@ -313,7 +313,7 @@ function submitEdit (id) {
         alert('invalid: Number of guest')
         return
     } else if (number3){
-        alert('invalid: to many guest. Please contact customer service')
+        alert('invalid: Too many guests. Please contact customer service.')
         return
     }
 
