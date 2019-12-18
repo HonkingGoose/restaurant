@@ -347,6 +347,15 @@ app.post('/api/reservations', (req, res) => {
     res.status(404)
     throw x
   }
+
+  const fullNameNumberError = new Error('Field fullName cannot contain a number.')
+  for (let i = 0; i < 10; i++) {
+    if (String(content.fullName).includes(i)) {
+      res.status(400)
+      throw fullNameNumberError
+    }
+  }
+
   connection.query('INSERT INTO reservations SET ?', content, (err, result) => {
     if (err) throw err
     const id = result.insertId
