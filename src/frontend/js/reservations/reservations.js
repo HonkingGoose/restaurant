@@ -117,6 +117,7 @@ if (formData.fullName === '') {
 for(let i = 0; i < 10; i++){
   if(formData.fullName.includes(i)){
       alert('Invalid: guest name')
+      return;
   }
 }
 
@@ -294,6 +295,7 @@ function submitEdit (id) {
     for(let i = 0; i < 10; i++){
         if(formData.fullName.includes(i)){
             alert('Invalid: guest name')
+            return;
         }
     }
 
