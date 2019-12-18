@@ -88,7 +88,7 @@ describe('Reservation API tests:', function () {
         }
       })
     })
-    it('Create reservation with name a number, should return statuscode 400', function (done) {
+    it('Create reservation where fullName is a number, should return statuscode 400', function (done) {
       const numberReservation = fixture
       numberReservation.fullName = 1
       numberReservation.special_needs = 'TESTDATA NUMBER IN FULLNAME'
