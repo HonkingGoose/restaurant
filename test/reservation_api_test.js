@@ -88,6 +88,23 @@ describe('Reservation API tests:', function () {
         }
       })
     })
+    it('Create reservation with name a number, should return statuscode 400', function (done) {
+      const numberReservation = fixture
+      numberReservation.fullName = 1
+      numberReservation.special_needs = 'TESTDATA NUMBER IN FULLNAME'
+      console.log(numberReservation)
+      const options = {
+        uri: baseUrl,
+        json: numberReservation
+      }
+      request.post(options, function (error, response, responseBody) {
+        if (error) done(error)
+        else {
+          expect(response.statusCode).to.be.equal(400)
+          done()
+        }
+      })
+    })
     it('with not available date and time in future, should return a error message')
     it('with date in the past should return a error message ', function (done) {
       const options = {
