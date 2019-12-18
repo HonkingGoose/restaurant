@@ -92,7 +92,6 @@ describe('Reservation API tests:', function () {
       const numberReservation = fixture
       numberReservation.fullName = 1
       numberReservation.special_needs = 'TESTDATA NUMBER IN FULLNAME'
-      console.log(numberReservation)
       const options = {
         uri: baseUrl,
         json: numberReservation
