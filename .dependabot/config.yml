@@ -6,9 +6,6 @@ update_configs:
     directory: "/"
     update_schedule: "live"
 
-    # Apply default reviewer and label to created
-    # pull requests
-    default_reviewers:
-      - "HonkingGoose"
+    # Apply default label to created pull requests
     default_labels:
       - "dependabot"
