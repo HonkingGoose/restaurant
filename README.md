@@ -1,6 +1,10 @@
 # restaurant
 Restaurant (Team Bald Eagle)
 
+## Warning:
+
+This project is currently not functional, the dev-dependency `request` is no longer maintained. The code will need a rewrite for this project to be functional again. I do not recommend using this code as-is.
+
 ## Pre-requisites
 
 - MySQL is installed, and you have a root account for MySQL.
