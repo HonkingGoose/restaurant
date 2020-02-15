@@ -1,5 +1,4 @@
 # restaurant
-Restaurant (Team Bald Eagle)
 
 ## Warning:
 
