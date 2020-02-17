@@ -4,7 +4,7 @@ const expect = require("chai").expect;
 const request = require("request");
 const faker = require("faker/locale/nl");
 
-const port = 3000;
+const PORT = 8080;
 
 const baseUrl = "http://localhost:" + port + "/api/reservations";
 

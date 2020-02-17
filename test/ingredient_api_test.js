@@ -3,9 +3,9 @@
 const expect = require("chai").expect;
 const request = require("request");
 
-const port = 3000;
+const PORT = 8080;
 
-const baseUrl = "http://localhost:" + port + "/api/ingredients";
+const baseUrl = "http://localhost:" + PORT + "/api/ingredients";
 
 let id; // for later storing an id in between to tests
 
