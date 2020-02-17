@@ -1,6 +1,21 @@
 "use strict";
 
 const mysql = require("mysql");
+const express = require("express");
+
+const PORT = 8080;
+const HOST = "0.0.0.0"
+
+// App
+
+const app = express();
+
+app.get('/', (req, res) => {
+  res.send("Hello World");
+});
+
+app.listen(PORT, HOST);
+console.log(`Running on http://${HOST}:${PORT}`);
 
 const connection = mysql.createConnection({
   host: "localhost",
@@ -15,8 +30,6 @@ connection.connect(err => {
 });
 
 const express = require("express");
-const app = express();
-const port = 3000;
 
 app.use(function(req, res, next) {
   res.header("Access-Control-Allow-Origin", "*");
