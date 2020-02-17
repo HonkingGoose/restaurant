@@ -4,7 +4,7 @@ update_configs:
   - package_manager: "javascript"
     directory: "/"
     update_schedule: "monthly"
-
-    # Apply default label to created pull requests
-    default_labels:
-      - "dependabot"
+  
+  - package_manager: "docker"
+    directory: "/"
+    update_schedule: "monthly"
