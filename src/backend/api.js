@@ -29,8 +29,6 @@ connection.connect(err => {
   console.log("Connected!");
 });
 
-const express = require("express");
-
 app.use(function(req, res, next) {
   res.header("Access-Control-Allow-Origin", "*");
   res.header("Access-Control-Allow-Methods", "*");
@@ -45,10 +43,6 @@ const bodyParser = require("body-parser");
 const { check, validationResult } = require("express-validator");
 
 app.use(bodyParser.json());
-
-app.listen(port, () => {
-  console.log("Server running on port: ", port);
-});
 
 function formatDates(input) {
   const formattedInput = input;
