@@ -1,3 +1,5 @@
+[![Dependabot Status](https://api.dependabot.com/badges/status?host=github&repo=HonkingGoose/restaurant)](https://dependabot.com)
+
 # restaurant
 
 ## Warning:
