@@ -1,10 +1,13 @@
 version: 1
 update_configs:
-  # Update package.json (& lockfiles) monthly
   - package_manager: "javascript"
     directory: "/"
-    update_schedule: "monthly"
-  
+    update_schedule: "live"
+    automerged_updates:
+      - match:
+          update_type: "all" 
+          dependency_type: "all"
+
   - package_manager: "docker"
     directory: "/"
-    update_schedule: "monthly"
+    update_schedule: "daily"
