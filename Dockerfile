@@ -1,20 +1,15 @@
-FROM node:14.2.0
+FROM node:14.2.0 AS development
 
-# Create app directory
-WORKDIR /usr/src/
+ENV CI=true
+ENV PORT=8080
 
-# Install app dependencies
-# A wildcard is used to ensure both package.json AND package-lock.json are copied
-# where available
-COPY package*.json ./
+WORKDIR /code
+COPY package.json package-lock.json ./
 
-RUN npm install
-# If you are building your code for production
+# If you are building your code for production use
 # RUN npm ci --only=production
-
-# Bundle app source
-
-COPY . .
+RUN npm ci
+COPY src /code/src
 
 # This is the port that the app listens to
 EXPOSE 8080
@@ -22,5 +17,4 @@ EXPOSE 8080
 CMD [ "node", "src/backend/api.js" ]
 
 # Use node default "node"-use, to have a non-root user
-
 USER node
