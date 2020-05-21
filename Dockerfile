@@ -1,4 +1,4 @@
-FROM node:12.16.3 AS development
+FROM node:14.3.0 AS development
 
 ENV CI=true
 ENV PORT=8080
