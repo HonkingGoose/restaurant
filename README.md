@@ -4,9 +4,7 @@
 
 ## Warning:
 
-This project is currently **not working** because the dev-dependency `request` is no longer maintained.
-The code will need to be fixed for this project to work again.
-I do **not recommend** using this code as-is.
+This project is currently **not working** because it's being rewritten.
 
 ## Where to find the latest release?
 
