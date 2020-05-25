@@ -105,3 +105,6 @@ public
 
 #. Libreoffice Impress lock file
 .~lock.*
+
+# JetBrains stuff:
+*.idea
