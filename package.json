@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "mocha test/"
+    "test": ""
   },
   "private": true,
   "repository": {
@@ -17,17 +17,6 @@
     "url": "https://github.com/HonkingGoose/restaurant/issues"
   },
   "homepage": "https://github.com/HonkingGoose/restaurant#readme",
-  "dependencies": {
-    "body-parser": "^1.19.0",
-    "bootstrap4-toggle": "^3.6.1",
-    "express": "^4.17.1",
-    "express-validator": "^6.5.0",
-    "mysql": "^2.18.1"
-  },
-  "devDependencies": {
-    "chai": "^4.2.0",
-    "faker": "^4.1.0",
-    "luxon": "^1.24.1",
-    "mocha": "^7.2.0"
-  }
+  "dependencies": {},
+  "devDependencies": {}
 }
