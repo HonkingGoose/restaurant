@@ -1,0 +1,52 @@
+# ignore database directory
+run/var
+
+# ignore git stuff
+.git
+**.gitattributes
+**.gitignore
+
+# ignore IDE stuff
+.idea
+.vscode
+.editorconfig
+
+# ignore production .env
+.env
+
+# Ignore node_modules
+node_modules
+
+# ignore Composer vendor directory
+vendor
+
+# ignore non CI package declarations
+composer.json
+package.json
+
+# ignore all markdown files (.md) but do include README.md
+!README*.md
+*.md
+
+# ignore docker-compose
+docker-compose.yml
+
+# ignore storage stuff
+storage/framework/cache/**
+storage/framework/sessions/**
+storage/framework/testing/**
+storage/framework/views/**
+storage/logs/**
+
+# ignore phpunit stuff
+.php_cs.cache
+.phpunit.result.cache
+phpunit.xml
+
+# ignore stuff only useful for GitHub Actions, or CI, or other workflows
+.dependabot
+.github
+.styleci.yml
+
+# ignore local development shell scripts
+*.sh
