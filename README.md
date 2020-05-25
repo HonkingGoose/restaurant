@@ -22,4 +22,4 @@ There are helper shell scripts to use Composer to install dependencies, use php-
 
 ## What to do after cloning the repo:
 
-Run the up.sh script.
+Run the `up.sh` script.
