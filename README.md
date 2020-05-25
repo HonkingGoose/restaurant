@@ -1,4 +1,5 @@
 [![Dependabot Status](https://api.dependabot.com/badges/status?host=github&repo=HonkingGoose/restaurant)](https://dependabot.com)
+![Laravel](https://github.com/HonkingGoose/restaurant/workflows/Laravel/badge.svg)
 
 # Restaurant
 
