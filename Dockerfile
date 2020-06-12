@@ -1,4 +1,4 @@
-FROM php:7.4.6-apache
+FROM php:7.4.7-apache
 
 # 1. Install development packages and remove the apt-cache afterwards
 RUN apt-get update && apt-get install -y \
