@@ -5,7 +5,8 @@
 
 ## Warning:
 
-This project is currently not working because it's being rewritten into a Laravel app.
+This project is archived, and in read-only mode.
+It will receive no more bugfixes/security fixes/features.
 
 ## Where to find the latest release?
 
